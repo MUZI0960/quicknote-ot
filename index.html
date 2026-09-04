@@ -44,7 +44,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .hospital-badge{font-size:12px;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 12px;display:flex;align-items:center;gap:6px;}
 .btn-logout{font-size:12px;color:rgba(255,255,255,0.7);background:transparent;border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
 .btn-logout:hover{background:rgba(255,255,255,0.1);}
-
 .layout{display:grid;grid-template-columns:1fr 380px;gap:1.5rem;padding:1.5rem 2rem;max-width:1200px;margin:0 auto;}
 .card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:1.25rem;margin-bottom:1rem;box-shadow:var(--shadow);}
 .card:last-child{margin-bottom:0;}
@@ -93,7 +92,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .search-input-wrap{display:flex;gap:6px;}
 .search-input{flex:1;height:36px;padding:0 12px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif;transition:border-color 0.12s;}
 .search-input:focus{outline:none;border-color:var(--mint-mid);}
-.btn-search{height:36px;padding:0 14px;border-radius:9px;border:none;background:#7C52C8;color:#fff;font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:opacity 0.12s;}
+.btn-search{height:36px;padding:0 14px;border-radius:9px;border:none;background:#7C52C8;color:#fff;font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0;}
 .btn-search:hover{opacity:0.85;}
 .search-result{margin-top:10px;}
 .search-result-label{font-size:11px;color:var(--text-muted);margin-bottom:6px;}
@@ -101,37 +100,57 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .search-item .s-date{font-size:10px;color:var(--lavender-dark);font-weight:500;margin-bottom:3px;}
 .search-hit{background:#FFE8A3;border-radius:3px;padding:0 2px;}
 .search-empty{font-size:13px;color:var(--text-muted);text-align:center;padding:1rem 0;}
-.fab{position:fixed;bottom:28px;right:28px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 16px rgba(124,82,200,0.35);display:flex;align-items:center;justify-content:center;z-index:100;transition:transform 0.15s;}
-.fab:hover{transform:scale(1.08);}
-.phrase-overlay{display:none;position:fixed;inset:0;background:rgba(30,21,48,0.35);z-index:200;align-items:center;justify-content:center;}
-.phrase-overlay.open{display:flex;}
-.phrase-panel{background:#fff;border-radius:20px;padding:1.5rem;width:min(480px,92vw);max-height:85vh;overflow-y:auto;box-shadow:0 8px 40px rgba(124,82,200,0.18);}
-.phrase-panel h2{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;}
-.phrase-panel p{font-size:13px;color:var(--text-muted);margin-bottom:1.25rem;}
-.phrase-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1rem;}
-.phrase-cat-btn{padding:8px 10px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.12s;}
-.phrase-cat-btn:hover{border-color:var(--mint-mid);background:var(--mint-light);}
-.phrase-cat-btn.on{background:var(--lavender);border-color:var(--lavender-mid);color:var(--lavender-dark);font-weight:500;}
-.phrase-input{width:100%;min-height:80px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);resize:vertical;margin-bottom:10px;}
-.phrase-input:focus{outline:none;border-color:var(--mint-mid);}
-.phrase-hint{font-size:12px;color:var(--text-muted);margin-bottom:14px;line-height:1.5;}
-.phrase-btns{display:flex;gap:8px;}
-.btn-phrase-save{flex:1;height:40px;border-radius:10px;border:none;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;font-size:14px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
-.btn-phrase-save:hover{opacity:0.88;}
-.btn-phrase-cancel{height:40px;padding:0 18px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
-.custom-list{margin-top:1.25rem;border-top:1.5px solid var(--border);padding-top:1rem;}
-.custom-list-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;}
-.custom-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--mint-light);}
-.custom-item:last-child{border-bottom:none;}
-.custom-item-text{font-size:12px;color:var(--text-sub);flex:1;line-height:1.5;}
-.custom-item-cat{font-size:10px;font-weight:500;padding:2px 6px;border-radius:5px;background:var(--lavender);color:var(--lavender-dark);flex-shrink:0;}
-.btn-custom-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:13px;flex-shrink:0;}
-.btn-custom-del:hover{color:#C0607A;}
+
+/* FAB */
+.fab{position:fixed;bottom:28px;right:28px;height:44px;padding:0 18px;border-radius:22px;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;border:none;font-size:14px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(124,82,200,0.35);display:flex;align-items:center;gap:7px;z-index:100;transition:transform 0.15s;}
+.fab:hover{transform:translateY(-2px);}
+
+/* EDIT OVERLAY */
+.overlay{display:none;position:fixed;inset:0;background:rgba(30,21,48,0.38);z-index:200;align-items:flex-start;justify-content:flex-end;padding:1rem;}
+.overlay.open{display:flex;}
+.edit-panel{background:#fff;border-radius:20px;padding:0;width:min(520px,96vw);max-height:92vh;overflow:hidden;box-shadow:0 8px 40px rgba(124,82,200,0.2);display:flex;flex-direction:column;}
+.edit-header{padding:1.25rem 1.5rem 0;flex-shrink:0;}
+.edit-header h2{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:600;color:var(--text);}
+.edit-header p{font-size:12px;color:var(--text-muted);margin-top:3px;}
+.edit-tabs{display:flex;border-bottom:1.5px solid var(--border);margin-top:1rem;padding:0 1.5rem;}
+.edit-tab{padding:8px 14px;font-size:13px;color:var(--text-muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+.edit-tab.on{color:var(--mint);border-bottom-color:var(--mint);font-weight:500;}
+.edit-body{flex:1;overflow-y:auto;padding:1.25rem 1.5rem;}
+
+/* 문구 추가 탭 */
+.edit-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1rem;}
+.edit-cat-btn{padding:8px 10px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.12s;}
+.edit-cat-btn:hover{border-color:var(--mint-mid);background:var(--mint-light);}
+.edit-cat-btn.on{background:var(--lavender);border-color:var(--lavender-mid);color:var(--lavender-dark);font-weight:500;}
+.edit-textarea{width:100%;min-height:80px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);resize:vertical;margin-bottom:8px;}
+.edit-textarea:focus{outline:none;border-color:var(--mint-mid);}
+.edit-hint{font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;}
+.btn-primary{height:40px;padding:0 20px;border-radius:10px;border:none;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;font-size:14px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+.btn-primary:hover{opacity:0.88;}
+.btn-secondary{height:40px;padding:0 16px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+.edit-section{margin-bottom:1.25rem;}
+.edit-section-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+.phrase-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--mint-light);}
+.phrase-item:last-child{border-bottom:none;}
+.phrase-item-text{font-size:12px;color:var(--text-sub);flex:1;line-height:1.5;}
+.phrase-item-cat{font-size:10px;font-weight:500;padding:2px 6px;border-radius:5px;background:var(--lavender);color:var(--lavender-dark);flex-shrink:0;}
+.btn-del-sm{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:13px;flex-shrink:0;padding:2px 4px;transition:color 0.12s;}
+.btn-del-sm:hover{color:#C0607A;}
+
+/* 카테고리 관리 탭 */
+.cat-manage-item{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--mint-light);border-radius:9px;margin-bottom:6px;}
+.cat-manage-label{font-size:13px;font-weight:500;color:var(--text);flex:1;}
+.cat-manage-sub{font-size:11px;color:var(--text-muted);}
+.cat-manage-badge{font-size:10px;padding:2px 7px;border-radius:5px;background:var(--lavender);color:var(--lavender-dark);}
+.input-row{display:flex;gap:8px;margin-bottom:8px;}
+.input-row input{flex:1;height:38px;padding:0 12px;border-radius:9px;border:1.5px solid var(--border);font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);}
+.input-row input:focus{outline:none;border-color:var(--mint-mid);}
+.divider-line{border:none;border-top:1.5px solid var(--border);margin:1.25rem 0;}
 </style>
 </head>
 <body>
 
-<!-- 로그인 화면 -->
+<!-- 로그인 -->
 <div class="login-wrap" id="login-wrap">
   <div class="login-card">
     <div class="login-logo">QuickNote for OT</div>
@@ -156,7 +175,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
   </div>
 </div>
 
-<!-- 앱 화면 -->
+<!-- 앱 -->
 <div class="app-wrap" id="app-wrap">
   <div class="top-bar">
     <div class="top-bar-left">
@@ -211,22 +230,66 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
   </div>
 </div>
 
-<button class="fab" id="fab" onclick="openPhrasePanel()" title="예시 문구 추가" style="display:none;">＋</button>
+<!-- FAB -->
+<button class="fab" id="fab" onclick="openEditPanel()" style="display:none;">✎ 편집</button>
 
-<div class="phrase-overlay" id="phrase-overlay" onclick="closePhrasePanel(event)">
-  <div class="phrase-panel">
-    <h2>예시 문구 추가</h2>
-    <p>카테고리를 선택하고 문구를 입력하면 생성 풀에 추가돼요.</p>
-    <div class="phrase-cat-grid" id="phrase-cat-grid"></div>
-    <textarea class="phrase-input" id="phrase-input" placeholder="여러 줄 입력 시 줄마다 각각 추가됩니다"></textarea>
-    <div class="phrase-hint">여러 줄 입력 시 줄마다 각각 추가됩니다.</div>
-    <div class="phrase-btns">
-      <button class="btn-phrase-cancel" onclick="closePhrasePanel(null)">취소</button>
-      <button class="btn-phrase-save" onclick="savePhrase()">추가하기</button>
+<!-- 편집 패널 -->
+<div class="overlay" id="edit-overlay" onclick="closeEditPanel(event)">
+  <div class="edit-panel">
+    <div class="edit-header">
+      <h2>문구 편집</h2>
+      <p id="edit-hospital-label"></p>
     </div>
-    <div class="custom-list" id="custom-list" style="display:none;">
-      <div class="custom-list-title">추가된 문구 목록</div>
-      <div id="custom-items"></div>
+    <div class="edit-tabs">
+      <button class="edit-tab on" onclick="setEditTab('phrase')">문구 추가</button>
+      <button class="edit-tab" onclick="setEditTab('category')">카테고리 관리</button>
+      <button class="edit-tab" onclick="setEditTab('list')">추가된 문구</button>
+    </div>
+    <div class="edit-body">
+
+      <!-- 문구 추가 탭 -->
+      <div id="etab-phrase">
+        <div class="edit-section">
+          <div class="edit-section-title">카테고리 선택</div>
+          <div class="edit-cat-grid" id="edit-cat-grid"></div>
+        </div>
+        <div class="edit-section">
+          <div class="edit-section-title">문구 입력</div>
+          <textarea class="edit-textarea" id="phrase-input" placeholder="여러 줄 입력 시 줄마다 각각 추가됩니다&#10;예: stacking cone ROM 증진 유도"></textarea>
+          <div class="edit-hint">이 병원에서만 사용되는 문구로 추가돼요. 여러 줄 입력 가능.</div>
+          <button class="btn-primary" onclick="savePhrase()">문구 추가하기</button>
+        </div>
+      </div>
+
+      <!-- 카테고리 관리 탭 -->
+      <div id="etab-category" style="display:none;">
+        <div class="edit-section">
+          <div class="edit-section-title">새 카테고리 추가</div>
+          <div class="input-row">
+            <input type="text" id="new-cat-label" placeholder="카테고리명 (예: ADL — Supervision)"/>
+          </div>
+          <div class="input-row">
+            <input type="text" id="new-cat-sub" placeholder="설명 (예: 감독 수준)"/>
+            <button class="btn-primary" onclick="addCategory()">추가</button>
+          </div>
+        </div>
+        <hr class="divider-line"/>
+        <div class="edit-section">
+          <div class="edit-section-title">이 병원의 커스텀 카테고리</div>
+          <div id="custom-cat-list"><div style="font-size:13px;color:var(--text-muted);">추가된 카테고리가 없어요</div></div>
+        </div>
+        <hr class="divider-line"/>
+        <div class="edit-section">
+          <div class="edit-section-title">기본 카테고리 목록</div>
+          <div id="default-cat-list"></div>
+        </div>
+      </div>
+
+      <!-- 추가된 문구 탭 -->
+      <div id="etab-list" style="display:none;">
+        <div id="custom-phrase-list"><div style="font-size:13px;color:var(--text-muted);text-align:center;padding:1.5rem 0;">추가된 문구가 없어요</div></div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -248,6 +311,7 @@ const firebaseConfig = {
   measurementId: "G-VND6PQS1GT"
 };
 
+
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
@@ -257,15 +321,12 @@ ov(dbRef(db,'.info/connected'), snap=>{
   document.getElementById('conn-label').textContent = on?'실시간 연결됨':'연결 끊김';
 });
 
-// ── 날짜 헬퍼
-function getMonthKey(){
-  const d=new Date();
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
-}
+function getMonthKey(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
 function getTodayStr(){ return new Date().toISOString().slice(0,10); }
 const DAYS = ['월','화','수','목','금','토','일'];
 
-const CATS = [
+// 기본 카테고리
+const DEFAULT_CATS = [
   {key:'hypertonus', label:'Hypertonus',       sub:'근긴장도 높음'},
   {key:'hypotonus',  label:'Hypotonus',        sub:'근긴장도 낮음'},
   {key:'balance',    label:'Balance / Trunk',  sub:'균형·체간'},
@@ -284,178 +345,157 @@ const CATS = [
   {key:'rdt',        label:'RDT',              sub:'구강·삼킴'},
 ];
 
-// ── 상태
 const T = {};
-let sel=[], lastResults=[], lastFbKeys=[], monthComments={}, customPhrases={};
-let selDay=getTodayStr(), selPhrCat=null, poolLoaded=false;
-let currentHospital = null; // { id, name }
-let monthRef = null;
-let monthUnsub = null;
+let sel=[], lastResults=[], lastFbKeys=[], monthComments={};
+let customPhrases={}, customCats=[];
+let selDay=getTodayStr(), selEditCat=null, selEditTab='phrase';
+let poolLoaded=false;
+let currentHospital=null;
+let monthRef=null, monthUnsub=null;
+let customPhraseUnsub=null, customCatUnsub=null;
 
-// ── 유틸
 function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function hashCode(str){
-  let h=0;
-  for(let i=0;i<str.length;i++) h=Math.imul(31,h)+str.charCodeAt(i)|0;
-  return Math.abs(h).toString(36);
-}
+function hashCode(str){ let h=0; for(let i=0;i<str.length;i++) h=Math.imul(31,h)+str.charCodeAt(i)|0; return Math.abs(h).toString(36); }
+
+// 전체 카테고리 (기본 + 병원 커스텀)
+function allCats(){ return [...DEFAULT_CATS, ...customCats]; }
 
 // ── 로그인 탭
-window.setLoginTab = function(tab){
+window.setLoginTab=function(tab){
   document.querySelectorAll('.login-tab').forEach((b,i)=>b.classList.toggle('on',['login','register'][i]===tab));
-  document.getElementById('login-form').style.display = tab==='login'?'':'none';
-  document.getElementById('reg-form').style.display   = tab==='register'?'':'none';
-  document.getElementById('login-err').textContent = '';
+  document.getElementById('login-form').style.display=tab==='login'?'':'none';
+  document.getElementById('reg-form').style.display=tab==='register'?'':'none';
+  document.getElementById('login-err').textContent='';
 };
+function showErr(msg){ document.getElementById('login-err').textContent=msg; }
 
-function showErr(msg){ document.getElementById('login-err').textContent = msg; }
-
-// ── 병원 등록
-window.doRegister = async function(){
-  const name  = document.getElementById('rg-name').value.trim();
-  const code  = document.getElementById('rg-code').value.trim();
-  const code2 = document.getElementById('rg-code2').value.trim();
+window.doRegister=async function(){
+  const name=document.getElementById('rg-name').value.trim();
+  const code=document.getElementById('rg-code').value.trim();
+  const code2=document.getElementById('rg-code2').value.trim();
   if(!name) return showErr('병원명을 입력해주세요.');
-  if(code.length < 4) return showErr('코드는 4자 이상이어야 해요.');
-  if(code !== code2)  return showErr('코드가 일치하지 않아요.');
-
-  const hospId = hashCode(name + code);
-  const hospRef = ref(db, 'hospitals/'+hospId);
-  const snap = await get(hospRef);
-
-  if(snap.exists()){
-    return showErr('이미 등록된 병원명+코드 조합이에요. 로그인을 이용해주세요.');
-  }
-  await set(hospRef, { name, codeHash: hashCode(code), createdAt: Date.now() });
+  if(code.length<4) return showErr('코드는 4자 이상이어야 해요.');
+  if(code!==code2) return showErr('코드가 일치하지 않아요.');
+  const hospId=hashCode(name+code);
+  const snap=await get(ref(db,'hospitals/'+hospId));
+  if(snap.exists()) return showErr('이미 등록된 병원명+코드 조합이에요. 로그인을 이용해주세요.');
+  await set(ref(db,'hospitals/'+hospId),{name,codeHash:hashCode(code),createdAt:Date.now()});
   showErr('');
   alert(`"${name}" 등록 완료! 로그인 탭에서 로그인해주세요.`);
   setLoginTab('login');
-  document.getElementById('li-name').value = name;
+  document.getElementById('li-name').value=name;
 };
 
-// ── 로그인
-window.doLogin = async function(){
-  const name = document.getElementById('li-name').value.trim();
-  const code = document.getElementById('li-code').value.trim();
+window.doLogin=async function(){
+  const name=document.getElementById('li-name').value.trim();
+  const code=document.getElementById('li-code').value.trim();
   if(!name) return showErr('병원명을 입력해주세요.');
   if(!code) return showErr('병원 코드를 입력해주세요.');
-
-  const hospId  = hashCode(name + code);
-  const hospRef = ref(db, 'hospitals/'+hospId);
-  const snap    = await get(hospRef);
-
+  const hospId=hashCode(name+code);
+  const snap=await get(ref(db,'hospitals/'+hospId));
   if(!snap.exists()) return showErr('병원명 또는 코드가 올바르지 않아요.');
-
-  const data = snap.val();
-  if(data.codeHash !== hashCode(code)) return showErr('병원명 또는 코드가 올바르지 않아요.');
-
-  // 세션 저장
-  sessionStorage.setItem('ot_hospital', JSON.stringify({id:hospId, name:data.name}));
-  enterApp({id:hospId, name:data.name});
+  if(snap.val().codeHash!==hashCode(code)) return showErr('병원명 또는 코드가 올바르지 않아요.');
+  sessionStorage.setItem('ot_hospital',JSON.stringify({id:hospId,name:snap.val().name}));
+  enterApp({id:hospId,name:snap.val().name});
 };
 
-// ── 로그아웃
-window.doLogout = function(){
+window.doLogout=function(){
   sessionStorage.removeItem('ot_hospital');
   if(monthUnsub) monthUnsub();
-  monthComments={};
-  lastResults=[]; lastFbKeys=[];
-  document.getElementById('app-wrap').style.display = 'none';
-  document.getElementById('login-wrap').style.display = 'flex';
-  document.getElementById('fab').style.display = 'none';
-  document.getElementById('li-code').value = '';
+  if(customPhraseUnsub) customPhraseUnsub();
+  if(customCatUnsub) customCatUnsub();
+  monthComments={}; customPhrases={}; customCats=[];
+  lastResults=[]; lastFbKeys=[]; sel=[];
+  document.getElementById('app-wrap').style.display='none';
+  document.getElementById('login-wrap').style.display='flex';
+  document.getElementById('fab').style.display='none';
+  document.getElementById('li-code').value='';
 };
 
-// ── 앱 진입
 function enterApp(hospital){
-  currentHospital = hospital;
-  document.getElementById('login-wrap').style.display = 'none';
-  document.getElementById('app-wrap').style.display = 'block';
-  document.getElementById('fab').style.display = 'flex';
-  document.getElementById('hospital-name-display').textContent = hospital.name;
+  currentHospital=hospital;
+  document.getElementById('login-wrap').style.display='none';
+  document.getElementById('app-wrap').style.display='block';
+  document.getElementById('fab').style.display='flex';
+  document.getElementById('hospital-name-display').textContent=hospital.name;
+  document.getElementById('edit-hospital-label').textContent=hospital.name+' 전용 편집';
 
-  // 병원별 monthRef 설정
-  monthRef = ref(db, 'hospitals/'+hospital.id+'/months/'+getMonthKey()+'/comments');
-
-  // 기존 구독 해제 후 재구독
+  monthRef=ref(db,'hospitals/'+hospital.id+'/months/'+getMonthKey()+'/comments');
   if(monthUnsub) monthUnsub();
-  monthUnsub = onValue(monthRef, snap=>{
-    monthComments = snap.val() || {};
-    renderHistory();
+  monthUnsub=onValue(monthRef,snap=>{ monthComments=snap.val()||{}; renderHistory(); });
+
+  // 병원별 커스텀 문구
+  if(customPhraseUnsub) customPhraseUnsub();
+  customPhraseUnsub=onValue(ref(db,'hospitals/'+hospital.id+'/custom_phrases'),snap=>{
+    customPhrases=snap.val()||{};
+    renderCustomPhraseList();
+  });
+
+  // 병원별 커스텀 카테고리
+  if(customCatUnsub) customCatUnsub();
+  customCatUnsub=onValue(ref(db,'hospitals/'+hospital.id+'/custom_cats'),snap=>{
+    const d=snap.val()||{};
+    customCats=Object.entries(d).map(([k,v])=>({...v,fbKey:k}));
+    renderCats();
+    renderEditCatGrid();
+    renderCustomCatList();
+    renderDefaultCatList();
   });
 
   renderCats();
 }
 
-// ── 세션 복원
-const saved = sessionStorage.getItem('ot_hospital');
-if(saved){
-  try{ enterApp(JSON.parse(saved)); }catch(e){ sessionStorage.removeItem('ot_hospital'); }
-}
+const saved=sessionStorage.getItem('ot_hospital');
+if(saved){ try{ enterApp(JSON.parse(saved)); }catch(e){ sessionStorage.removeItem('ot_hospital'); } }
 
-// ── phrase_pool 로드 (전체 공유)
-onValue(ref(db,'phrase_pool'), snap=>{
-  const pool = snap.val() || {};
+// phrase_pool (공통)
+onValue(ref(db,'phrase_pool'),snap=>{
+  const pool=snap.val()||{};
   Object.keys(pool).forEach(cat=>{
-    const d = pool[cat];
-    T[cat] = {
-      p: d.prefix ? Object.values(d.prefix).map(v=>v.text) : [],
-      a: d.action ? Object.values(d.action).map(v=>v.text) : [],
-      t: d.tool   ? Object.values(d.tool).map(v=>v.text)   : [],
-    };
+    const d=pool[cat];
+    T[cat]={ p:d.prefix?Object.values(d.prefix).map(v=>v.text):[], a:d.action?Object.values(d.action).map(v=>v.text):[], t:d.tool?Object.values(d.tool).map(v=>v.text):[] };
   });
-  poolLoaded = true;
-  document.getElementById('loading-pool').style.display = 'none';
-});
-
-// ── 커스텀 문구 (전체 공유)
-onValue(ref(db,'custom_phrases'), snap=>{
-  customPhrases = snap.val() || {};
-  renderCustomList();
+  poolLoaded=true;
+  document.getElementById('loading-pool').style.display='none';
 });
 
 function pool(key){
-  const base   = T[key] || {};
-  const custom = Object.values(customPhrases).filter(v=>v.cat===key).map(v=>v.text);
-  return { p: base.p||[], a:[...(base.a||[]),...custom], t: base.t||[] };
+  const base=T[key]||{};
+  const custom=Object.values(customPhrases).filter(v=>v.cat===key).map(v=>v.text);
+  return {p:base.p||[], a:[...(base.a||[]),...custom], t:base.t||[]};
 }
 
-function buildComment(keys, usedNow){
-  const allUsed = [...Object.values(monthComments).map(v=>v.text), ...usedNow];
+function buildComment(keys,usedNow){
+  const allUsed=[...Object.values(monthComments).map(v=>v.text),...usedNow];
   for(let i=0;i<300;i++){
-    const k = rnd(keys);
-    const D = pool(k);
-    if(!D.a.length) continue;
-    const hasTool = D.t.length > 0;
-    const rv = Math.random();
-    let c;
-    if     (rv<0.33&&hasTool) c = `${rnd(D.t)} ${rnd(D.a)}`;
-    else if(rv<0.66)           c = `${rnd(D.p)} ${rnd(D.a)}`;
-    else if(hasTool)           c = `${rnd(D.t)} ${rnd(D.p)} ${rnd(D.a)}`;
-    else                       c = `${rnd(D.p)} ${rnd(D.a)}`;
+    const k=rnd(keys); const D=pool(k); if(!D.a.length) continue;
+    const hasTool=D.t.length>0; const rv=Math.random(); let c;
+    if(rv<0.33&&hasTool)   c=`${rnd(D.t)} ${rnd(D.a)}`;
+    else if(rv<0.66)       c=`${rnd(D.p)} ${rnd(D.a)}`;
+    else if(hasTool)       c=`${rnd(D.t)} ${rnd(D.p)} ${rnd(D.a)}`;
+    else                   c=`${rnd(D.p)} ${rnd(D.a)}`;
     if(!allUsed.some(x=>x&&x.replace(/\s+/g,'')=== c.replace(/\s+/g,''))) return c;
   }
   return rnd(pool(rnd(keys)).a);
 }
 
-window.generate = async function(){
+window.generate=async function(){
   if(!currentHospital) return;
   if(!sel.length){
     document.getElementById('result-wrap').innerHTML='<div style="color:#C0607A;font-size:13px;padding:8px;text-align:center;">카테고리를 하나 이상 선택해주세요.</div>';
     document.getElementById('result-wrap').style.display='block'; return;
   }
   if(!poolLoaded){ alert('문구 데이터를 불러오는 중이에요. 잠시 후 다시 시도해주세요.'); return; }
-
-  const btn = document.getElementById('btn-gen');
+  const btn=document.getElementById('btn-gen');
   btn.disabled=true; btn.textContent='생성 중...';
   lastResults=[]; lastFbKeys=[];
-  const cats  = sel.map(k=>CATS.find(c=>c.key===k)?.label).join('·');
-  const today = getTodayStr();
-  const newResults = [];
-  for(let i=0;i<3;i++) newResults.push(buildComment(sel, newResults));
+  const cats=sel.map(k=>allCats().find(c=>c.key===k)?.label).join('·');
+  const today=getTodayStr();
+  const newResults=[];
+  for(let i=0;i<3;i++) newResults.push(buildComment(sel,newResults));
   for(const text of newResults){
-    const snap = await push(monthRef, {text, cats, ts:Date.now(), date:today});
+    const snap=await push(monthRef,{text,cats,ts:Date.now(),date:today});
     lastResults.push(text); lastFbKeys.push(snap.key);
   }
   renderResults();
@@ -464,10 +504,9 @@ window.generate = async function(){
 };
 
 function renderResults(){
-  const active = lastResults.filter(Boolean);
-  document.getElementById('btn-gen').textContent =
-    active.length>=3 ? '✦ 코멘트 3개 생성' : `✦ 빈 자리 ${3-active.length}개 채우기`;
-  document.getElementById('result-list').innerHTML = lastResults.map((r,i)=>`
+  const active=lastResults.filter(Boolean);
+  document.getElementById('btn-gen').textContent=active.length>=3?'✦ 코멘트 3개 생성':`✦ 빈 자리 ${3-active.length}개 채우기`;
+  document.getElementById('result-list').innerHTML=lastResults.map((r,i)=>`
     <div class="result-item" id="ri${i}">
       <div class="result-num">${i+1}</div>
       <div class="result-text">${esc(r)}</div>
@@ -485,45 +524,31 @@ window.copyOne=function(i,btn){
   });
 };
 window.copyAll=function(){ navigator.clipboard.writeText(lastResults.filter(Boolean).join('\n')); };
-
 window.deleteResult=async function(i){
   if(lastFbKeys[i]) await remove(ref(db,'hospitals/'+currentHospital.id+'/months/'+getMonthKey()+'/comments/'+lastFbKeys[i]));
-  lastResults.splice(i,1); lastFbKeys.splice(i,1);
-  renderResults();
+  lastResults.splice(i,1); lastFbKeys.splice(i,1); renderResults();
 };
-window.deleteHistItem=async function(key){
-  await remove(ref(db,'hospitals/'+currentHospital.id+'/months/'+getMonthKey()+'/comments/'+key));
-};
-window.resetMonth=async function(){
-  if(!confirm('이번 달 전체 기록을 초기화할까요?')) return;
-  await remove(monthRef);
-};
+window.deleteHistItem=async function(key){ await remove(ref(db,'hospitals/'+currentHospital.id+'/months/'+getMonthKey()+'/comments/'+key)); };
+window.resetMonth=async function(){ if(!confirm('이번 달 전체 기록을 초기화할까요?')) return; await remove(monthRef); };
 
 function renderHistory(){
-  const items = Object.entries(monthComments).map(([k,v])=>({...v,fbKey:k}));
-  const hw = document.getElementById('history-wrap');
-  const he = document.getElementById('history-empty');
+  const items=Object.entries(monthComments).map(([k,v])=>({...v,fbKey:k}));
+  const hw=document.getElementById('history-wrap'); const he=document.getElementById('history-empty');
   if(!items.length){ hw.style.display='none'; he.style.display='block'; return; }
   hw.style.display='block'; he.style.display='none';
-
   const byDay={};
-  items.forEach(item=>{const d=item.date||getTodayStr();if(!byDay[d])byDay[d]=[];byDay[d].push(item);});
+  items.forEach(item=>{ const d=item.date||getTodayStr(); if(!byDay[d])byDay[d]=[]; byDay[d].push(item); });
   const days=Object.keys(byDay).sort((a,b)=>b.localeCompare(a));
   if(!byDay[selDay]) selDay=days[0]||getTodayStr();
-
   document.getElementById('day-tabs').innerHTML=days.map(dayStr=>{
-    const cnt=(byDay[dayStr]||[]).length;
-    const isOn=dayStr===selDay;
+    const cnt=(byDay[dayStr]||[]).length; const isOn=dayStr===selDay;
     const label=dayStr.slice(5).replace('-','/');
     const dow=DAYS[new Date(dayStr).getDay()===0?6:new Date(dayStr).getDay()-1];
-    return `<button class="day-tab${isOn?' on':''}" onclick="switchDay('${dayStr}')">
-      ${label} <span style="font-size:10px;opacity:0.7;">${dow}</span>
-      <span class="cnt">${cnt}</span></button>`;
+    return `<button class="day-tab${isOn?' on':''}" onclick="switchDay('${dayStr}')">${label} <span style="font-size:10px;opacity:0.7;">${dow}</span><span class="cnt">${cnt}</span></button>`;
   }).join('');
-
   const dayItems=(byDay[selDay]||[]).sort((a,b)=>b.ts-a.ts);
   const el=document.getElementById('day-content');
-  if(!dayItems.length){el.innerHTML='<div class="empty-tab">이 날 생성된 기록이 없어요</div>';return;}
+  if(!dayItems.length){ el.innerHTML='<div class="empty-tab">이 날 생성된 기록이 없어요</div>'; return; }
   el.innerHTML=dayItems.map(item=>{
     const time=new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
     return `<div class="history-item">
@@ -534,82 +559,141 @@ function renderHistory(){
     </div>`;
   }).join('');
 }
-
-window.switchDay=function(d){selDay=d;renderHistory();};
+window.switchDay=function(d){ selDay=d; renderHistory(); };
 
 window.searchHistory=function(){
   const q=document.getElementById('search-input').value.trim();
   const el=document.getElementById('search-result');
-  if(!q){el.innerHTML='';return;}
+  if(!q){ el.innerHTML=''; return; }
   const items=Object.values(monthComments).filter(v=>v.text&&v.text.includes(q)).sort((a,b)=>b.ts-a.ts);
-  if(!items.length){el.innerHTML='<div class="search-empty">이번 달 기록에서 찾을 수 없어요</div>';return;}
+  if(!items.length){ el.innerHTML='<div class="search-empty">이번 달 기록에서 찾을 수 없어요</div>'; return; }
   const highlight=t=>esc(t).replace(new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),`<span class="search-hit">${esc(q)}</span>`);
   el.innerHTML=`<div class="search-result-label">검색 결과 ${items.length}건</div>`+
     items.map(item=>{
       const d=item.date?item.date.slice(5).replace('-','/'):'';
       const time=new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
-      return `<div class="search-item">
-        <div class="s-date">${d} ${time} · ${esc(item.cats||'')}</div>
-        ${highlight(item.text)}
-      </div>`;
+      return `<div class="search-item"><div class="s-date">${d} ${time} · ${esc(item.cats||'')}</div>${highlight(item.text)}</div>`;
     }).join('');
 };
 
 function renderCats(){
-  document.getElementById('cat-grid').innerHTML=CATS.map(c=>`
+  document.getElementById('cat-grid').innerHTML=allCats().map(c=>`
     <button class="cat-btn${sel.includes(c.key)?' on':''}" onclick="toggleCat('${c.key}')">
       ${esc(c.label)}<span class="cat-sub">${esc(c.sub)}</span>
     </button>`).join('');
 }
-window.toggleCat=function(k){sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k];renderCats();};
+window.toggleCat=function(k){ sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k]; renderCats(); };
 
-window.openPhrasePanel=function(){
-  selPhrCat=null;
-  document.getElementById('phrase-input').value='';
-  renderPhraseCats();
-  document.getElementById('phrase-overlay').classList.add('open');
+// ── 편집 패널
+window.openEditPanel=function(){
+  selEditCat=null; selEditTab='phrase';
+  document.querySelectorAll('.edit-tab').forEach((b,i)=>b.classList.toggle('on',i===0));
+  ['etab-phrase','etab-category','etab-list'].forEach((id,i)=>{ document.getElementById(id).style.display=i===0?'':'none'; });
+  renderEditCatGrid();
+  document.getElementById('edit-overlay').classList.add('open');
 };
-window.closePhrasePanel=function(e){
-  if(!e||e.target===document.getElementById('phrase-overlay'))
-    document.getElementById('phrase-overlay').classList.remove('open');
+window.closeEditPanel=function(e){
+  if(!e||e.target===document.getElementById('edit-overlay'))
+    document.getElementById('edit-overlay').classList.remove('open');
 };
-function renderPhraseCats(){
-  document.getElementById('phrase-cat-grid').innerHTML=CATS.map(c=>`
-    <button class="phrase-cat-btn${selPhrCat===c.key?' on':''}" onclick="setPhrCat('${c.key}')">
+window.setEditTab=function(tab){
+  const tabs=['phrase','category','list'];
+  document.querySelectorAll('.edit-tab').forEach((b,i)=>b.classList.toggle('on',tabs[i]===tab));
+  document.getElementById('etab-phrase').style.display=tab==='phrase'?'':'none';
+  document.getElementById('etab-category').style.display=tab==='category'?'':'none';
+  document.getElementById('etab-list').style.display=tab==='list'?'':'none';
+  selEditTab=tab;
+  if(tab==='list') renderCustomPhraseList();
+  if(tab==='category'){ renderCustomCatList(); renderDefaultCatList(); }
+};
+
+function renderEditCatGrid(){
+  document.getElementById('edit-cat-grid').innerHTML=allCats().map(c=>`
+    <button class="edit-cat-btn${selEditCat===c.key?' on':''}" onclick="setEditCat('${c.key}')">
       ${esc(c.label)}<span style="font-size:10px;opacity:0.65;display:block;margin-top:2px;">${esc(c.sub)}</span>
     </button>`).join('');
 }
-window.setPhrCat=function(k){selPhrCat=k;renderPhraseCats();};
+window.setEditCat=function(k){ selEditCat=k; renderEditCatGrid(); };
+
 window.savePhrase=async function(){
-  if(!selPhrCat){alert('카테고리를 선택해주세요.');return;}
+  if(!selEditCat){ alert('카테고리를 선택해주세요.'); return; }
   const raw=document.getElementById('phrase-input').value.trim();
-  if(!raw){alert('문구를 입력해주세요.');return;}
+  if(!raw){ alert('문구를 입력해주세요.'); return; }
   const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>l.replace(/^\*\s*/,''));
   for(const text of lines){
-    await push(ref(db,'custom_phrases'),{cat:selPhrCat,text,ts:Date.now()});
+    await push(ref(db,'hospitals/'+currentHospital.id+'/custom_phrases'),{cat:selEditCat,text,ts:Date.now()});
   }
   document.getElementById('phrase-input').value='';
   alert(`${lines.length}개 문구가 추가됐어요!`);
 };
-function renderCustomList(){
+
+function renderCustomPhraseList(){
   const items=Object.entries(customPhrases).sort((a,b)=>b[1].ts-a[1].ts);
-  const wrap=document.getElementById('custom-list');
-  const el=document.getElementById('custom-items');
-  if(!items.length){wrap.style.display='none';return;}
-  wrap.style.display='block';
-  el.innerHTML=items.map(([k,v])=>{
-    const catLabel=CATS.find(c=>c.key===v.cat)?.label||v.cat;
-    return `<div class="custom-item">
-      <span class="custom-item-cat">${esc(catLabel)}</span>
-      <span class="custom-item-text">${esc(v.text)}</span>
-      <button class="btn-custom-del" onclick="deleteCustom('${k}')" title="삭제">✕</button>
+  const el=document.getElementById('custom-phrase-list');
+  if(!items.length){ el.innerHTML='<div style="font-size:13px;color:var(--text-muted);text-align:center;padding:1.5rem 0;">추가된 문구가 없어요</div>'; return; }
+  // 카테고리별 그룹
+  const bycat={};
+  items.forEach(([k,v])=>{ if(!bycat[v.cat])bycat[v.cat]=[]; bycat[v.cat].push({k,v}); });
+  el.innerHTML=Object.entries(bycat).map(([cat,list])=>{
+    const catLabel=allCats().find(c=>c.key===cat)?.label||cat;
+    return `<div class="edit-section">
+      <div class="edit-section-title">${esc(catLabel)} <span style="font-size:11px;color:var(--text-muted);font-weight:400;">${list.length}개</span></div>
+      ${list.map(({k,v})=>`<div class="phrase-item">
+        <span class="phrase-item-text">${esc(v.text)}</span>
+        <button class="btn-del-sm" onclick="deleteCustomPhrase('${k}')">✕</button>
+      </div>`).join('')}
     </div>`;
   }).join('');
 }
-window.deleteCustom=async function(k){
-  if(!confirm('이 문구를 삭제할까요?'))return;
-  await remove(ref(db,'custom_phrases/'+k));
+
+window.deleteCustomPhrase=async function(k){
+  if(!confirm('이 문구를 삭제할까요?')) return;
+  await remove(ref(db,'hospitals/'+currentHospital.id+'/custom_phrases/'+k));
 };
+
+// 카테고리 추가/삭제
+window.addCategory=async function(){
+  const label=document.getElementById('new-cat-label').value.trim();
+  const sub=document.getElementById('new-cat-sub').value.trim();
+  if(!label){ alert('카테고리명을 입력해주세요.'); return; }
+  const key='custom_'+hashCode(currentHospital.id+label+Date.now());
+  await push(ref(db,'hospitals/'+currentHospital.id+'/custom_cats'),{key,label,sub:sub||'커스텀',createdAt:Date.now()});
+  document.getElementById('new-cat-label').value='';
+  document.getElementById('new-cat-sub').value='';
+  alert(`"${label}" 카테고리가 추가됐어요!`);
+};
+
+window.deleteCustomCat=async function(fbKey,label){
+  if(!confirm(`"${label}" 카테고리를 삭제할까요?\n이 카테고리의 커스텀 문구도 함께 삭제됩니다.`)) return;
+  await remove(ref(db,'hospitals/'+currentHospital.id+'/custom_cats/'+fbKey));
+  // 해당 카테고리 문구도 삭제
+  const phrases=Object.entries(customPhrases).filter(([,v])=>v.cat===fbKey);
+  for(const [k] of phrases) await remove(ref(db,'hospitals/'+currentHospital.id+'/custom_phrases/'+k));
+};
+
+function renderCustomCatList(){
+  const el=document.getElementById('custom-cat-list');
+  if(!customCats.length){ el.innerHTML='<div style="font-size:13px;color:var(--text-muted);">추가된 카테고리가 없어요</div>'; return; }
+  el.innerHTML=customCats.map(c=>`
+    <div class="cat-manage-item">
+      <div style="flex:1;">
+        <div class="cat-manage-label">${esc(c.label)}</div>
+        <div class="cat-manage-sub">${esc(c.sub)}</div>
+      </div>
+      <button class="btn-del-sm" onclick="deleteCustomCat('${c.fbKey}','${esc(c.label)}')">✕ 삭제</button>
+    </div>`).join('');
+}
+
+function renderDefaultCatList(){
+  document.getElementById('default-cat-list').innerHTML=DEFAULT_CATS.map(c=>`
+    <div class="cat-manage-item">
+      <div style="flex:1;">
+        <div class="cat-manage-label">${esc(c.label)}</div>
+        <div class="cat-manage-sub">${esc(c.sub)}</div>
+      </div>
+      <span class="cat-manage-badge">기본</span>
+    </div>`).join('');
+}
 </script>
 </body>
 </html>
