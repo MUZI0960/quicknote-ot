@@ -509,7 +509,7 @@ function renderCats(){
       ${esc(c.label)}<span class="cat-sub">${esc(c.sub)}</span>
     </button>`).join('');
 }
-window.toggleCat=function(k){sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k];renderCats();};
+window.toggleCat=function(k){sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k];lastResults=[];lastFbKeys=[];document.getElementById('result-wrap').style.display='none';document.getElementById('btn-gen').textContent='✦ 코멘트 3개 생성';renderCats();};
 renderCats();
 </script>
 </body>
