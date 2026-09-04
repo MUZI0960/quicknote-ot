@@ -215,47 +215,53 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
     </div>
   </div>
 
-  <div class="layout">
-    <div class="col-left">
-      <div class="loading-pool" id="loading-pool">문구 데이터 불러오는 중...</div>
-      <div class="card">
-        <div class="card-title">환자 상태 선택</div>
-        <div class="cat-grid" id="cat-grid"></div>
-      </div>
-      <button class="btn-generate" id="btn-gen" onclick="generate()">✦ 코멘트 3개 생성</button>
-      <div id="result-wrap" style="margin-top:1rem;display:none;">
-        <div class="card">
-          <div class="card-title">생성된 코멘트</div>
-          <div id="result-list"></div>
-          <button class="btn-copy-all" onclick="copyAll()">전체 복사</button>
-        </div>
-      </div>
+  <!-- 메인 탭 -->
+  <div class="main-tabs">
+    <button class="main-tab on" onclick="switchMainTab('generate')">✦ 코멘트 생성</button>
+    <button class="main-tab" onclick="switchMainTab('history')">📋 생성 기록</button>
+  </div>
+
+  <!-- 코멘트 생성 탭 -->
+  <div class="layout tab-section on" id="main-generate">
+    <div class="loading-pool" id="loading-pool">문구 데이터 불러오는 중...</div>
+    <div class="card">
+      <div class="card-title">환자 상태 선택</div>
+      <div class="cat-grid" id="cat-grid"></div>
     </div>
-    <div class="col-right">
-      <div class="card" id="history-wrap" style="display:none;">
-        <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
-          <span>이번 달 생성 기록</span>
-          <button class="btn-reset" onclick="resetMonth()">초기화</button>
-        </div>
-        <div class="day-tabs" id="day-tabs"></div>
-        <div class="hist-scroll"><div id="day-content"></div></div>
-        <div class="search-box">
-          <div class="card-title">중복 검색</div>
-          <div class="search-input-wrap">
-            <input class="search-input" id="search-input" type="text" placeholder="문구 키워드 입력..." onkeydown="if(event.key==='Enter')searchHistory()"/>
-            <button class="btn-search" onclick="searchHistory()">검색</button>
-          </div>
-          <div class="search-result" id="search-result"></div>
-        </div>
-      </div>
-      <div class="card" id="history-empty">
-        <div class="card-title">이번 달 생성 기록</div>
-        <div class="empty-result">아직 생성된 기록이 없어요</div>
+    <button class="btn-generate" id="btn-gen" onclick="generate()">✦ 코멘트 3개 생성</button>
+    <div id="result-wrap" style="margin-top:1rem;display:none;">
+      <div class="card">
+        <div class="card-title">생성된 코멘트</div>
+        <div id="result-list"></div>
+        <button class="btn-copy-all" onclick="copyAll()">전체 복사</button>
       </div>
     </div>
   </div>
-</div>
 
+  <!-- 생성 기록 탭 -->
+  <div class="layout tab-section" id="main-history">
+    <div class="card" id="history-wrap" style="display:none;">
+      <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>이번 달 생성 기록</span>
+        <button class="btn-reset" onclick="resetMonth()">초기화</button>
+      </div>
+      <div class="day-tabs" id="day-tabs"></div>
+      <div class="hist-scroll" style="max-height:60vh;"><div id="day-content"></div></div>
+    </div>
+    <div class="card" id="history-empty">
+      <div class="card-title">이번 달 생성 기록</div>
+      <div class="empty-result">아직 생성된 기록이 없어요</div>
+    </div>
+    <div class="card" style="margin-top:1rem;">
+      <div class="card-title">중복 검색</div>
+      <div class="search-input-wrap">
+        <input class="search-input" id="search-input" type="text" placeholder="문구 키워드 입력..." onkeydown="if(event.key==='Enter')searchHistory()"/>
+        <button class="btn-search" onclick="searchHistory()">검색</button>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+</div>
 <!-- FAB -->
 <button class="fab" id="fab" onclick="openEditPanel()" style="display:none;">✎ 편집</button>
 
