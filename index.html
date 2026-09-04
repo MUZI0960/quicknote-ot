@@ -167,6 +167,23 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .phrase-pool-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:12px;flex-shrink:0;padding:2px 6px;border-radius:5px;}
 .phrase-pool-del:hover{color:#C0607A;background:#FFF0F3;}
 .cat-expand-btn{font-size:11px;color:var(--mint);background:transparent;border:none;cursor:pointer;padding:2px 0;font-family:'Noto Sans KR',sans-serif;}
+
+/* ── MEMO TAB ── */
+.memo-input-wrap{display:flex;gap:10px;margin-bottom:1.5rem;align-items:flex-start;}
+.memo-textarea{flex:1;min-height:80px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);font-size:14px;font-family:'Noto Sans KR',sans-serif;color:var(--text);resize:none;transition:border-color 0.12s;}
+.memo-textarea:focus{outline:none;border-color:var(--mint-mid);}
+.btn-memo-add{height:44px;padding:0 20px;border-radius:12px;border:none;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;font-size:14px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;box-shadow:0 4px 12px rgba(124,82,200,0.25);}
+.btn-memo-add:hover{opacity:0.88;}
+.postit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.postit{background:#FFF9C4;border-radius:4px 4px 4px 4px;padding:16px;min-height:150px;position:relative;box-shadow:2px 3px 10px rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.08);display:flex;flex-direction:column;transition:transform 0.15s,box-shadow 0.15s;}
+.postit:hover{transform:translateY(-3px) rotate(0.5deg);box-shadow:4px 6px 16px rgba(0,0,0,0.16);}
+.postit::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:rgba(0,0,0,0.06);border-radius:4px 4px 0 0;}
+.postit-text{font-size:13px;color:#333;line-height:1.65;flex:1;white-space:pre-wrap;word-break:break-word;}
+.postit-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:8px;border-top:1px dashed rgba(0,0,0,0.1);}
+.postit-time{font-size:10px;color:#999;}
+.btn-postit-del{background:transparent;border:none;color:#ccc;cursor:pointer;font-size:14px;padding:0;line-height:1;transition:color 0.12s;}
+.btn-postit-del:hover{color:#e24b4a;}
+.memo-empty{text-align:center;color:var(--text-muted);font-size:14px;padding:3rem 0;}
 </style>
 </head>
 <body>
@@ -214,6 +231,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
   <div class="main-tabs">
     <button class="main-tab on" id="mtab-generate" onclick="switchMainTab('generate')">✦ 코멘트 생성</button>
     <button class="main-tab" id="mtab-history" onclick="switchMainTab('history')">📋 생성 기록</button>
+    <button class="main-tab" id="mtab-memo" onclick="switchMainTab('memo')">📝 메모장</button>
     <div class="main-tabs-spacer"></div>
     <button class="main-tab edit-tab-btn" id="mtab-edit" onclick="switchMainTab('edit')">✎ 편집</button>
   </div>
@@ -259,6 +277,24 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
           <button class="btn-search" onclick="searchHistory()">검색</button>
         </div>
         <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 메모장 탭 -->
+  <div class="tab-section" id="main-memo">
+    <div class="layout">
+      <div class="card">
+        <div class="card-title">메모 작성</div>
+        <div class="memo-input-wrap">
+          <textarea class="memo-textarea" id="memo-input" placeholder="자유롭게 메모하세요..." onkeydown="if(event.key==='Enter'&&event.ctrlKey)addMemo()"></textarea>
+          <button class="btn-memo-add" onclick="addMemo()">추가</button>
+        </div>
+        <div style="font-size:12px;color:var(--text-muted);">Ctrl + Enter 로 빠르게 추가</div>
+      </div>
+      <div id="postit-grid-wrap">
+        <div class="postit-grid" id="postit-grid"></div>
       </div>
     </div>
   </div>
@@ -337,7 +373,6 @@ const firebaseConfig = {
   appId: "1:306455802486:web:6eec4081c53aa877d26557",
   measurementId: "G-VND6PQS1GT"
 };
-
 
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
@@ -462,8 +497,9 @@ window.doLogin = async function() {
 // ── 로그아웃
 window.doLogout = function() {
   sessionStorage.removeItem('ot_hospital');
-  [monthUnsub, customPhraseUnsub, customCatUnsub, catOverrideUnsub, excludeUnsub]
+  [monthUnsub, customPhraseUnsub, customCatUnsub, catOverrideUnsub, excludeUnsub, memoUnsub]
     .forEach(u => u && u());
+  memoData = {};
   monthComments = {}; customPhrases = {}; customCats = [];
   catOverrides = {}; excludedPhrases = {};
   lastResults = []; lastFbKeys = []; sel = [];
@@ -510,6 +546,7 @@ function enterApp(hospital) {
     renderDefaultCatList();
   });
 
+  initMemo(hid);
   renderCats();
   switchMainTab('generate');
 }
@@ -535,11 +572,12 @@ onValue(ref(db, 'phrase_pool'), snap => {
 
 // ── 메인 탭 전환
 window.switchMainTab = function(tab) {
-  ['generate', 'history', 'edit'].forEach(t => {
-    document.getElementById('mtab-' + t).classList.toggle('on', t === tab);
+  ['generate', 'history', 'memo', 'edit'].forEach(t => {
+    const el = document.getElementById('mtab-' + t); if(el) el.classList.toggle('on', t === tab);
     document.getElementById('main-' + t).classList.toggle('on', t === tab);
   });
   if (tab === 'history') renderHistory();
+  if (tab === 'memo') renderPostits();
   if (tab === 'edit') { renderEditCatGrid(); renderCustomCatList(); renderDefaultCatList(); renderCustomPhraseList(); }
 };
 
@@ -841,6 +879,54 @@ window.handleToggleExclude = async function(btn) {
   } else {
     await push(ref(db, 'hospitals/' + currentHospital.id + '/excluded_phrases/' + catKey), phrase);
   }
+};
+
+
+// ── 메모장
+let memoRef = null;
+let memoUnsub = null;
+let memoData = {};
+
+function initMemo(hospId) {
+  memoRef = ref(db, 'hospitals/' + hospId + '/memos');
+  if (memoUnsub) memoUnsub();
+  memoUnsub = onValue(memoRef, snap => {
+    memoData = snap.val() || {};
+    renderPostits();
+  });
+}
+
+function renderPostits() {
+  const grid = document.getElementById('postit-grid');
+  if (!grid) return;
+  const items = Object.entries(memoData).sort((a, b) => b[1].ts - a[1].ts);
+  if (!items.length) {
+    grid.innerHTML = '<div class="memo-empty">📌 메모가 없어요<br><span style="font-size:13px;margin-top:8px;display:block;">위에서 메모를 추가해보세요!</span></div>';
+    return;
+  }
+  grid.innerHTML = items.map(([k, v]) => {
+    const time = new Date(v.ts).toLocaleDateString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    return `<div class="postit">
+      <div class="postit-text">${esc(v.text)}</div>
+      <div class="postit-footer">
+        <span class="postit-time">${time}</span>
+        <button class="btn-postit-del" onclick="deleteMemo('${k}')" title="삭제">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.addMemo = async function() {
+  if (!currentHospital) return;
+  const text = document.getElementById('memo-input').value.trim();
+  if (!text) return;
+  await push(memoRef, { text, ts: Date.now() });
+  document.getElementById('memo-input').value = '';
+};
+
+window.deleteMemo = async function(k) {
+  if (!confirm('이 메모를 삭제할까요?')) return;
+  await remove(ref(db, 'hospitals/' + currentHospital.id + '/memos/' + k));
 };
 
 renderCats();
