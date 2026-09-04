@@ -106,9 +106,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .fab:hover{transform:translateY(-2px);}
 
 /* EDIT OVERLAY */
-
-.edit-panel-inner{display:flex;flex-direction:column;}
-.edit-header{padding:1.25rem 1.5rem 0;flex-shrink:0;border-bottom:1px solid var(--border);}
+.overlay{display:none;position:fixed;inset:0;background:rgba(30,21,48,0.38);z-index:200;align-items:flex-start;justify-content:flex-end;padding:1rem;}
+.overlay.open{display:flex;}
+.edit-panel{background:#fff;border-radius:20px;padding:0;width:min(520px,96vw);max-height:92vh;overflow:hidden;box-shadow:0 8px 40px rgba(124,82,200,0.2);display:flex;flex-direction:column;}
+.edit-header{padding:1.25rem 1.5rem 0;flex-shrink:0;}
 .edit-header h2{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:600;color:var(--text);}
 .edit-header p{font-size:12px;color:var(--text-muted);margin-top:3px;}
 .edit-tabs{display:flex;border-bottom:1.5px solid var(--border);margin-top:1rem;padding:0 1.5rem;}
@@ -165,7 +166,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .disabled-badge{font-size:10px;padding:2px 7px;border-radius:5px;background:#FFE0E5;color:#C0607A;}
 .cat-manage-item.disabled{opacity:0.5;}
 
-.main-tabs{display:flex;align-items:flex-end;border-bottom:2px solid var(--border);padding:0 2rem;max-width:900px;margin:0 auto;}.main-tabs-spacer{flex:1;}.main-tab.edit{color:var(--text-muted);font-size:13px;margin-left:auto;}
+.main-tabs{display:flex;border-bottom:2px solid var(--border);padding:0 2rem;max-width:900px;margin:0 auto;}
 .main-tab{padding:12px 24px;font-size:14px;font-weight:500;color:var(--text-muted);background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:color 0.12s;}
 .main-tab:hover{color:var(--mint);}
 .main-tab.on{color:var(--mint);border-bottom-color:var(--mint);}
@@ -218,8 +219,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
   <div class="main-tabs">
     <button class="main-tab on" onclick="switchMainTab('generate')">✦ 코멘트 생성</button>
     <button class="main-tab" onclick="switchMainTab('history')">📋 생성 기록</button>
-    <div class="main-tabs-spacer"></div>
-    <button class="main-tab edit" onclick="switchMainTab('edit')">✎ 편집</button>
   </div>
 
   <!-- 코멘트 생성 탭 -->
@@ -264,17 +263,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
   </div>
 </div>
 <!-- FAB -->
+<button class="fab" id="fab" onclick="openEditPanel()" style="display:none;">✎ 편집</button>
 
-<!-- 편집 탭 인라인 -->
-<div class="layout tab-section" id="main-edit">
-  <div class="card" style="padding:0;overflow:hidden;">
-
+<!-- 편집 패널 -->
+<div class="overlay" id="edit-overlay" onclick="closeEditPanel(event)">
+  <div class="edit-panel">
     <div class="edit-header" style="display:flex;align-items:flex-start;justify-content:space-between;">
       <div>
         <h2>문구 편집</h2>
         <p id="edit-hospital-label"></p>
       </div>
-      
+      <button onclick="closeEditPanel(null)" style="background:transparent;border:none;font-size:20px;color:var(--text-muted);cursor:pointer;padding:0 0 0 12px;line-height:1;flex-shrink:0;" title="닫기">✕</button>
     </div>
     <div class="edit-tabs">
       <button class="edit-tab on" onclick="setEditTab('phrase')">문구 추가</button>
@@ -326,10 +325,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
         <div id="custom-phrase-list"><div style="font-size:13px;color:var(--text-muted);text-align:center;padding:1.5rem 0;">추가된 문구가 없어요</div></div>
       </div>
 
-      </div>
+    </div>
+  </div>
 </div>
 
-<script<script type="module">
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getDatabase, ref, push, onValue, remove, get, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 import { ref as dbRef, onValue as ov } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
@@ -591,11 +591,9 @@ function renderHistory(){
 window.switchDay=function(d){ selDay=d; renderHistory(); };
 
 window.switchMainTab = function(tab){
-  document.querySelectorAll('.main-tab:not(.edit)').forEach((b,i)=>b.classList.toggle('on',['generate','history'][i]===tab));
-  document.querySelector('.main-tab.edit').classList.toggle('on', tab==='edit');
+  document.querySelectorAll('.main-tab').forEach((b,i)=>b.classList.toggle('on',['generate','history'][i]===tab));
   document.getElementById('main-generate').classList.toggle('on', tab==='generate');
   document.getElementById('main-history').classList.toggle('on', tab==='history');
-  document.getElementById('main-edit').classList.toggle('on', tab==='edit');
   if(tab==='history') renderHistory();
 };
 
@@ -624,18 +622,16 @@ function renderCats(){
 window.toggleCat=function(k){ sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k]; renderCats(); };
 
 // ── 편집 패널
-window.openEditPanel=function(){ switchMainTab('edit'); return; // 탭으로 대체
-  /*
+window.openEditPanel=function(){
   selEditCat=null; selEditTab='phrase';
   document.querySelectorAll('.edit-tab').forEach((b,i)=>b.classList.toggle('on',i===0));
   ['etab-phrase','etab-category','etab-list'].forEach((id,i)=>{ document.getElementById(id).style.display=i===0?'':'none'; });
   renderEditCatGrid();
-  */
+  document.getElementById('edit-overlay').classList.add('open');
 };
-window.closeEditPanel=function(e){ return; // 탭으로 대체
-  /*
+window.closeEditPanel=function(e){
   if(!e||e.target===document.getElementById('edit-overlay'))
-    */
+    document.getElementById('edit-overlay').classList.remove('open');
 };
 window.setEditTab=function(tab){
   const tabs=['phrase','category','list'];
