@@ -15,7 +15,7 @@
 }
 body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);}
 
-/* LOGIN */
+/* ── LOGIN ── */
 .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;}
 .login-card{background:#fff;border-radius:20px;border:1px solid var(--border);padding:2rem;width:min(400px,92vw);box-shadow:0 8px 40px rgba(124,82,200,0.12);}
 .login-logo{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:600;color:var(--mint);margin-bottom:4px;}
@@ -32,7 +32,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .login-err{font-size:13px;color:#C0607A;margin-top:8px;text-align:center;min-height:20px;}
 .login-hint{font-size:12px;color:var(--text-muted);margin-top:10px;line-height:1.6;text-align:center;}
 
-/* APP */
+/* ── APP ── */
 .app-wrap{display:none;}
 .top-bar{background:linear-gradient(135deg,#6B3FA8 0%,#8B5FC8 60%,#A97EE0 100%);padding:16px 2rem;display:flex;align-items:center;justify-content:space-between;}
 .top-bar-left h1{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:600;color:#fff;letter-spacing:-0.3px;}
@@ -41,22 +41,42 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .status{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.8);}
 .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);flex-shrink:0;}
 .dot.online{background:#7EFFD4;}
-.hospital-badge{font-size:12px;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 12px;display:flex;align-items:center;gap:6px;}
+.hospital-badge{font-size:12px;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 12px;}
 .btn-logout{font-size:12px;color:rgba(255,255,255,0.7);background:transparent;border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
 .btn-logout:hover{background:rgba(255,255,255,0.1);}
+
+/* ── MAIN TABS ── */
+.main-tabs{display:flex;align-items:flex-end;border-bottom:2px solid var(--border);padding:0 2rem;background:#fff;}
+.main-tab{padding:12px 20px;font-size:14px;font-weight:500;color:var(--text-muted);background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:color 0.12s;white-space:nowrap;}
+.main-tab:hover{color:var(--mint);}
+.main-tab.on{color:var(--mint);border-bottom-color:var(--mint);}
+.main-tabs-spacer{flex:1;}
+.main-tab.edit-tab-btn{font-size:13px;}
+.tab-section{display:none;}
+.tab-section.on{display:block;}
+
+/* ── LAYOUT ── */
 .layout{max-width:900px;margin:0 auto;padding:1.5rem 2rem;}
+
+/* ── CARD ── */
 .card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:1.25rem;margin-bottom:1rem;box-shadow:var(--shadow);}
 .card:last-child{margin-bottom:0;}
 .card-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:14px;}
-.cat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+
+/* ── CAT GRID ── */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
 .cat-btn{padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.15s;}
 .cat-btn:hover{border-color:var(--mint-mid);background:var(--mint-light);color:var(--mint);}
 .cat-btn.on{background:var(--lavender);border-color:var(--lavender-mid);color:var(--lavender-dark);font-weight:500;}
 .cat-btn .cat-sub{font-size:10px;opacity:0.7;display:block;margin-top:2px;font-weight:300;}
+
+/* ── GENERATE BTN ── */
 .btn-generate{width:100%;height:46px;border-radius:12px;border:none;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;font-size:15px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(124,82,200,0.28);transition:opacity 0.15s,transform 0.1s;}
 .btn-generate:hover{opacity:0.92;transform:translateY(-1px);}
 .btn-generate:active{transform:translateY(0);}
 .btn-generate:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+
+/* ── RESULT ── */
 .result-item{padding:14px 16px;background:var(--mint-light);border-radius:10px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;border-left:3px solid var(--mint);}
 .result-item:last-child{margin-bottom:0;}
 .result-num{width:22px;height:22px;border-radius:50%;background:#7C52C8;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
@@ -69,8 +89,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .btn-sm.del:hover{background:#FFF0F3;border-color:#C0607A;}
 .btn-copy-all{width:100%;height:36px;border-radius:9px;border:1.5px solid var(--mint-mid);background:transparent;color:var(--mint);font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;margin-top:10px;transition:background 0.12s;}
 .btn-copy-all:hover{background:var(--mint-light);}
+
+/* ── HISTORY ── */
 .day-tabs{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:12px;overflow-x:auto;}
-.day-tab{flex-shrink:0;padding:8px 10px;font-size:12px;color:var(--text-muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;cursor:pointer;text-align:center;font-family:'Noto Sans KR',sans-serif;transition:color 0.12s;}
+.day-tab{flex-shrink:0;padding:8px 10px;font-size:12px;color:var(--text-muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;cursor:pointer;text-align:center;font-family:'Noto Sans KR',sans-serif;}
 .day-tab:hover{color:var(--mint);}
 .day-tab.on{color:var(--mint);border-bottom-color:var(--mint);font-weight:500;}
 .day-tab .cnt{display:block;font-size:10px;background:var(--border);color:var(--text-muted);border-radius:10px;padding:1px 5px;margin:2px auto 0;width:fit-content;}
@@ -80,19 +102,20 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .history-text{font-size:12px;color:var(--text-sub);line-height:1.55;flex:1;}
 .history-cat{font-size:10px;font-weight:500;padding:2px 7px;border-radius:5px;background:var(--lavender);color:var(--lavender-dark);flex-shrink:0;margin-top:1px;white-space:nowrap;}
 .history-time{font-size:11px;color:var(--text-muted);flex-shrink:0;margin-top:2px;}
-.btn-hist-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:13px;flex-shrink:0;padding:0 2px;line-height:1;transition:color 0.12s;}
+.btn-hist-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:13px;flex-shrink:0;padding:0 2px;line-height:1;}
 .btn-hist-del:hover{color:#C0607A;}
 .empty-tab{text-align:center;color:var(--text-muted);font-size:13px;padding:2rem 0;}
-.hist-scroll{max-height:calc(100vh - 320px);overflow-y:auto;}
-.btn-reset{font-size:12px;color:var(--text-muted);background:transparent;border:1.5px solid var(--border);border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.12s;}
+.hist-scroll{max-height:60vh;overflow-y:auto;}
+.btn-reset{font-size:12px;color:var(--text-muted);background:transparent;border:1.5px solid var(--border);border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
 .btn-reset:hover{color:#C0607A;border-color:#FADADD;}
 .empty-result{text-align:center;color:var(--text-muted);font-size:13px;padding:1.5rem 0;}
 .loading-pool{text-align:center;color:var(--text-muted);font-size:13px;padding:1rem;background:var(--mint-light);border-radius:10px;margin-bottom:1rem;}
-.search-box{margin-top:1rem;padding-top:1rem;border-top:1.5px solid var(--border);}
+
+/* ── SEARCH ── */
 .search-input-wrap{display:flex;gap:6px;}
-.search-input{flex:1;height:36px;padding:0 12px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif;transition:border-color 0.12s;}
+.search-input{flex:1;height:36px;padding:0 12px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif;}
 .search-input:focus{outline:none;border-color:var(--mint-mid);}
-.btn-search{height:36px;padding:0 14px;border-radius:9px;border:none;background:#7C52C8;color:#fff;font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.btn-search{height:36px;padding:0 14px;border-radius:9px;border:none;background:#7C52C8;color:#fff;font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
 .btn-search:hover{opacity:0.85;}
 .search-result{margin-top:10px;}
 .search-result-label{font-size:11px;color:var(--text-muted);margin-bottom:6px;}
@@ -101,23 +124,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .search-hit{background:#FFE8A3;border-radius:3px;padding:0 2px;}
 .search-empty{font-size:13px;color:var(--text-muted);text-align:center;padding:1rem 0;}
 
-/* FAB */
-.fab{position:fixed;bottom:28px;right:28px;height:44px;padding:0 18px;border-radius:22px;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;border:none;font-size:14px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(124,82,200,0.35);display:flex;align-items:center;gap:7px;z-index:100;transition:transform 0.15s;}
-.fab:hover{transform:translateY(-2px);}
-
-/* EDIT OVERLAY */
-
-.edit-panel-inner{display:flex;flex-direction:column;}
-.edit-header{padding:1.25rem 1.5rem 0;flex-shrink:0;border-bottom:1px solid var(--border);}
-.edit-header h2{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:600;color:var(--text);}
-.edit-header p{font-size:12px;color:var(--text-muted);margin-top:3px;}
-.edit-tabs{display:flex;border-bottom:1.5px solid var(--border);margin-top:1rem;padding:0 1.5rem;}
-.edit-tab{padding:8px 14px;font-size:13px;color:var(--text-muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+/* ── EDIT TAB ── */
+.edit-tabs{display:flex;border-bottom:1.5px solid var(--border);margin-bottom:1.25rem;}
+.edit-tab{padding:8px 16px;font-size:13px;color:var(--text-muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
 .edit-tab.on{color:var(--mint);border-bottom-color:var(--mint);font-weight:500;}
-.edit-body{flex:1;overflow-y:auto;padding:1.25rem 1.5rem;}
-
-/* 문구 추가 탭 */
-.edit-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1rem;}
+.edit-cat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:1rem;}
 .edit-cat-btn{padding:8px 10px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.12s;}
 .edit-cat-btn:hover{border-color:var(--mint-mid);background:var(--mint-light);}
 .edit-cat-btn.on{background:var(--lavender);border-color:var(--lavender-mid);color:var(--lavender-dark);font-weight:500;}
@@ -126,63 +137,48 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .edit-hint{font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;}
 .btn-primary{height:40px;padding:0 20px;border-radius:10px;border:none;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;font-size:14px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
 .btn-primary:hover{opacity:0.88;}
-.btn-secondary{height:40px;padding:0 16px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
 .edit-section{margin-bottom:1.25rem;}
-.edit-section-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+.edit-section-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;}
 .phrase-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--mint-light);}
 .phrase-item:last-child{border-bottom:none;}
 .phrase-item-text{font-size:12px;color:var(--text-sub);flex:1;line-height:1.5;}
 .phrase-item-cat{font-size:10px;font-weight:500;padding:2px 6px;border-radius:5px;background:var(--lavender);color:var(--lavender-dark);flex-shrink:0;}
-.btn-del-sm{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:13px;flex-shrink:0;padding:2px 4px;transition:color 0.12s;}
+.btn-del-sm{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:13px;flex-shrink:0;padding:2px 4px;}
 .btn-del-sm:hover{color:#C0607A;}
-
-/* 카테고리 관리 탭 */
+.input-row{display:flex;gap:8px;margin-bottom:8px;}
+.input-row input{flex:1;height:38px;padding:0 12px;border-radius:9px;border:1.5px solid var(--border);font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);}
+.input-row input:focus{outline:none;border-color:var(--mint-mid);}
 .cat-manage-item{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--mint-light);border-radius:9px;margin-bottom:6px;}
 .cat-manage-label{font-size:13px;font-weight:500;color:var(--text);flex:1;}
 .cat-manage-sub{font-size:11px;color:var(--text-muted);}
 .cat-manage-badge{font-size:10px;padding:2px 7px;border-radius:5px;background:var(--lavender);color:var(--lavender-dark);}
-.input-row{display:flex;gap:8px;margin-bottom:8px;}
-.input-row input{flex:1;height:38px;padding:0 12px;border-radius:9px;border:1.5px solid var(--border);font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);}
-.input-row input:focus{outline:none;border-color:var(--mint-mid);}
 .divider-line{border:none;border-top:1.5px solid var(--border);margin:1.25rem 0;}
 .cat-edit-wrap{background:var(--mint-light);border-radius:10px;padding:10px 12px;margin-bottom:6px;}
 .cat-edit-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-.cat-edit-row:last-child{margin-bottom:0;}
-.cat-edit-input{flex:1;height:34px;padding:0 10px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;font-family:"Noto Sans KR",sans-serif;color:var(--text);}
+.cat-edit-input{height:34px;padding:0 10px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);width:100%;}
 .cat-edit-input:focus{outline:none;border-color:var(--mint-mid);}
-.btn-xs{height:30px;padding:0 10px;border-radius:7px;border:1px solid transparent;font-size:12px;font-family:"Noto Sans KR",sans-serif;cursor:pointer;}
-.btn-xs.save{background:var(--mint);color:#fff;border-color:var(--mint);}
-.btn-xs.save:hover{opacity:0.88;}
+.btn-xs{height:30px;padding:0 10px;border-radius:7px;border:1px solid transparent;font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;}
+.btn-xs.save{background:var(--mint);color:#fff;}
 .btn-xs.danger{background:#FFF0F3;color:#C0607A;border-color:#FADADD;}
-.btn-xs.danger:hover{background:#FFE0E5;}
 .btn-xs.cancel{background:var(--bg);color:var(--text-sub);border-color:var(--border);}
 .phrase-pool-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--mint-light);}
 .phrase-pool-item:last-child{border-bottom:none;}
 .phrase-pool-text{font-size:12px;color:var(--text-sub);flex:1;line-height:1.5;}
-.phrase-pool-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:12px;flex-shrink:0;padding:2px 4px;transition:color 0.12s;}
-.phrase-pool-del:hover{color:#C0607A;}
-.cat-expand-btn{font-size:11px;color:var(--mint);background:transparent;border:none;cursor:pointer;padding:2px 0;font-family:"Noto Sans KR",sans-serif;}
-.disabled-badge{font-size:10px;padding:2px 7px;border-radius:5px;background:#FFE0E5;color:#C0607A;}
-.cat-manage-item.disabled{opacity:0.5;}
-
-.main-tabs{display:flex;align-items:flex-end;border-bottom:2px solid var(--border);padding:0 2rem;max-width:900px;margin:0 auto;}.main-tabs-spacer{flex:1;}.main-tab.edit{color:var(--text-muted);font-size:13px;margin-left:auto;}
-.main-tab{padding:12px 24px;font-size:14px;font-weight:500;color:var(--text-muted);background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:color 0.12s;}
-.main-tab:hover{color:var(--mint);}
-.main-tab.on{color:var(--mint);border-bottom-color:var(--mint);}
-.tab-section{display:none;}
-.tab-section.on{display:block;}
+.phrase-pool-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:12px;flex-shrink:0;padding:2px 6px;border-radius:5px;}
+.phrase-pool-del:hover{color:#C0607A;background:#FFF0F3;}
+.cat-expand-btn{font-size:11px;color:var(--mint);background:transparent;border:none;cursor:pointer;padding:2px 0;font-family:'Noto Sans KR',sans-serif;}
 </style>
 </head>
 <body>
 
-<!-- 로그인 -->
+<!-- ── 로그인 화면 ── -->
 <div class="login-wrap" id="login-wrap">
   <div class="login-card">
     <div class="login-logo">QuickNote for OT</div>
     <div class="login-sub">병원 계정으로 로그인하세요</div>
     <div class="login-tabs">
-      <button class="login-tab on" onclick="setLoginTab('login')">로그인</button>
-      <button class="login-tab" onclick="setLoginTab('register')">병원 등록</button>
+      <button class="login-tab on" id="ltab-login" onclick="setLoginTab('login')">로그인</button>
+      <button class="login-tab" id="ltab-register" onclick="setLoginTab('register')">병원 등록</button>
     </div>
     <div id="login-form">
       <div class="field"><label>병원명</label><input type="text" id="li-name" placeholder="예: 서울재활병원"/></div>
@@ -191,7 +187,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
     </div>
     <div id="reg-form" style="display:none;">
       <div class="field"><label>병원명</label><input type="text" id="rg-name" placeholder="예: 서울재활병원"/></div>
-      <div class="field"><label>병원 코드 설정</label><input type="password" id="rg-code" placeholder="사용할 코드 입력 (4자 이상)"/></div>
+      <div class="field"><label>병원 코드 설정</label><input type="password" id="rg-code" placeholder="4자 이상"/></div>
       <div class="field"><label>코드 확인</label><input type="password" id="rg-code2" placeholder="코드 재입력" onkeydown="if(event.key==='Enter')doRegister()"/></div>
       <button class="btn-login" onclick="doRegister()">병원 등록</button>
     </div>
@@ -200,7 +196,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
   </div>
 </div>
 
-<!-- 앱 -->
+<!-- ── 앱 화면 ── -->
 <div class="app-wrap" id="app-wrap">
   <div class="top-bar">
     <div class="top-bar-left">
@@ -216,120 +212,116 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 
   <!-- 메인 탭 -->
   <div class="main-tabs">
-    <button class="main-tab on" onclick="switchMainTab('generate')">✦ 코멘트 생성</button>
-    <button class="main-tab" onclick="switchMainTab('history')">📋 생성 기록</button>
+    <button class="main-tab on" id="mtab-generate" onclick="switchMainTab('generate')">✦ 코멘트 생성</button>
+    <button class="main-tab" id="mtab-history" onclick="switchMainTab('history')">📋 생성 기록</button>
     <div class="main-tabs-spacer"></div>
-    <button class="main-tab edit" onclick="switchMainTab('edit')">✎ 편집</button>
+    <button class="main-tab edit-tab-btn" id="mtab-edit" onclick="switchMainTab('edit')">✎ 편집</button>
   </div>
 
   <!-- 코멘트 생성 탭 -->
-  <div class="layout tab-section on" id="main-generate">
-    <div class="loading-pool" id="loading-pool">문구 데이터 불러오는 중...</div>
-    <div class="card">
-      <div class="card-title">환자 상태 선택</div>
-      <div class="cat-grid" id="cat-grid"></div>
-    </div>
-    <button class="btn-generate" id="btn-gen" onclick="generate()">✦ 코멘트 3개 생성</button>
-    <div id="result-wrap" style="margin-top:1rem;display:none;">
+  <div class="tab-section on" id="main-generate">
+    <div class="layout">
+      <div class="loading-pool" id="loading-pool">문구 데이터 불러오는 중...</div>
       <div class="card">
-        <div class="card-title">생성된 코멘트</div>
-        <div id="result-list"></div>
-        <button class="btn-copy-all" onclick="copyAll()">전체 복사</button>
+        <div class="card-title">환자 상태 선택</div>
+        <div class="cat-grid" id="cat-grid"></div>
+      </div>
+      <button class="btn-generate" id="btn-gen" onclick="generate()">✦ 코멘트 3개 생성</button>
+      <div id="result-wrap" style="margin-top:1rem;display:none;">
+        <div class="card">
+          <div class="card-title">생성된 코멘트</div>
+          <div id="result-list"></div>
+          <button class="btn-copy-all" onclick="copyAll()">전체 복사</button>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- 생성 기록 탭 -->
-  <div class="layout tab-section" id="main-history">
-    <div class="card" id="history-wrap" style="display:none;">
-      <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
-        <span>이번 달 생성 기록</span>
-        <button class="btn-reset" onclick="resetMonth()">초기화</button>
+  <div class="tab-section" id="main-history">
+    <div class="layout">
+      <div class="card" id="history-wrap" style="display:none;">
+        <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
+          <span>이번 달 생성 기록</span>
+          <button class="btn-reset" onclick="resetMonth()">초기화</button>
+        </div>
+        <div class="day-tabs" id="day-tabs"></div>
+        <div class="hist-scroll"><div id="day-content"></div></div>
       </div>
-      <div class="day-tabs" id="day-tabs"></div>
-      <div class="hist-scroll" style="max-height:60vh;"><div id="day-content"></div></div>
-    </div>
-    <div class="card" id="history-empty">
-      <div class="card-title">이번 달 생성 기록</div>
-      <div class="empty-result">아직 생성된 기록이 없어요</div>
-    </div>
-    <div class="card" style="margin-top:1rem;">
-      <div class="card-title">중복 검색</div>
-      <div class="search-input-wrap">
-        <input class="search-input" id="search-input" type="text" placeholder="문구 키워드 입력..." onkeydown="if(event.key==='Enter')searchHistory()"/>
-        <button class="btn-search" onclick="searchHistory()">검색</button>
+      <div class="card" id="history-empty">
+        <div class="card-title">이번 달 생성 기록</div>
+        <div class="empty-result">아직 생성된 기록이 없어요</div>
       </div>
-      <div class="search-result" id="search-result"></div>
+      <div class="card" style="margin-top:1rem;">
+        <div class="card-title">중복 검색</div>
+        <div class="search-input-wrap">
+          <input class="search-input" id="search-input" type="text" placeholder="문구 키워드 입력..." onkeydown="if(event.key==='Enter')searchHistory()"/>
+          <button class="btn-search" onclick="searchHistory()">검색</button>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
     </div>
   </div>
-</div>
-<!-- FAB -->
 
-<!-- 편집 탭 인라인 -->
-<div class="layout tab-section" id="main-edit">
-  <div class="card" style="padding:0;overflow:hidden;">
-
-    <div class="edit-header" style="display:flex;align-items:flex-start;justify-content:space-between;">
-      <div>
-        <h2>문구 편집</h2>
-        <p id="edit-hospital-label"></p>
-      </div>
-      
-    </div>
-    <div class="edit-tabs">
-      <button class="edit-tab on" onclick="setEditTab('phrase')">문구 추가</button>
-      <button class="edit-tab" onclick="setEditTab('category')">카테고리 관리</button>
-      <button class="edit-tab" onclick="setEditTab('list')">추가된 문구</button>
-    </div>
-    <div class="edit-body">
-
-      <!-- 문구 추가 탭 -->
-      <div id="etab-phrase">
-        <div class="edit-section">
-          <div class="edit-section-title">카테고리 선택</div>
-          <div class="edit-cat-grid" id="edit-cat-grid"></div>
+  <!-- 편집 탭 -->
+  <div class="tab-section" id="main-edit">
+    <div class="layout">
+      <div class="card">
+        <div class="edit-tabs">
+          <button class="edit-tab on" id="etab-phrase-btn" onclick="setEditTab('phrase')">문구 추가</button>
+          <button class="edit-tab" id="etab-category-btn" onclick="setEditTab('category')">카테고리 관리</button>
+          <button class="edit-tab" id="etab-list-btn" onclick="setEditTab('list')">추가된 문구</button>
         </div>
-        <div class="edit-section">
-          <div class="edit-section-title">문구 입력</div>
-          <textarea class="edit-textarea" id="phrase-input" placeholder="여러 줄 입력 시 줄마다 각각 추가됩니다&#10;예: stacking cone ROM 증진 유도"></textarea>
-          <div class="edit-hint">이 병원에서만 사용되는 문구로 추가돼요. 여러 줄 입력 가능.</div>
-          <button class="btn-primary" onclick="savePhrase()">문구 추가하기</button>
-        </div>
-      </div>
 
-      <!-- 카테고리 관리 탭 -->
-      <div id="etab-category" style="display:none;">
-        <div class="edit-section">
-          <div class="edit-section-title">새 카테고리 추가</div>
-          <div class="input-row">
-            <input type="text" id="new-cat-label" placeholder="카테고리명 (예: ADL — Supervision)"/>
+        <!-- 문구 추가 -->
+        <div id="etab-phrase">
+          <div class="edit-section">
+            <div class="edit-section-title">카테고리 선택</div>
+            <div class="edit-cat-grid" id="edit-cat-grid"></div>
           </div>
-          <div class="input-row">
-            <input type="text" id="new-cat-sub" placeholder="설명 (예: 감독 수준)"/>
-            <button class="btn-primary" onclick="addCategory()">추가</button>
+          <div class="edit-section">
+            <div class="edit-section-title">문구 입력</div>
+            <textarea class="edit-textarea" id="phrase-input" placeholder="여러 줄 입력 시 줄마다 각각 추가됩니다"></textarea>
+            <div class="edit-hint">이 병원에서만 사용되는 문구로 추가돼요.</div>
+            <button class="btn-primary" onclick="savePhrase()">문구 추가하기</button>
           </div>
         </div>
-        <hr class="divider-line"/>
-        <div class="edit-section">
-          <div class="edit-section-title">이 병원의 커스텀 카테고리</div>
-          <div id="custom-cat-list"><div style="font-size:13px;color:var(--text-muted);">추가된 카테고리가 없어요</div></div>
+
+        <!-- 카테고리 관리 -->
+        <div id="etab-category" style="display:none;">
+          <div class="edit-section">
+            <div class="edit-section-title">새 카테고리 추가</div>
+            <div class="input-row">
+              <input type="text" id="new-cat-label" placeholder="카테고리명 (예: ADL — Supervision)"/>
+            </div>
+            <div class="input-row">
+              <input type="text" id="new-cat-sub" placeholder="설명 (예: 감독 수준)"/>
+              <button class="btn-primary" onclick="addCategory()">추가</button>
+            </div>
+          </div>
+          <hr class="divider-line"/>
+          <div class="edit-section">
+            <div class="edit-section-title">커스텀 카테고리</div>
+            <div id="custom-cat-list"><div style="font-size:13px;color:var(--text-muted);">추가된 카테고리가 없어요</div></div>
+          </div>
+          <hr class="divider-line"/>
+          <div class="edit-section">
+            <div class="edit-section-title">기본 카테고리 관리</div>
+            <div id="default-cat-list"></div>
+          </div>
         </div>
-        <hr class="divider-line"/>
-        <div class="edit-section">
-          <div class="edit-section-title">기본 카테고리 목록</div>
-          <div id="default-cat-list"></div>
+
+        <!-- 추가된 문구 -->
+        <div id="etab-list" style="display:none;">
+          <div id="custom-phrase-list"><div style="font-size:13px;color:var(--text-muted);text-align:center;padding:1.5rem 0;">추가된 문구가 없어요</div></div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- 추가된 문구 탭 -->
-      <div id="etab-list" style="display:none;">
-        <div id="custom-phrase-list"><div style="font-size:13px;color:var(--text-muted);text-align:center;padding:1.5rem 0;">추가된 문구가 없어요</div></div>
-      </div>
+</div><!-- /.app-wrap -->
 
-      </div>
-</div>
-
-<script<script type="module">
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getDatabase, ref, push, onValue, remove, get, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 import { ref as dbRef, onValue as ov } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
@@ -345,198 +337,270 @@ const firebaseConfig = {
   appId: "1:306455802486:web:6eec4081c53aa877d26557",
   measurementId: "G-VND6PQS1GT"
 };
+
+
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
-ov(dbRef(db,'.info/connected'), snap=>{
+ov(dbRef(db, '.info/connected'), snap => {
   const on = snap.val();
-  document.getElementById('conn-dot').className = 'dot'+(on?' online':'');
-  document.getElementById('conn-label').textContent = on?'실시간 연결됨':'연결 끊김';
+  document.getElementById('conn-dot').className = 'dot' + (on ? ' online' : '');
+  document.getElementById('conn-label').textContent = on ? '실시간 연결됨' : '연결 끊김';
 });
 
-function getMonthKey(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
-function getTodayStr(){ return new Date().toISOString().slice(0,10); }
+// ── 헬퍼
+function getMonthKey() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+function getTodayStr() { return new Date().toISOString().slice(0, 10); }
+function hashCode(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = Math.imul(31, h) + str.charCodeAt(i) | 0;
+  return Math.abs(h).toString(36);
+}
+function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
 const DAYS = ['월','화','수','목','금','토','일'];
 
-// 기본 카테고리
 const DEFAULT_CATS = [
-  {key:'hypertonus', label:'Hypertonus',       sub:'근긴장도 높음'},
-  {key:'hypotonus',  label:'Hypotonus',        sub:'근긴장도 낮음'},
-  {key:'balance',    label:'Balance / Trunk',  sub:'균형·체간'},
-  {key:'grasp',      label:'Grasp / Release',  sub:'잡기·놓기'},
-  {key:'pinch',      label:'Pinch / Manipulation', sub:'집기·조작'},
-  {key:'bilateral',  label:'Bilateral / Bimanual', sub:'양손 활동'},
-  {key:'rom',        label:'ROM 증진',          sub:'관절가동범위'},
-  {key:'coordination',label:'Coordination',   sub:'협응·조절'},
-  {key:'strengthening',label:'Strengthening', sub:'근력 강화'},
-  {key:'perception', label:'Perception',       sub:'지각'},
-  {key:'cognition',  label:'Cognition',        sub:'인지'},
-  {key:'adl_total',  label:'ADL — Total',      sub:'전적 도움'},
-  {key:'adl_max',    label:'ADL — Maximal',    sub:'최대 도움'},
-  {key:'adl_mod',    label:'ADL — Moderate',   sub:'중등도 도움'},
-  {key:'adl_min',    label:'ADL — Minimal',    sub:'최소 도움'},
-  {key:'rdt',        label:'RDT',              sub:'구강·삼킴'},
+  {key:'hypertonus', label:'Hypertonus',          sub:'근긴장도 높음'},
+  {key:'hypotonus',  label:'Hypotonus',           sub:'근긴장도 낮음'},
+  {key:'balance',    label:'Balance / Trunk',     sub:'균형·체간'},
+  {key:'grasp',      label:'Grasp / Release',     sub:'잡기·놓기'},
+  {key:'pinch',      label:'Pinch / Manipulation',sub:'집기·조작'},
+  {key:'bilateral',  label:'Bilateral / Bimanual',sub:'양손 활동'},
+  {key:'rom',        label:'ROM 증진',             sub:'관절가동범위'},
+  {key:'coordination',label:'Coordination',      sub:'협응·조절'},
+  {key:'strengthening',label:'Strengthening',    sub:'근력 강화'},
+  {key:'perception', label:'Perception',          sub:'지각'},
+  {key:'cognition',  label:'Cognition',           sub:'인지'},
+  {key:'adl_total',  label:'ADL — Total',         sub:'전적 도움'},
+  {key:'adl_max',    label:'ADL — Maximal',       sub:'최대 도움'},
+  {key:'adl_mod',    label:'ADL — Moderate',      sub:'중등도 도움'},
+  {key:'adl_min',    label:'ADL — Minimal',       sub:'최소 도움'},
+  {key:'rdt',        label:'RDT',                 sub:'구강·삼킴'},
 ];
 
+// ── 상태
 const T = {};
-let sel=[], lastResults=[], lastFbKeys=[], monthComments={};
-let customPhrases={}, customCats=[];
-let selDay=getTodayStr(), selEditCat=null, selEditTab='phrase';
-let poolLoaded=false;
-let currentHospital=null;
-let monthRef=null, monthUnsub=null;
-let customPhraseUnsub=null, customCatUnsub=null;
+let sel = [], lastResults = [], lastFbKeys = [];
+let monthComments = {}, customPhrases = {}, customCats = [];
+let catOverrides = {}, excludedPhrases = {};
+let selDay = getTodayStr(), selEditCat = null;
+let poolLoaded = false;
+let currentHospital = null;
+let monthRef = null;
+let monthUnsub = null, customPhraseUnsub = null, customCatUnsub = null;
+let catOverrideUnsub = null, excludeUnsub = null;
+let expandedCat = null;
 
-function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function hashCode(str){ let h=0; for(let i=0;i<str.length;i++) h=Math.imul(31,h)+str.charCodeAt(i)|0; return Math.abs(h).toString(36); }
+// ── 전체 카테고리 (오버라이드 + 비활성화 적용)
+function allCats() {
+  return [...DEFAULT_CATS, ...customCats]
+    .filter(c => !(catOverrides[c.key] && catOverrides[c.key].disabled))
+    .map(c => catOverrides[c.key]
+      ? { ...c, label: catOverrides[c.key].label || c.label, sub: catOverrides[c.key].sub || c.sub }
+      : c);
+}
 
+// ── 문구 풀 (제외 목록 + 커스텀 반영)
+function pool(key) {
+  const base   = T[key] || {};
+  const excl   = Object.values(excludedPhrases[key] || {});
+  const custom = Object.values(customPhrases).filter(v => v.cat === key).map(v => v.text);
+  return {
+    p: base.p || [],
+    a: [...(base.a || []), ...custom].filter(t => !excl.includes(t)),
+    t: base.t || []
+  };
+}
 
-// ── 로그인 탭
-window.setLoginTab=function(tab){
-  document.querySelectorAll('.login-tab').forEach((b,i)=>b.classList.toggle('on',['login','register'][i]===tab));
-  document.getElementById('login-form').style.display=tab==='login'?'':'none';
-  document.getElementById('reg-form').style.display=tab==='register'?'':'none';
-  document.getElementById('login-err').textContent='';
+// ── 로그인 탭 전환
+window.setLoginTab = function(tab) {
+  document.getElementById('ltab-login').classList.toggle('on', tab === 'login');
+  document.getElementById('ltab-register').classList.toggle('on', tab === 'register');
+  document.getElementById('login-form').style.display  = tab === 'login'     ? '' : 'none';
+  document.getElementById('reg-form').style.display    = tab === 'register'  ? '' : 'none';
+  document.getElementById('login-err').textContent = '';
 };
-function showErr(msg){ document.getElementById('login-err').textContent=msg; }
 
-window.doRegister=async function(){
-  const name=document.getElementById('rg-name').value.trim();
-  const code=document.getElementById('rg-code').value.trim();
-  const code2=document.getElementById('rg-code2').value.trim();
-  if(!name) return showErr('병원명을 입력해주세요.');
-  if(code.length<4) return showErr('코드는 4자 이상이어야 해요.');
-  if(code!==code2) return showErr('코드가 일치하지 않아요.');
-  const hospId=hashCode(name+code);
-  const snap=await get(ref(db,'hospitals/'+hospId));
-  if(snap.exists()) return showErr('이미 등록된 병원명+코드 조합이에요. 로그인을 이용해주세요.');
-  await set(ref(db,'hospitals/'+hospId),{name,codeHash:hashCode(code),createdAt:Date.now()});
-  showErr('');
+function showErr(msg) { document.getElementById('login-err').textContent = msg; }
+
+// ── 병원 등록
+window.doRegister = async function() {
+  const name  = document.getElementById('rg-name').value.trim();
+  const code  = document.getElementById('rg-code').value.trim();
+  const code2 = document.getElementById('rg-code2').value.trim();
+  if (!name)         return showErr('병원명을 입력해주세요.');
+  if (code.length < 4) return showErr('코드는 4자 이상이어야 해요.');
+  if (code !== code2)  return showErr('코드가 일치하지 않아요.');
+  const hospId = hashCode(name + code);
+  const snap   = await get(ref(db, 'hospitals/' + hospId));
+  if (snap.exists()) return showErr('이미 등록된 병원명+코드 조합이에요.');
+  await set(ref(db, 'hospitals/' + hospId), { name, codeHash: hashCode(code), createdAt: Date.now() });
   alert(`"${name}" 등록 완료! 로그인 탭에서 로그인해주세요.`);
   setLoginTab('login');
-  document.getElementById('li-name').value=name;
+  document.getElementById('li-name').value = name;
 };
 
-window.doLogin=async function(){
-  const name=document.getElementById('li-name').value.trim();
-  const code=document.getElementById('li-code').value.trim();
-  if(!name) return showErr('병원명을 입력해주세요.');
-  if(!code) return showErr('병원 코드를 입력해주세요.');
-  const hospId=hashCode(name+code);
-  const snap=await get(ref(db,'hospitals/'+hospId));
-  if(!snap.exists()) return showErr('병원명 또는 코드가 올바르지 않아요.');
-  if(snap.val().codeHash!==hashCode(code)) return showErr('병원명 또는 코드가 올바르지 않아요.');
-  sessionStorage.setItem('ot_hospital',JSON.stringify({id:hospId,name:snap.val().name}));
-  enterApp({id:hospId,name:snap.val().name});
+// ── 로그인
+window.doLogin = async function() {
+  const name = document.getElementById('li-name').value.trim();
+  const code = document.getElementById('li-code').value.trim();
+  if (!name) return showErr('병원명을 입력해주세요.');
+  if (!code) return showErr('병원 코드를 입력해주세요.');
+  const hospId = hashCode(name + code);
+  const snap   = await get(ref(db, 'hospitals/' + hospId));
+  if (!snap.exists())                          return showErr('병원명 또는 코드가 올바르지 않아요.');
+  if (snap.val().codeHash !== hashCode(code))  return showErr('병원명 또는 코드가 올바르지 않아요.');
+  sessionStorage.setItem('ot_hospital', JSON.stringify({ id: hospId, name: snap.val().name }));
+  enterApp({ id: hospId, name: snap.val().name });
 };
 
-window.doLogout=function(){
+// ── 로그아웃
+window.doLogout = function() {
   sessionStorage.removeItem('ot_hospital');
-  if(monthUnsub) monthUnsub();
-  if(customPhraseUnsub) customPhraseUnsub();
-  if(customCatUnsub) customCatUnsub();
-  monthComments={}; customPhrases={}; customCats=[];
-  lastResults=[]; lastFbKeys=[]; sel=[];
-  document.getElementById('app-wrap').style.display='none';
-  document.getElementById('login-wrap').style.display='flex';
-  document.getElementById('fab').style.display='none';
-  document.getElementById('li-code').value='';
+  [monthUnsub, customPhraseUnsub, customCatUnsub, catOverrideUnsub, excludeUnsub]
+    .forEach(u => u && u());
+  monthComments = {}; customPhrases = {}; customCats = [];
+  catOverrides = {}; excludedPhrases = {};
+  lastResults = []; lastFbKeys = []; sel = [];
+  document.getElementById('app-wrap').style.display  = 'none';
+  document.getElementById('login-wrap').style.display = 'flex';
+  document.getElementById('li-code').value = '';
 };
 
-function enterApp(hospital){
-  currentHospital=hospital;
-  document.getElementById('login-wrap').style.display='none';
-  document.getElementById('app-wrap').style.display='block';
-  document.getElementById('fab').style.display='flex';
-  document.getElementById('hospital-name-display').textContent=hospital.name;
-  document.getElementById('edit-hospital-label').textContent=hospital.name+' 전용 편집';
+// ── 앱 진입
+function enterApp(hospital) {
+  currentHospital = hospital;
+  document.getElementById('login-wrap').style.display = 'none';
+  document.getElementById('app-wrap').style.display   = 'block';
+  document.getElementById('hospital-name-display').textContent = hospital.name;
 
-  monthRef=ref(db,'hospitals/'+hospital.id+'/months/'+getMonthKey()+'/comments');
-  if(monthUnsub) monthUnsub();
-  monthUnsub=onValue(monthRef,snap=>{ monthComments=snap.val()||{}; renderHistory(); });
+  const hid = hospital.id;
+  monthRef = ref(db, 'hospitals/' + hid + '/months/' + getMonthKey() + '/comments');
 
-  // 병원별 커스텀 문구
-  if(customPhraseUnsub) customPhraseUnsub();
-  customPhraseUnsub=onValue(ref(db,'hospitals/'+hospital.id+'/custom_phrases'),snap=>{
-    customPhrases=snap.val()||{};
+  if (monthUnsub) monthUnsub();
+  monthUnsub = onValue(monthRef, snap => { monthComments = snap.val() || {}; renderHistory(); });
+
+  if (customPhraseUnsub) customPhraseUnsub();
+  customPhraseUnsub = onValue(ref(db, 'hospitals/' + hid + '/custom_phrases'), snap => {
+    customPhrases = snap.val() || {};
     renderCustomPhraseList();
   });
 
-  // 병원별 커스텀 카테고리
-  if(customCatUnsub) customCatUnsub();
-  customCatUnsub=onValue(ref(db,'hospitals/'+hospital.id+'/custom_cats'),snap=>{
-    const d=snap.val()||{};
-    customCats=Object.entries(d).map(([k,v])=>({...v,fbKey:k}));
-    renderCats();
-    renderEditCatGrid();
-    renderCustomCatList();
+  if (customCatUnsub) customCatUnsub();
+  customCatUnsub = onValue(ref(db, 'hospitals/' + hid + '/custom_cats'), snap => {
+    const d = snap.val() || {};
+    customCats = Object.entries(d).map(([k, v]) => ({ ...v, fbKey: k }));
+    renderCats(); renderEditCatGrid(); renderCustomCatList(); renderDefaultCatList();
+  });
+
+  if (catOverrideUnsub) catOverrideUnsub();
+  catOverrideUnsub = onValue(ref(db, 'hospitals/' + hid + '/cat_overrides'), snap => {
+    catOverrides = snap.val() || {};
+    renderCats(); renderDefaultCatList();
+  });
+
+  if (excludeUnsub) excludeUnsub();
+  excludeUnsub = onValue(ref(db, 'hospitals/' + hid + '/excluded_phrases'), snap => {
+    excludedPhrases = snap.val() || {};
     renderDefaultCatList();
   });
 
   renderCats();
-  enterAppExtras(hospital.id);
+  switchMainTab('generate');
 }
 
-const saved=sessionStorage.getItem('ot_hospital');
-if(saved){ try{ enterApp(JSON.parse(saved)); }catch(e){ sessionStorage.removeItem('ot_hospital'); } }
+// 세션 복원
+const _saved = sessionStorage.getItem('ot_hospital');
+if (_saved) { try { enterApp(JSON.parse(_saved)); } catch(e) { sessionStorage.removeItem('ot_hospital'); } }
 
-// phrase_pool (공통)
-onValue(ref(db,'phrase_pool'),snap=>{
-  const pool=snap.val()||{};
-  Object.keys(pool).forEach(cat=>{
-    const d=pool[cat];
-    T[cat]={ p:d.prefix?Object.values(d.prefix).map(v=>v.text):[], a:d.action?Object.values(d.action).map(v=>v.text):[], t:d.tool?Object.values(d.tool).map(v=>v.text):[] };
+// ── phrase_pool (공통)
+onValue(ref(db, 'phrase_pool'), snap => {
+  const p = snap.val() || {};
+  Object.keys(p).forEach(cat => {
+    const d = p[cat];
+    T[cat] = {
+      p: d.prefix ? Object.values(d.prefix).map(v => v.text) : [],
+      a: d.action ? Object.values(d.action).map(v => v.text) : [],
+      t: d.tool   ? Object.values(d.tool).map(v => v.text)   : [],
+    };
   });
-  poolLoaded=true;
-  document.getElementById('loading-pool').style.display='none';
+  poolLoaded = true;
+  document.getElementById('loading-pool').style.display = 'none';
 });
 
+// ── 메인 탭 전환
+window.switchMainTab = function(tab) {
+  ['generate', 'history', 'edit'].forEach(t => {
+    document.getElementById('mtab-' + t).classList.toggle('on', t === tab);
+    document.getElementById('main-' + t).classList.toggle('on', t === tab);
+  });
+  if (tab === 'history') renderHistory();
+  if (tab === 'edit') { renderEditCatGrid(); renderCustomCatList(); renderDefaultCatList(); renderCustomPhraseList(); }
+};
 
+// ── 편집 탭 전환
+window.setEditTab = function(tab) {
+  ['phrase', 'category', 'list'].forEach(t => {
+    document.getElementById('etab-' + t + '-btn').classList.toggle('on', t === tab);
+    document.getElementById('etab-' + t).style.display = t === tab ? '' : 'none';
+  });
+};
 
-function buildComment(keys,usedNow){
-  const allUsed=[...Object.values(monthComments).map(v=>v.text),...usedNow];
-  for(let i=0;i<300;i++){
-    const k=rnd(keys); const D=pool(k); if(!D.a.length) continue;
-    const hasTool=D.t.length>0; const rv=Math.random(); let c;
-    if(rv<0.33&&hasTool)   c=`${rnd(D.t)} ${rnd(D.a)}`;
-    else if(rv<0.66)       c=`${rnd(D.p)} ${rnd(D.a)}`;
-    else if(hasTool)       c=`${rnd(D.t)} ${rnd(D.p)} ${rnd(D.a)}`;
-    else                   c=`${rnd(D.p)} ${rnd(D.a)}`;
-    if(!allUsed.some(x=>x&&x.replace(/\s+/g,'')=== c.replace(/\s+/g,''))) return c;
+// ── 코멘트 생성
+function buildComment(keys, usedNow) {
+  const allUsed = [...Object.values(monthComments).map(v => v.text), ...usedNow];
+  for (let i = 0; i < 300; i++) {
+    const k = rnd(keys);
+    const D = pool(k);
+    if (!D.a.length) continue;
+    const hasTool = D.t.length > 0;
+    const rv = Math.random();
+    let c;
+    if      (rv < 0.33 && hasTool) c = `${rnd(D.t)} ${rnd(D.a)}`;
+    else if (rv < 0.66)             c = `${rnd(D.p)} ${rnd(D.a)}`;
+    else if (hasTool)               c = `${rnd(D.t)} ${rnd(D.p)} ${rnd(D.a)}`;
+    else                            c = `${rnd(D.p)} ${rnd(D.a)}`;
+    if (!allUsed.some(x => x && x.replace(/\s+/g, '') === c.replace(/\s+/g, ''))) return c;
   }
   return rnd(pool(rnd(keys)).a);
 }
 
-window.generate=async function(){
-  if(!currentHospital) return;
-  if(!sel.length){
-    document.getElementById('result-wrap').innerHTML='<div style="color:#C0607A;font-size:13px;padding:8px;text-align:center;">카테고리를 하나 이상 선택해주세요.</div>';
-    document.getElementById('result-wrap').style.display='block'; return;
+window.generate = async function() {
+  if (!currentHospital) return;
+  if (!sel.length) {
+    document.getElementById('result-wrap').innerHTML = '<div style="color:#C0607A;font-size:13px;padding:8px;text-align:center;">카테고리를 하나 이상 선택해주세요.</div>';
+    document.getElementById('result-wrap').style.display = 'block';
+    return;
   }
-  if(!poolLoaded){ alert('문구 데이터를 불러오는 중이에요. 잠시 후 다시 시도해주세요.'); return; }
-  const btn=document.getElementById('btn-gen');
-  btn.disabled=true; btn.textContent='생성 중...';
-  lastResults=[]; lastFbKeys=[];
-  const cats=sel.map(k=>allCats().find(c=>c.key===k)?.label).join('·');
-  const today=getTodayStr();
-  const newResults=[];
-  for(let i=0;i<3;i++) newResults.push(buildComment(sel,newResults));
-  for(const text of newResults){
-    const snap=await push(monthRef,{text,cats,ts:Date.now(),date:today});
+  if (!poolLoaded) { alert('문구 데이터를 불러오는 중이에요. 잠시 후 다시 시도해주세요.'); return; }
+  const btn = document.getElementById('btn-gen');
+  btn.disabled = true; btn.textContent = '생성 중...';
+  lastResults = []; lastFbKeys = [];
+  const cats  = sel.map(k => allCats().find(c => c.key === k)?.label).join('·');
+  const today = getTodayStr();
+  const newResults = [];
+  for (let i = 0; i < 3; i++) newResults.push(buildComment(sel, newResults));
+  for (const text of newResults) {
+    const snap = await push(monthRef, { text, cats, ts: Date.now(), date: today });
     lastResults.push(text); lastFbKeys.push(snap.key);
   }
   renderResults();
-  document.getElementById('result-wrap').style.display='block';
-  btn.disabled=false; btn.textContent='✦ 코멘트 3개 생성';
+  document.getElementById('result-wrap').style.display = 'block';
+  btn.disabled = false; btn.textContent = '✦ 코멘트 3개 생성';
 };
 
-function renderResults(){
-  const active=lastResults.filter(Boolean);
-  document.getElementById('btn-gen').textContent=active.length>=3?'✦ 코멘트 3개 생성':`✦ 빈 자리 ${3-active.length}개 채우기`;
-  document.getElementById('result-list').innerHTML=lastResults.map((r,i)=>`
+function renderResults() {
+  const active = lastResults.filter(Boolean);
+  document.getElementById('btn-gen').textContent =
+    active.length >= 3 ? '✦ 코멘트 3개 생성' : `✦ 빈 자리 ${3 - active.length}개 채우기`;
+  document.getElementById('result-list').innerHTML = lastResults.map((r, i) => `
     <div class="result-item" id="ri${i}">
-      <div class="result-num">${i+1}</div>
+      <div class="result-num">${i + 1}</div>
       <div class="result-text">${esc(r)}</div>
       <div class="result-actions">
         <button class="btn-sm" onclick="copyOne(${i},this)">복사</button>
@@ -545,292 +609,241 @@ function renderResults(){
     </div>`).join('');
 }
 
-window.copyOne=function(i,btn){
-  navigator.clipboard.writeText(lastResults[i]||'').then(()=>{
-    btn.textContent='✓'; btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied');},1500);
+window.copyOne = function(i, btn) {
+  navigator.clipboard.writeText(lastResults[i] || '').then(() => {
+    btn.textContent = '✓'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); }, 1500);
   });
 };
-window.copyAll=function(){ navigator.clipboard.writeText(lastResults.filter(Boolean).join('\n')); };
-window.deleteResult=async function(i){
-  if(lastFbKeys[i]) await remove(ref(db,'hospitals/'+currentHospital.id+'/months/'+getMonthKey()+'/comments/'+lastFbKeys[i]));
-  lastResults.splice(i,1); lastFbKeys.splice(i,1); renderResults();
-};
-window.deleteHistItem=async function(key){ await remove(ref(db,'hospitals/'+currentHospital.id+'/months/'+getMonthKey()+'/comments/'+key)); };
-window.resetMonth=async function(){ if(!confirm('이번 달 전체 기록을 초기화할까요?')) return; await remove(monthRef); };
+window.copyAll = function() { navigator.clipboard.writeText(lastResults.filter(Boolean).join('\n')); };
 
-function renderHistory(){
-  const items=Object.entries(monthComments).map(([k,v])=>({...v,fbKey:k}));
-  const hw=document.getElementById('history-wrap'); const he=document.getElementById('history-empty');
-  if(!items.length){ hw.style.display='none'; he.style.display='block'; return; }
-  hw.style.display='block'; he.style.display='none';
-  const byDay={};
-  items.forEach(item=>{ const d=item.date||getTodayStr(); if(!byDay[d])byDay[d]=[]; byDay[d].push(item); });
-  const days=Object.keys(byDay).sort((a,b)=>b.localeCompare(a));
-  if(!byDay[selDay]) selDay=days[0]||getTodayStr();
-  document.getElementById('day-tabs').innerHTML=days.map(dayStr=>{
-    const cnt=(byDay[dayStr]||[]).length; const isOn=dayStr===selDay;
-    const label=dayStr.slice(5).replace('-','/');
-    const dow=DAYS[new Date(dayStr).getDay()===0?6:new Date(dayStr).getDay()-1];
-    return `<button class="day-tab${isOn?' on':''}" onclick="switchDay('${dayStr}')">${label} <span style="font-size:10px;opacity:0.7;">${dow}</span><span class="cnt">${cnt}</span></button>`;
+window.deleteResult = async function(i) {
+  if (lastFbKeys[i]) await remove(ref(db, 'hospitals/' + currentHospital.id + '/months/' + getMonthKey() + '/comments/' + lastFbKeys[i]));
+  lastResults.splice(i, 1); lastFbKeys.splice(i, 1);
+  renderResults();
+};
+
+window.deleteHistItem = async function(key) {
+  await remove(ref(db, 'hospitals/' + currentHospital.id + '/months/' + getMonthKey() + '/comments/' + key));
+};
+window.resetMonth = async function() {
+  if (!confirm('이번 달 전체 기록을 초기화할까요?')) return;
+  await remove(monthRef);
+};
+
+// ── 히스토리
+function renderHistory() {
+  const items = Object.entries(monthComments).map(([k, v]) => ({ ...v, fbKey: k }));
+  const hw = document.getElementById('history-wrap');
+  const he = document.getElementById('history-empty');
+  if (!items.length) { hw.style.display = 'none'; he.style.display = 'block'; return; }
+  hw.style.display = 'block'; he.style.display = 'none';
+  const byDay = {};
+  items.forEach(item => { const d = item.date || getTodayStr(); if (!byDay[d]) byDay[d] = []; byDay[d].push(item); });
+  const days = Object.keys(byDay).sort((a, b) => b.localeCompare(a));
+  if (!byDay[selDay]) selDay = days[0] || getTodayStr();
+  document.getElementById('day-tabs').innerHTML = days.map(dayStr => {
+    const cnt  = (byDay[dayStr] || []).length;
+    const isOn = dayStr === selDay;
+    const label = dayStr.slice(5).replace('-', '/');
+    const dow   = DAYS[new Date(dayStr).getDay() === 0 ? 6 : new Date(dayStr).getDay() - 1];
+    return `<button class="day-tab${isOn ? ' on' : ''}" onclick="switchDay('${dayStr}')">
+      ${label} <span style="font-size:10px;opacity:0.7;">${dow}</span><span class="cnt">${cnt}</span></button>`;
   }).join('');
-  const dayItems=(byDay[selDay]||[]).sort((a,b)=>b.ts-a.ts);
-  const el=document.getElementById('day-content');
-  if(!dayItems.length){ el.innerHTML='<div class="empty-tab">이 날 생성된 기록이 없어요</div>'; return; }
-  el.innerHTML=dayItems.map(item=>{
-    const time=new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+  const dayItems = (byDay[selDay] || []).sort((a, b) => b.ts - a.ts);
+  const el = document.getElementById('day-content');
+  if (!dayItems.length) { el.innerHTML = '<div class="empty-tab">이 날 생성된 기록이 없어요</div>'; return; }
+  el.innerHTML = dayItems.map(item => {
+    const time = new Date(item.ts).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
     return `<div class="history-item">
-      <span class="history-cat">${esc(item.cats||'')}</span>
+      <span class="history-cat">${esc(item.cats || '')}</span>
       <span class="history-text">${esc(item.text)}</span>
       <span class="history-time">${time}</span>
       <button class="btn-hist-del" onclick="deleteHistItem('${item.fbKey}')">✕</button>
     </div>`;
   }).join('');
 }
-window.switchDay=function(d){ selDay=d; renderHistory(); };
+window.switchDay = function(d) { selDay = d; renderHistory(); };
 
-window.switchMainTab = function(tab){
-  document.querySelectorAll('.main-tab:not(.edit)').forEach((b,i)=>b.classList.toggle('on',['generate','history'][i]===tab));
-  document.querySelector('.main-tab.edit').classList.toggle('on', tab==='edit');
-  document.getElementById('main-generate').classList.toggle('on', tab==='generate');
-  document.getElementById('main-history').classList.toggle('on', tab==='history');
-  document.getElementById('main-edit').classList.toggle('on', tab==='edit');
-  if(tab==='history') renderHistory();
-};
-
-
-window.searchHistory=function(){
-  const q=document.getElementById('search-input').value.trim();
-  const el=document.getElementById('search-result');
-  if(!q){ el.innerHTML=''; return; }
-  const items=Object.values(monthComments).filter(v=>v.text&&v.text.includes(q)).sort((a,b)=>b.ts-a.ts);
-  if(!items.length){ el.innerHTML='<div class="search-empty">이번 달 기록에서 찾을 수 없어요</div>'; return; }
-  const highlight=t=>esc(t).replace(new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),`<span class="search-hit">${esc(q)}</span>`);
-  el.innerHTML=`<div class="search-result-label">검색 결과 ${items.length}건</div>`+
-    items.map(item=>{
-      const d=item.date?item.date.slice(5).replace('-','/'):'';
-      const time=new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
-      return `<div class="search-item"><div class="s-date">${d} ${time} · ${esc(item.cats||'')}</div>${highlight(item.text)}</div>`;
+// ── 검색
+window.searchHistory = function() {
+  const q  = document.getElementById('search-input').value.trim();
+  const el = document.getElementById('search-result');
+  if (!q) { el.innerHTML = ''; return; }
+  const items = Object.values(monthComments).filter(v => v.text && v.text.includes(q)).sort((a, b) => b.ts - a.ts);
+  if (!items.length) { el.innerHTML = '<div class="search-empty">이번 달 기록에서 찾을 수 없어요</div>'; return; }
+  const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+  const highlight = t => esc(t).replace(re, m => `<span class="search-hit">${esc(m)}</span>`);
+  el.innerHTML = `<div class="search-result-label">검색 결과 ${items.length}건</div>` +
+    items.map(item => {
+      const d    = item.date ? item.date.slice(5).replace('-', '/') : '';
+      const time = new Date(item.ts).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+      return `<div class="search-item">
+        <div class="s-date">${d} ${time} · ${esc(item.cats || '')}</div>
+        ${highlight(item.text)}
+      </div>`;
     }).join('');
 };
 
-function renderCats(){
-  document.getElementById('cat-grid').innerHTML=allCats().map(c=>`
-    <button class="cat-btn${sel.includes(c.key)?' on':''}" onclick="toggleCat('${c.key}')">
+// ── 카테고리 렌더
+function renderCats() {
+  document.getElementById('cat-grid').innerHTML = allCats().map(c => `
+    <button class="cat-btn${sel.includes(c.key) ? ' on' : ''}" onclick="toggleCat('${c.key}')">
       ${esc(c.label)}<span class="cat-sub">${esc(c.sub)}</span>
     </button>`).join('');
 }
-window.toggleCat=function(k){ sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k]; renderCats(); };
+window.toggleCat = function(k) { sel = sel.includes(k) ? sel.filter(x => x !== k) : [...sel, k]; renderCats(); };
 
-// ── 편집 패널
-window.openEditPanel=function(){ switchMainTab('edit'); };
-window.closeEditPanel=function(e){};
-window.setEditTab=function(tab){
-  const tabs=['phrase','category','list'];
-  document.querySelectorAll('.edit-tab').forEach((b,i)=>b.classList.toggle('on',tabs[i]===tab));
-  document.getElementById('etab-phrase').style.display=tab==='phrase'?'':'none';
-  document.getElementById('etab-category').style.display=tab==='category'?'':'none';
-  document.getElementById('etab-list').style.display=tab==='list'?'':'none';
-  selEditTab=tab;
-  if(tab==='list') renderCustomPhraseList();
-  if(tab==='category'){ renderCustomCatList(); renderDefaultCatList(); }
-};
-
-function renderEditCatGrid(){
-  document.getElementById('edit-cat-grid').innerHTML=allCats().map(c=>`
-    <button class="edit-cat-btn${selEditCat===c.key?' on':''}" onclick="setEditCat('${c.key}')">
+// ── 편집: 카테고리 그리드
+function renderEditCatGrid() {
+  document.getElementById('edit-cat-grid').innerHTML = allCats().map(c => `
+    <button class="edit-cat-btn${selEditCat === c.key ? ' on' : ''}" onclick="setEditCat('${c.key}')">
       ${esc(c.label)}<span style="font-size:10px;opacity:0.65;display:block;margin-top:2px;">${esc(c.sub)}</span>
     </button>`).join('');
 }
-window.setEditCat=function(k){ selEditCat=k; renderEditCatGrid(); };
+window.setEditCat = function(k) { selEditCat = k; renderEditCatGrid(); };
 
-window.savePhrase=async function(){
-  if(!selEditCat){ alert('카테고리를 선택해주세요.'); return; }
-  const raw=document.getElementById('phrase-input').value.trim();
-  if(!raw){ alert('문구를 입력해주세요.'); return; }
-  const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>l.startsWith('*') ? l.slice(1).trim() : l);
-  for(const text of lines){
-    await push(ref(db,'hospitals/'+currentHospital.id+'/custom_phrases'),{cat:selEditCat,text,ts:Date.now()});
+// ── 편집: 문구 추가
+window.savePhrase = async function() {
+  if (!selEditCat) { alert('카테고리를 선택해주세요.'); return; }
+  const raw = document.getElementById('phrase-input').value.trim();
+  if (!raw) { alert('문구를 입력해주세요.'); return; }
+  const lines = raw.split('\n').map(l => l.trim()).filter(Boolean)
+    .map(l => l.startsWith('*') ? l.slice(1).trim() : l);
+  for (const text of lines) {
+    await push(ref(db, 'hospitals/' + currentHospital.id + '/custom_phrases'), { cat: selEditCat, text, ts: Date.now() });
   }
-  document.getElementById('phrase-input').value='';
+  document.getElementById('phrase-input').value = '';
   alert(`${lines.length}개 문구가 추가됐어요!`);
 };
 
-function renderCustomPhraseList(){
-  const items=Object.entries(customPhrases).sort((a,b)=>b[1].ts-a[1].ts);
-  const el=document.getElementById('custom-phrase-list');
-  if(!items.length){ el.innerHTML='<div style="font-size:13px;color:var(--text-muted);text-align:center;padding:1.5rem 0;">추가된 문구가 없어요</div>'; return; }
-  // 카테고리별 그룹
-  const bycat={};
-  items.forEach(([k,v])=>{ if(!bycat[v.cat])bycat[v.cat]=[]; bycat[v.cat].push({k,v}); });
-  el.innerHTML=Object.entries(bycat).map(([cat,list])=>{
-    const catLabel=allCats().find(c=>c.key===cat)?.label||cat;
+// ── 편집: 추가된 문구 목록
+function renderCustomPhraseList() {
+  const items = Object.entries(customPhrases).sort((a, b) => b[1].ts - a[1].ts);
+  const el = document.getElementById('custom-phrase-list');
+  if (!items.length) { el.innerHTML = '<div style="font-size:13px;color:var(--text-muted);text-align:center;padding:1.5rem 0;">추가된 문구가 없어요</div>'; return; }
+  const bycat = {};
+  items.forEach(([k, v]) => { if (!bycat[v.cat]) bycat[v.cat] = []; bycat[v.cat].push({ k, v }); });
+  el.innerHTML = Object.entries(bycat).map(([cat, list]) => {
+    const catLabel = allCats().find(c => c.key === cat)?.label || cat;
     return `<div class="edit-section">
       <div class="edit-section-title">${esc(catLabel)} <span style="font-size:11px;color:var(--text-muted);font-weight:400;">${list.length}개</span></div>
-      ${list.map(({k,v})=>`<div class="phrase-item">
+      ${list.map(({ k, v }) => `<div class="phrase-item">
         <span class="phrase-item-text">${esc(v.text)}</span>
         <button class="btn-del-sm" onclick="deleteCustomPhrase('${k}')">✕</button>
       </div>`).join('')}
     </div>`;
   }).join('');
 }
-
-window.deleteCustomPhrase=async function(k){
-  if(!confirm('이 문구를 삭제할까요?')) return;
-  await remove(ref(db,'hospitals/'+currentHospital.id+'/custom_phrases/'+k));
+window.deleteCustomPhrase = async function(k) {
+  if (!confirm('이 문구를 삭제할까요?')) return;
+  await remove(ref(db, 'hospitals/' + currentHospital.id + '/custom_phrases/' + k));
 };
 
-// 카테고리 추가/삭제
-window.addCategory=async function(){
-  const label=document.getElementById('new-cat-label').value.trim();
-  const sub=document.getElementById('new-cat-sub').value.trim();
-  if(!label){ alert('카테고리명을 입력해주세요.'); return; }
-  const key='custom_'+hashCode(currentHospital.id+label+Date.now());
-  await push(ref(db,'hospitals/'+currentHospital.id+'/custom_cats'),{key,label,sub:sub||'커스텀',createdAt:Date.now()});
-  document.getElementById('new-cat-label').value='';
-  document.getElementById('new-cat-sub').value='';
+// ── 편집: 카테고리 추가/삭제
+window.addCategory = async function() {
+  const label = document.getElementById('new-cat-label').value.trim();
+  const sub   = document.getElementById('new-cat-sub').value.trim();
+  if (!label) { alert('카테고리명을 입력해주세요.'); return; }
+  const key = 'custom_' + hashCode(currentHospital.id + label + Date.now());
+  await push(ref(db, 'hospitals/' + currentHospital.id + '/custom_cats'), { key, label, sub: sub || '커스텀', createdAt: Date.now() });
+  document.getElementById('new-cat-label').value = '';
+  document.getElementById('new-cat-sub').value = '';
   alert(`"${label}" 카테고리가 추가됐어요!`);
 };
 
-window.deleteCustomCat=async function(fbKey,label){
-  if(!confirm(`"${label}" 카테고리를 삭제할까요?\n이 카테고리의 커스텀 문구도 함께 삭제됩니다.`)) return;
-  await remove(ref(db,'hospitals/'+currentHospital.id+'/custom_cats/'+fbKey));
-  // 해당 카테고리 문구도 삭제
-  const phrases=Object.entries(customPhrases).filter(([,v])=>v.cat===fbKey);
-  for(const [k] of phrases) await remove(ref(db,'hospitals/'+currentHospital.id+'/custom_phrases/'+k));
-};
-
-function renderCustomCatList(){
-  const el=document.getElementById('custom-cat-list');
-  if(!customCats.length){ el.innerHTML='<div style="font-size:13px;color:var(--text-muted);">추가된 카테고리가 없어요</div>'; return; }
-  el.innerHTML=customCats.map(c=>`
+function renderCustomCatList() {
+  const el = document.getElementById('custom-cat-list');
+  if (!customCats.length) { el.innerHTML = '<div style="font-size:13px;color:var(--text-muted);">추가된 카테고리가 없어요</div>'; return; }
+  el.innerHTML = customCats.map(c => `
     <div class="cat-manage-item">
-      <div style="flex:1;">
-        <div class="cat-manage-label">${esc(c.label)}</div>
-        <div class="cat-manage-sub">${esc(c.sub)}</div>
-      </div>
+      <div style="flex:1;"><div class="cat-manage-label">${esc(c.label)}</div><div class="cat-manage-sub">${esc(c.sub)}</div></div>
       <button class="btn-del-sm" onclick="deleteCustomCat('${c.fbKey}','${esc(c.label)}')">✕ 삭제</button>
     </div>`).join('');
 }
+window.deleteCustomCat = async function(fbKey, label) {
+  if (!confirm(`"${label}" 카테고리를 삭제할까요?`)) return;
+  await remove(ref(db, 'hospitals/' + currentHospital.id + '/custom_cats/' + fbKey));
+};
 
-// 병원별 오버라이드: 카테고리명 수정, 비활성화, 문구 제외
-let catOverrides = {};
-let excludedPhrases = {};
-let expandedCat = null;
-let catOverrideUnsub = null, excludeUnsub = null;
-
-function enterAppExtras(hospId){
-  if(catOverrideUnsub) catOverrideUnsub();
-  catOverrideUnsub = onValue(ref(db,'hospitals/'+hospId+'/cat_overrides'), snap=>{
-    catOverrides = snap.val()||{};
-    renderCats(); renderDefaultCatList();
-  });
-  if(excludeUnsub) excludeUnsub();
-  excludeUnsub = onValue(ref(db,'hospitals/'+hospId+'/excluded_phrases'), snap=>{
-    excludedPhrases = snap.val()||{};
-    renderDefaultCatList();
-  });
-}
-
-// allCats: 비활성화 및 이름 오버라이드 반영
-function allCats(){
-  return [...DEFAULT_CATS, ...customCats]
-    .filter(c => !(catOverrides[c.key] && catOverrides[c.key].disabled))
-    .map(c => catOverrides[c.key]
-      ? {...c, label: catOverrides[c.key].label||c.label, sub: catOverrides[c.key].sub||c.sub}
-      : c);
-}
-
-// pool: 제외된 문구 필터링
-function pool(key){
-  const base = T[key]||{};
-  const excl = Object.values(excludedPhrases[key]||{});
-  const custom = Object.values(customPhrases).filter(v=>v.cat===key).map(v=>v.text);
-  return {
-    p: base.p||[],
-    a: [...(base.a||[]), ...custom].filter(t=>!excl.includes(t)),
-    t: base.t||[]
-  };
-}
-
-function renderDefaultCatList(){
+// ── 편집: 기본 카테고리 관리 (이름수정/비활성화/문구제외)
+function renderDefaultCatList() {
   const el = document.getElementById('default-cat-list');
-  if(!el) return;
-  el.innerHTML = DEFAULT_CATS.map(c=>{
-    const ov = catOverrides[c.key]||{};
+  if (!el) return;
+  el.innerHTML = DEFAULT_CATS.map(c => {
+    const ov       = catOverrides[c.key] || {};
     const disabled = !!ov.disabled;
-    const label = ov.label||c.label;
-    const sub   = ov.sub||c.sub;
-    const isExp = expandedCat === c.key;
-    const excl  = Object.values(excludedPhrases[c.key]||{});
-    const phrases = (T[c.key]||{}).a||[];
-    const wrapStyle = disabled ? 'opacity:0.5;' : '';
-    return `<div class="cat-edit-wrap" style="${wrapStyle}">
+    const label    = ov.label || c.label;
+    const sub      = ov.sub   || c.sub;
+    const isExp    = expandedCat === c.key;
+    const excl     = Object.values(excludedPhrases[c.key] || {});
+    const phrases  = (T[c.key] || {}).a || [];
+    return `<div class="cat-edit-wrap" style="${disabled ? 'opacity:0.5;' : ''}">
       <div class="cat-edit-row">
         <div style="flex:1;">
           <div style="font-size:13px;font-weight:500;color:var(--text);">${esc(label)}</div>
           <div style="font-size:11px;color:var(--text-muted);">${esc(sub)}</div>
         </div>
-        <button class="btn-xs ${disabled?'save':'danger'}" onclick="toggleDisableCat('${c.key}',${disabled})">${disabled?'활성화':'비활성화'}</button>
+        <button class="btn-xs ${disabled ? 'save' : 'danger'}" onclick="toggleDisableCat('${c.key}',${disabled})">${disabled ? '활성화' : '비활성화'}</button>
         <button class="btn-xs cancel" onclick="openCatEditForm('${c.key}')">이름 수정</button>
       </div>
-      <div id="cat-edit-form-${c.key}" style="display:none;flex-direction:column;gap:6px;margin-top:6px;" onclick="event.stopPropagation()">
-        <input class="cat-edit-input" style="width:100%;" id="cei-label-${c.key}" value="${esc(label)}" placeholder="카테고리명"/>
-        <input class="cat-edit-input" style="width:100%;" id="cei-sub-${c.key}" value="${esc(sub)}" placeholder="설명"/>
+      <div id="cat-edit-form-${c.key}" style="display:none;flex-direction:column;gap:6px;margin-top:6px;">
+        <input class="cat-edit-input" id="cei-label-${c.key}" value="${esc(label)}" placeholder="카테고리명"/>
+        <input class="cat-edit-input" id="cei-sub-${c.key}" value="${esc(sub)}" placeholder="설명"/>
         <div style="display:flex;gap:6px;">
           <button class="btn-xs save" onclick="saveCatOverride('${c.key}')">저장</button>
           <button class="btn-xs cancel" onclick="closeCatEditForm('${c.key}')">취소</button>
         </div>
       </div>
-      ${phrases.length>0?`<button class="cat-expand-btn" onclick="toggleExpandCat('${c.key}')">${isExp?'▲ 문구 닫기':'▼ 문구 관리 ('+phrases.length+'개, 제외 '+excl.length+'개)'}</button>`:''}
-      ${isExp?`<div style="margin-top:8px;">${phrases.map(ph=>{
+      ${phrases.length > 0 ? `<button class="cat-expand-btn" onclick="toggleExpandCat('${c.key}')">${isExp ? '▲ 문구 닫기' : '▼ 문구 관리 (' + phrases.length + '개, 제외 ' + excl.length + '개)'}</button>` : ''}
+      ${isExp ? `<div style="margin-top:8px;">${phrases.map(ph => {
         const isExcl = excl.includes(ph);
-        return '<div class="phrase-pool-item">'
-          + '<span class="phrase-pool-text" style="'+(isExcl?'text-decoration:line-through;color:var(--text-muted);':'')+'">'
-          + esc(ph) + '</span>'
-          + '<button class="phrase-pool-del" data-cat="'+esc(c.key)+'" data-ph="'+esc(ph)+'" onclick="handleToggleExclude(this)">'
-          + (isExcl?'복원':'제외') + '</button>'
-          + '</div>';
-      }).join('')}</div>`:''}
+        return `<div class="phrase-pool-item">
+          <span class="phrase-pool-text" style="${isExcl ? 'text-decoration:line-through;color:var(--text-muted);' : ''}">${esc(ph)}</span>
+          <button class="phrase-pool-del" data-cat="${esc(c.key)}" data-ph="${esc(ph)}" onclick="handleToggleExclude(this)">${isExcl ? '복원' : '제외'}</button>
+        </div>`;
+      }).join('')}</div>` : ''}
     </div>`;
   }).join('');
 }
 
-window.openCatEditForm = function(key){
-  document.getElementById('cat-edit-form-'+key).style.display='flex';
+window.openCatEditForm = function(key) {
+  const el = document.getElementById('cat-edit-form-' + key);
+  if (el) el.style.display = 'flex';
 };
-window.closeCatEditForm = function(key){
-  document.getElementById('cat-edit-form-'+key).style.display='none';
+window.closeCatEditForm = function(key) {
+  const el = document.getElementById('cat-edit-form-' + key);
+  if (el) el.style.display = 'none';
 };
-window.saveCatOverride = async function(key){
-  const label = document.getElementById('cei-label-'+key).value.trim();
-  const sub   = document.getElementById('cei-sub-'+key).value.trim();
-  if(!label){ alert('카테고리명을 입력해주세요.'); return; }
-  const existing = catOverrides[key]||{};
-  await set(ref(db,'hospitals/'+currentHospital.id+'/cat_overrides/'+key), {...existing, label, sub});
+window.saveCatOverride = async function(key) {
+  const label = document.getElementById('cei-label-' + key).value.trim();
+  const sub   = document.getElementById('cei-sub-' + key).value.trim();
+  if (!label) { alert('카테고리명을 입력해주세요.'); return; }
+  const existing = catOverrides[key] || {};
+  await set(ref(db, 'hospitals/' + currentHospital.id + '/cat_overrides/' + key), { ...existing, label, sub });
   closeCatEditForm(key);
 };
-window.toggleDisableCat = async function(key, currentlyDisabled){
-  const existing = catOverrides[key]||{};
-  await set(ref(db,'hospitals/'+currentHospital.id+'/cat_overrides/'+key), {...existing, disabled:!currentlyDisabled});
+window.toggleDisableCat = async function(key, currentlyDisabled) {
+  const existing = catOverrides[key] || {};
+  await set(ref(db, 'hospitals/' + currentHospital.id + '/cat_overrides/' + key), { ...existing, disabled: !currentlyDisabled });
 };
-window.toggleExpandCat = function(key){
-  expandedCat = expandedCat===key?null:key;
+window.toggleExpandCat = function(key) {
+  expandedCat = expandedCat === key ? null : key;
   renderDefaultCatList();
 };
-window.handleToggleExclude = async function(btn){
+window.handleToggleExclude = async function(btn) {
   const catKey = btn.dataset.cat;
   const phrase = btn.dataset.ph;
-  const excl = Object.entries(excludedPhrases[catKey]||{});
-  const existing = excl.find(([,v])=>v===phrase);
-  if(existing){
-    await remove(ref(db,'hospitals/'+currentHospital.id+'/excluded_phrases/'+catKey+'/'+existing[0]));
+  const excl   = Object.entries(excludedPhrases[catKey] || {});
+  const existing = excl.find(([, v]) => v === phrase);
+  if (existing) {
+    await remove(ref(db, 'hospitals/' + currentHospital.id + '/excluded_phrases/' + catKey + '/' + existing[0]));
   } else {
-    await push(ref(db,'hospitals/'+currentHospital.id+'/excluded_phrases/'+catKey), phrase);
+    await push(ref(db, 'hospitals/' + currentHospital.id + '/excluded_phrases/' + catKey), phrase);
   }
 };
 
-
+renderCats();
 </script>
 </body>
 </html>
