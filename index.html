@@ -255,9 +255,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 <!-- 편집 패널 -->
 <div class="overlay" id="edit-overlay" onclick="closeEditPanel(event)">
   <div class="edit-panel">
-    <div class="edit-header">
-      <h2>문구 편집</h2>
-      <p id="edit-hospital-label"></p>
+    <div class="edit-header" style="display:flex;align-items:flex-start;justify-content:space-between;">
+      <div>
+        <h2>문구 편집</h2>
+        <p id="edit-hospital-label"></p>
+      </div>
+      <button onclick="closeEditPanel(null)" style="background:transparent;border:none;font-size:20px;color:var(--text-muted);cursor:pointer;padding:0 0 0 12px;line-height:1;flex-shrink:0;" title="닫기">✕</button>
     </div>
     <div class="edit-tabs">
       <button class="edit-tab on" onclick="setEditTab('phrase')">문구 추가</button>
@@ -329,7 +332,6 @@ const firebaseConfig = {
   appId: "1:306455802486:web:6eec4081c53aa877d26557",
   measurementId: "G-VND6PQS1GT"
 };
-
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
