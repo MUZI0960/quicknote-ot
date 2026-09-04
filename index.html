@@ -920,6 +920,7 @@ window.addMemo = async function() {
   if (!currentHospital) return;
   const text = document.getElementById('memo-input').value.trim();
   if (!text) return;
+  if (!memoRef) memoRef = ref(db, 'hospitals/' + currentHospital.id + '/memos');
   await push(memoRef, { text, ts: Date.now() });
   document.getElementById('memo-input').value = '';
 };
