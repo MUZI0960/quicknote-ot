@@ -393,7 +393,7 @@ window.generate=async function(){
   }
   const btn=document.getElementById('btn-gen');
   btn.disabled=true;btn.textContent='생성 중...';
-  const existing=lastResults.filter(Boolean);
+  lastResults=[];lastFbKeys=[];const existing=[];
   const needed=3-existing.length;
   const cats=sel.map(k=>CATS.find(c=>c.key===k)?.label).join('·');
   const today=getTodayStr();
@@ -509,7 +509,7 @@ function renderCats(){
       ${esc(c.label)}<span class="cat-sub">${esc(c.sub)}</span>
     </button>`).join('');
 }
-window.toggleCat=function(k){sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k];lastResults=[];lastFbKeys=[];document.getElementById('result-wrap').style.display='none';document.getElementById('btn-gen').textContent='✦ 코멘트 3개 생성';renderCats();};
+window.toggleCat=function(k){sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k];renderCats();};
 renderCats();
 </script>
 </body>
