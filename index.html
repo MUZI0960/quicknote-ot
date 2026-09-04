@@ -969,7 +969,6 @@ window.addMemo = async function() {
 };
 
 window.deleteMemo = async function(k) {
-  if (!confirm('이 메모를 삭제할까요?')) return;
   await remove(ref(db, 'hospitals/' + currentHospital.id + '/memos/' + k));
 };
 
