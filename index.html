@@ -8,226 +8,95 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --mint:#7C52C8;
-  --mint-light:#F2EEFF;
-  --mint-mid:#C4AEED;
-  --lavender:#EDE8FC;
-  --lavender-mid:#C4AEED;
-  --lavender-dark:#7C52C8;
-  --card:#FFFFFF;
-  --bg:#F6F3FD;
-  --text:#1A1530;
-  --text-sub:#5A4F7A;
-  --text-muted:#A898CC;
-  --border:#E4D9F7;
-  --shadow:0 2px 14px rgba(124,82,200,0.09);
+  --mint:#7C52C8;--mint-light:#F2EEFF;--mint-mid:#C4AEED;
+  --lavender:#EDE8FC;--lavender-mid:#C4AEED;--lavender-dark:#7C52C8;
+  --card:#FFFFFF;--bg:#F6F3FD;--text:#1A1530;--text-sub:#5A4F7A;
+  --text-muted:#A898CC;--border:#E4D9F7;--shadow:0 2px 14px rgba(124,82,200,0.09);
 }
 body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);}
-
-/* TOP BAR */
-.top-bar{
-  background:linear-gradient(135deg,#6B3FA8 0%,#8B5FC8 60%,#A97EE0 100%);
-  padding:20px 2rem 18px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.top-bar-left h1{
-  font-family:'Noto Serif KR',serif;
-  font-size:24px;font-weight:600;color:#fff;letter-spacing:-0.3px;
-}
+.top-bar{background:linear-gradient(135deg,#6B3FA8 0%,#8B5FC8 60%,#A97EE0 100%);padding:20px 2rem 18px;display:flex;align-items:center;justify-content:space-between;}
+.top-bar-left h1{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:600;color:#fff;letter-spacing:-0.3px;}
 .top-bar-left p{font-size:13px;color:rgba(255,255,255,0.75);margin-top:3px;font-weight:300;}
 .status{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.8);}
 .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);flex-shrink:0;}
 .dot.online{background:#7EFFD4;}
-
-/* LAYOUT */
 .layout{display:grid;grid-template-columns:1fr 380px;gap:1.5rem;padding:1.5rem 2rem;max-width:1200px;margin:0 auto;}
-
-/* CARD */
 .card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:1.25rem;margin-bottom:1rem;box-shadow:var(--shadow);}
 .card:last-child{margin-bottom:0;}
-.card-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:14px;letter-spacing:0;}
-
-/* CAT GRID */
+.card-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:14px;}
 .cat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
-.cat-btn{
-  padding:9px 10px;border-radius:10px;
-  border:1.5px solid var(--border);
-  background:#fff;color:var(--text-sub);
-  font-size:12px;font-family:'Noto Sans KR',sans-serif;
-  cursor:pointer;text-align:left;line-height:1.4;
-  transition:all 0.15s;
-}
+.cat-btn{padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.15s;}
 .cat-btn:hover{border-color:var(--mint-mid);background:var(--mint-light);color:var(--mint);}
 .cat-btn.on{background:var(--lavender);border-color:var(--lavender-mid);color:var(--lavender-dark);font-weight:500;}
 .cat-btn .cat-sub{font-size:10px;opacity:0.7;display:block;margin-top:2px;font-weight:300;}
-
-/* GENERATE BTN */
-.btn-generate{
-  width:100%;height:46px;border-radius:12px;border:none;
-  background:linear-gradient(135deg,#7C52C8 0%,#9B72E0 100%);
-  color:#fff;font-size:15px;font-weight:500;
-  font-family:'Noto Sans KR',sans-serif;
-  cursor:pointer;margin-top:4px;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  box-shadow:0 4px 14px rgba(124,82,200,0.28);
-  transition:opacity 0.15s,transform 0.1s;
-}
+.btn-generate{width:100%;height:46px;border-radius:12px;border:none;background:linear-gradient(135deg,#7C52C8 0%,#9B72E0 100%);color:#fff;font-size:15px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(124,82,200,0.28);transition:opacity 0.15s,transform 0.1s;}
 .btn-generate:hover{opacity:0.92;transform:translateY(-1px);}
 .btn-generate:active{transform:translateY(0);}
 .btn-generate:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
-
-/* RESULT */
-.result-item{
-  padding:14px 16px;
-  background:var(--mint-light);
-  border-radius:10px;margin-bottom:8px;
-  display:flex;align-items:flex-start;gap:10px;
-  border-left:3px solid var(--mint);
-}
+.result-item{padding:14px 16px;background:var(--mint-light);border-radius:10px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;border-left:3px solid var(--mint);}
 .result-item:last-child{margin-bottom:0;}
-.result-num{
-  width:22px;height:22px;border-radius:50%;
-  background:#7C52C8;color:#fff;
-  font-size:11px;font-weight:600;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;margin-top:1px;
-}
+.result-num{width:22px;height:22px;border-radius:50%;background:#7C52C8;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
 .result-text{font-size:14px;color:var(--text);line-height:1.7;flex:1;}
 .result-actions{display:flex;gap:5px;flex-shrink:0;}
-.btn-sm{
-  background:#fff;border:1.5px solid var(--border);
-  border-radius:7px;padding:4px 10px;
-  font-size:11px;color:var(--text-sub);
-  font-family:'Noto Sans KR',sans-serif;
-  cursor:pointer;white-space:nowrap;
-  transition:all 0.12s;
-}
+.btn-sm{background:#fff;border:1.5px solid var(--border);border-radius:7px;padding:4px 10px;font-size:11px;color:var(--text-sub);font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;transition:all 0.12s;}
 .btn-sm:hover{border-color:var(--mint-mid);color:var(--mint);}
 .btn-sm.copied{border-color:var(--mint);color:var(--mint);background:var(--mint-light);}
 .btn-sm.del{border-color:#FADADD;color:#C0607A;}
 .btn-sm.del:hover{background:#FFF0F3;border-color:#C0607A;}
-
-.btn-copy-all{
-  width:100%;height:36px;border-radius:9px;
-  border:1.5px solid var(--mint-mid);
-  background:transparent;color:var(--mint);
-  font-size:13px;font-family:'Noto Sans KR',sans-serif;
-  cursor:pointer;margin-top:10px;
-  transition:background 0.12s;
-}
+.btn-copy-all{width:100%;height:36px;border-radius:9px;border:1.5px solid var(--mint-mid);background:transparent;color:var(--mint);font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;margin-top:10px;transition:background 0.12s;}
 .btn-copy-all:hover{background:var(--mint-light);}
-
-/* HISTORY TABS */
-.day-tabs{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:12px;}
-.day-tab{
-  flex:1;padding:8px 4px;font-size:12px;
-  color:var(--text-muted);background:transparent;
-  border:none;border-bottom:2px solid transparent;
-  margin-bottom:-1.5px;cursor:pointer;text-align:center;
-  font-family:'Noto Sans KR',sans-serif;
-  transition:color 0.12s;
-}
+.day-tabs{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:12px;overflow-x:auto;}
+.day-tab{flex-shrink:0;padding:8px 10px;font-size:12px;color:var(--text-muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1.5px;cursor:pointer;text-align:center;font-family:'Noto Sans KR',sans-serif;transition:color 0.12s;}
 .day-tab:hover{color:var(--mint);}
 .day-tab.on{color:var(--mint);border-bottom-color:var(--mint);font-weight:500;}
-.day-tab .cnt{
-  display:block;font-size:10px;
-  background:var(--border);color:var(--text-muted);
-  border-radius:10px;padding:1px 5px;
-  margin:2px auto 0;width:fit-content;
-}
+.day-tab .cnt{display:block;font-size:10px;background:var(--border);color:var(--text-muted);border-radius:10px;padding:1px 5px;margin:2px auto 0;width:fit-content;}
 .day-tab.on .cnt{background:#7C52C8;color:#fff;}
-
-/* HISTORY ITEMS */
-.history-item{
-  display:flex;align-items:flex-start;gap:8px;
-  padding:9px 0;border-bottom:1px solid var(--mint-light);
-}
+.history-item{display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--mint-light);}
 .history-item:last-child{border-bottom:none;}
 .history-text{font-size:12px;color:var(--text-sub);line-height:1.55;flex:1;}
-.history-cat{
-  font-size:10px;font-weight:500;
-  padding:2px 7px;border-radius:5px;
-  background:var(--lavender);color:var(--lavender-dark);
-  flex-shrink:0;margin-top:1px;white-space:nowrap;
-}
+.history-cat{font-size:10px;font-weight:500;padding:2px 7px;border-radius:5px;background:var(--lavender);color:var(--lavender-dark);flex-shrink:0;margin-top:1px;white-space:nowrap;}
 .history-time{font-size:11px;color:var(--text-muted);flex-shrink:0;margin-top:2px;}
-.btn-hist-del{
-  background:transparent;border:none;
-  color:var(--border);cursor:pointer;
-  font-size:13px;flex-shrink:0;padding:0 2px;line-height:1;
-  transition:color 0.12s;
-}
+.btn-hist-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:13px;flex-shrink:0;padding:0 2px;line-height:1;transition:color 0.12s;}
 .btn-hist-del:hover{color:#C0607A;}
-
 .empty-tab{text-align:center;color:var(--text-muted);font-size:13px;padding:2rem 0;}
-.hist-scroll{max-height:calc(100vh - 280px);overflow-y:auto;}
-
-/* MISC */
-.btn-reset{
-  font-size:12px;color:var(--text-muted);
-  background:transparent;border:1.5px solid var(--border);
-  border-radius:8px;padding:4px 10px;cursor:pointer;
-  font-family:'Noto Sans KR',sans-serif;
-  transition:all 0.12s;
-}
+.hist-scroll{max-height:calc(100vh - 320px);overflow-y:auto;}
+.btn-reset{font-size:12px;color:var(--text-muted);background:transparent;border:1.5px solid var(--border);border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.12s;}
 .btn-reset:hover{color:#C0607A;border-color:#FADADD;}
-.config-notice{
-  background:#FFF8E8;border:1px solid #F5D98B;
-  border-radius:12px;padding:1rem;margin-bottom:1rem;
-  font-size:13px;color:#7A5C00;line-height:1.6;
-}
+.config-notice{background:#FFF8E8;border:1px solid #F5D98B;border-radius:12px;padding:1rem;margin-bottom:1rem;font-size:13px;color:#7A5C00;line-height:1.6;}
 .config-notice strong{display:block;margin-bottom:4px;}
 .config-notice code{background:#fff;border-radius:4px;padding:1px 6px;font-family:monospace;font-size:12px;}
 .empty-result{text-align:center;color:var(--text-muted);font-size:13px;padding:1.5rem 0;}
-
-/* SEARCH */
+.loading-pool{text-align:center;color:var(--text-muted);font-size:13px;padding:1rem;background:var(--mint-light);border-radius:10px;margin-bottom:1rem;}
 .search-box{margin-top:1rem;padding-top:1rem;border-top:1.5px solid var(--border);}
 .search-input-wrap{display:flex;gap:6px;}
-.search-input{
-  flex:1;height:36px;padding:0 12px;
-  border-radius:9px;border:1.5px solid var(--border);
-  background:#fff;color:var(--text);
-  font-size:13px;font-family:'Noto Sans KR',sans-serif;
-  transition:border-color 0.12s;
-}
+.search-input{flex:1;height:36px;padding:0 12px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif;transition:border-color 0.12s;}
 .search-input:focus{outline:none;border-color:var(--mint-mid);}
-.btn-search{
-  height:36px;padding:0 14px;border-radius:9px;
-  border:none;background:#7C52C8;color:#fff;
-  font-size:13px;font-family:'Noto Sans KR',sans-serif;
-  cursor:pointer;white-space:nowrap;flex-shrink:0;
-  transition:opacity 0.12s;
-}
+.btn-search{height:36px;padding:0 14px;border-radius:9px;border:none;background:#7C52C8;color:#fff;font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:opacity 0.12s;}
 .btn-search:hover{opacity:0.85;}
 .search-result{margin-top:10px;}
 .search-result-label{font-size:11px;color:var(--text-muted);margin-bottom:6px;}
-.search-item{
-  padding:8px 10px;border-radius:8px;margin-bottom:5px;
-  background:var(--lavender);border:1.5px solid var(--lavender-mid);
-  font-size:12px;color:var(--text-sub);line-height:1.55;
-}
+.search-item{padding:8px 10px;border-radius:8px;margin-bottom:5px;background:var(--lavender);border:1.5px solid var(--lavender-mid);font-size:12px;color:var(--text-sub);line-height:1.55;}
 .search-item .s-date{font-size:10px;color:var(--lavender-dark);font-weight:500;margin-bottom:3px;}
 .search-hit{background:#FFE8A3;border-radius:3px;padding:0 2px;}
 .search-empty{font-size:13px;color:var(--text-muted);text-align:center;padding:1rem 0;}
-/* PHRASE PANEL */
 .fab{position:fixed;bottom:28px;right:28px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 16px rgba(124,82,200,0.35);display:flex;align-items:center;justify-content:center;z-index:100;transition:transform 0.15s;}
 .fab:hover{transform:scale(1.08);}
 .phrase-overlay{display:none;position:fixed;inset:0;background:rgba(30,21,48,0.35);z-index:200;align-items:center;justify-content:center;}
 .phrase-overlay.open{display:flex;}
 .phrase-panel{background:#fff;border-radius:20px;padding:1.5rem;width:min(480px,92vw);max-height:85vh;overflow-y:auto;box-shadow:0 8px 40px rgba(124,82,200,0.18);}
-.phrase-panel h2{font-family:"Noto Serif KR",serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.phrase-panel h2{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;}
 .phrase-panel p{font-size:13px;color:var(--text-muted);margin-bottom:1.25rem;}
 .phrase-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1rem;}
-.phrase-cat-btn{padding:8px 10px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:12px;font-family:"Noto Sans KR",sans-serif;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.12s;}
+.phrase-cat-btn{padding:8px 10px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.12s;}
 .phrase-cat-btn:hover{border-color:var(--mint-mid);background:var(--mint-light);}
 .phrase-cat-btn.on{background:var(--lavender);border-color:var(--lavender-mid);color:var(--lavender-dark);font-weight:500;}
-.phrase-input{width:100%;min-height:80px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);font-size:13px;font-family:"Noto Sans KR",sans-serif;color:var(--text);resize:vertical;margin-bottom:10px;}
+.phrase-input{width:100%;min-height:80px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);resize:vertical;margin-bottom:10px;}
 .phrase-input:focus{outline:none;border-color:var(--mint-mid);}
 .phrase-hint{font-size:12px;color:var(--text-muted);margin-bottom:14px;line-height:1.5;}
 .phrase-btns{display:flex;gap:8px;}
-.btn-phrase-save{flex:1;height:40px;border-radius:10px;border:none;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;font-size:14px;font-weight:500;font-family:"Noto Sans KR",sans-serif;cursor:pointer;}
+.btn-phrase-save{flex:1;height:40px;border-radius:10px;border:none;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;font-size:14px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
 .btn-phrase-save:hover{opacity:0.88;}
-.btn-phrase-cancel{height:40px;padding:0 18px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:14px;font-family:"Noto Sans KR",sans-serif;cursor:pointer;}
+.btn-phrase-cancel{height:40px;padding:0 18px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
 .custom-list{margin-top:1.25rem;border-top:1.5px solid var(--border);padding-top:1rem;}
 .custom-list-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;}
 .custom-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--mint-light);}
@@ -257,14 +126,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
       <strong>⚙️ Firebase 설정 필요</strong>
       index.html의 <code>firebaseConfig</code> 값을 Firebase 콘솔에서 복사한 값으로 교체해주세요.
     </div>
-
+    <div class="loading-pool" id="loading-pool">문구 데이터 불러오는 중...</div>
     <div class="card">
       <div class="card-title">환자 상태 선택</div>
       <div class="cat-grid" id="cat-grid"></div>
     </div>
-
     <button class="btn-generate" id="btn-gen" onclick="generate()">✦ 코멘트 3개 생성</button>
-
     <div id="result-wrap" style="margin-top:1rem;display:none;">
       <div class="card">
         <div class="card-title">생성된 코멘트</div>
@@ -278,7 +145,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
     <div class="card" id="history-wrap" style="display:none;">
       <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
         <span>이번 달 생성 기록</span>
-        <button class="btn-reset" onclick="resetWeek()">초기화</button>
+        <button class="btn-reset" onclick="resetMonth()">초기화</button>
       </div>
       <div class="day-tabs" id="day-tabs"></div>
       <div class="hist-scroll"><div id="day-content"></div></div>
@@ -291,9 +158,29 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
         <div class="search-result" id="search-result"></div>
       </div>
     </div>
-    <div class="card" id="history-empty" style="display:none;">
+    <div class="card" id="history-empty">
       <div class="card-title">이번 달 생성 기록</div>
       <div class="empty-result">아직 생성된 기록이 없어요</div>
+    </div>
+  </div>
+</div>
+
+<button class="fab" onclick="openPhrasePanel()" title="예시 문구 추가">＋</button>
+
+<div class="phrase-overlay" id="phrase-overlay" onclick="closePhrasePanel(event)">
+  <div class="phrase-panel">
+    <h2>예시 문구 추가</h2>
+    <p>카테고리를 선택하고 문구를 입력하면 생성 풀에 추가돼요.</p>
+    <div class="phrase-cat-grid" id="phrase-cat-grid"></div>
+    <textarea class="phrase-input" id="phrase-input" placeholder="예: stacking cone — 치료사가 scapular handling 하여 ROM 증진&#10;여러 줄 입력 시 줄마다 각각 추가됩니다"></textarea>
+    <div class="phrase-hint">여러 줄 입력 시 줄마다 각각 추가됩니다.</div>
+    <div class="phrase-btns">
+      <button class="btn-phrase-cancel" onclick="closePhrasePanel(null)">취소</button>
+      <button class="btn-phrase-save" onclick="savePhrase()">추가하기</button>
+    </div>
+    <div class="custom-list" id="custom-list" style="display:none;">
+      <div class="custom-list-title">추가된 문구 목록</div>
+      <div id="custom-items"></div>
     </div>
   </div>
 </div>
@@ -301,7 +188,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-import { getDatabase as gdb, ref as dbRef, onValue as ov } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { ref as dbRef, onValue as ov } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // ★ 아래 설정값을 Firebase 콘솔에서 복사한 값으로 교체하세요 ★
 const firebaseConfig = {
@@ -315,147 +202,161 @@ const firebaseConfig = {
   measurementId: "G-VND6PQS1GT"
 };
 
-
 if(firebaseConfig.apiKey==='YOUR_API_KEY'){
   document.getElementById('config-notice').style.display='block';
   document.getElementById('conn-dot').style.background='#C0607A';
   document.getElementById('conn-label').textContent='설정 필요';
 }
 
-const app=initializeApp(firebaseConfig);
-const db=getDatabase(app);
-const connRef=dbRef(db,'.info/connected');
-ov(connRef,snap=>{
-  const online=snap.val();
-  document.getElementById('conn-dot').className='dot'+(online?' online':'');
-  document.getElementById('conn-label').textContent=online?'실시간 연결됨':'연결 끊김';
+const app = initializeApp(firebaseConfig);
+const db  = getDatabase(app);
+
+// 연결 상태
+ov(dbRef(db,'.info/connected'), snap=>{
+  const on = snap.val();
+  document.getElementById('conn-dot').className = 'dot'+(on?' online':'');
+  document.getElementById('conn-label').textContent = on?'실시간 연결됨':'연결 끊김';
 });
 
+// 날짜 헬퍼
 function getMonthKey(){
   const d=new Date();
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
 }
-function getTodayStr(){return new Date().toISOString().slice(0,10);}
-function getDayStr(dayNum){
-  const monday=new Date(WEEK_KEY);
-  const offset=dayNum===0?6:dayNum-1;
-  const d=new Date(monday); d.setDate(monday.getDate()+offset);
-  return d.toISOString().slice(0,10);
-}
-function getWeekKey(){
-  const d=new Date(),day=d.getDay();
-  const diff=d.getDate()-day+(day===0?-6:1);
-  const monday=new Date(d); monday.setDate(diff);
-  return monday.toISOString().slice(0,10);
-}
+function getTodayStr(){ return new Date().toISOString().slice(0,10); }
 
-const MONTH_KEY=getMonthKey();
-const WEEK_KEY=getWeekKey();
-const weekRef=ref(db,'months/'+MONTH_KEY+'/comments');
-const DAYS=['월','화','수','목','금','토','일'];
-const DAY_NUMS=[1,2,3,4,5,6,0];
+const MONTH_KEY = getMonthKey();
+const monthRef  = ref(db, 'months/'+MONTH_KEY+'/comments');
 
-const CATS=[
-  {key:'hypertonus',label:'Hypertonus',sub:'근긴장도 높음'},
-  {key:'hypotonus',label:'Hypotonus',sub:'근긴장도 낮음'},
-  {key:'balance',label:'Balance / Trunk',sub:'균형·체간'},
-  {key:'grasp',label:'Grasp / Release',sub:'잡기·놓기'},
-  {key:'pinch',label:'Pinch / Manipulation',sub:'집기·조작'},
-  {key:'bilateral',label:'Bilateral / Bimanual',sub:'양손 활동'},
-  {key:'rom',label:'ROM 증진',sub:'관절가동범위'},
-  {key:'coordination',label:'Coordination',sub:'협응·조절'},
-  {key:'strengthening',label:'Strengthening',sub:'근력 강화'},
-  {key:'perception',label:'Perception',sub:'지각'},
-  {key:'cognition',label:'Cognition',sub:'인지'},
-  {key:'adl_total',label:'ADL — Total',sub:'전적 도움'},
-  {key:'adl_max',label:'ADL — Maximal',sub:'최대 도움'},
-  {key:'adl_mod',label:'ADL — Moderate',sub:'중등도 도움'},
-  {key:'adl_min',label:'ADL — Minimal',sub:'최소 도움'},
-  {key:'rdt',label:'RDT',sub:'구강·삼킴'},
+const DAYS = ['월','화','수','목','금','토','일'];
+
+const CATS = [
+  {key:'hypertonus', label:'Hypertonus',       sub:'근긴장도 높음'},
+  {key:'hypotonus',  label:'Hypotonus',        sub:'근긴장도 낮음'},
+  {key:'balance',    label:'Balance / Trunk',  sub:'균형·체간'},
+  {key:'grasp',      label:'Grasp / Release',  sub:'잡기·놓기'},
+  {key:'pinch',      label:'Pinch / Manipulation', sub:'집기·조작'},
+  {key:'bilateral',  label:'Bilateral / Bimanual', sub:'양손 활동'},
+  {key:'rom',        label:'ROM 증진',          sub:'관절가동범위'},
+  {key:'coordination',label:'Coordination',   sub:'협응·조절'},
+  {key:'strengthening',label:'Strengthening', sub:'근력 강화'},
+  {key:'perception', label:'Perception',       sub:'지각'},
+  {key:'cognition',  label:'Cognition',        sub:'인지'},
+  {key:'adl_total',  label:'ADL — Total',      sub:'전적 도움'},
+  {key:'adl_max',    label:'ADL — Maximal',    sub:'최대 도움'},
+  {key:'adl_mod',    label:'ADL — Moderate',   sub:'중등도 도움'},
+  {key:'adl_min',    label:'ADL — Minimal',    sub:'최소 도움'},
+  {key:'rdt',        label:'RDT',              sub:'구강·삼킴'},
 ];
 
-const T={};  // Firebase에서 로드
-  hypertonus:{p:["치료사가 scapular handling 하여","치료사의 manual guidance를 통한","verbal cue를 통한","key point control을 통한","치료사의 facilitation 하에","graded assistance를 통한","proximal support 제공 하에"],a:["muscle tone 조절을 위한 slow passive movement","abnormal muscle tone 억제 위한 manual exercise","shoulder girdle stability를 위한 manual Ex.","scapular realignment를 통한 muscle tone decrease","deep pressure를 통한 muscle tone decrease","spasticity inhibition을 위한 sweep tapping","body alignment를 위한 positioning 교육","affected side weight bearing을 통한 extensor muscle 자극","wrist 및 hand movement 증가를 위한 manual Ex.","self assist arm movement 증가를 위한 bilateral task","수건밀기를 통한 weight shifting 및 spasticity inhibition","hand release 유도를 위한 manual Ex.","protraction 유도를 위한 roll 밀기","passive movement를 통한 normal movement pattern 경험","prevent U/E contracture를 위한 passive normal movement","serratus anterior muscle activation을 위한 protraction·retraction movement","pectoralis m.·latissimus dorsi m. lengthening"],t:["stacking cone","roll","수건","ROM arch","sanding board","therapy putty","exercise skate"]},
-  hypotonus:{p:["치료사의 facilitation 하에","verbal cue를 통한","graded assistance 제공 하에","치료사의 tapping을 통한","weight bearing 유도 하에","manual support 제공 후"],a:["muscle tone increase를 위한 fast movement induction","shoulder subluxation 예방을 위한 자세교육","affected side weight bearing을 통한 muscle tone increase","shoulder girdle alignment를 통한 normal movement feeling","subluxation 조절을 위한 scapular realignment","proprioception 경험을 위한 passive movement","trunk uprighting 유도를 위한 table on elbow position","muscle activation을 위한 sensory stimulation (tapping)","rood approach를 통한 muscle tone increase","biceps·triceps activation을 위한 elbow flx-ext 반복","shoulder girdle stability를 위한 manual Ex.","edema control을 위한 gentle massage","scapular protraction·retraction을 통한 shoulder girdle stability","pain control을 위한 joint mobilization","trunk control을 통한 scapular 자세조절"],t:["ice stick","vibrator","콩주머니","고리","skate board","수건"]},
-  balance:{p:["치료사가 assist 하여","minimal assist 하에","다양한 방향에서","dynamic한 환경에서","postural set 후","graded challenge를 통한"],a:["sitting balance 유지를 위한 pelvic control","trunk uprighting 유지 하에 dynamic balance 훈련","다양한 방향 자극을 통한 sitting balance 증진","automatic reaction 이용한 trunk balance training","togu 위에서의 balance 훈련","GymBall 위에서 다양한 방향으로 균형잡기","standing balance를 위한 ankle strategy training","sanding 밀기를 통한 stability 및 balance 향상","trunk rotation을 통한 balance training","pelvic exercise를 통한 trunk balance 증진","weight shifting을 통한 dynamic balance 향상","rib cage movement 증진을 통한 trunk upright 유도","BOS 조절을 통한 trunk balance 증진","neck control을 위한 manual Ex.","전·후·측방 weight shifting을 통한 balance 훈련"],t:["togu","GymBall","roll","sanding board","stacking cone","풍선","ROM arch","콩주머니"]},
-  grasp:{p:["치료사의 grading 하에","active 참여를 통한","graded resistance를 통한","다양한 크기로","단계적 난이도 조절을 통한"],a:["cylindrical grasp & release 훈련","spherical grip & release 훈련","grasping power 증진 훈련","grip & release 패턴 증진 훈련","lateral grip 훈련","tenodesis를 이용한 grip·release 훈련","active grip & release 유도","grasp 유지 하에 reaching 유도","power grip 훈련","다양한 grip size를 통한 grasp·release 훈련","공 던지기를 통한 grasp & release 증진","long flexor m. strengthening 유도"],t:["stacking cone","오재미","therapy putty","Power web","테니스 공","음료수 캔","고리","콩주머니"]},
-  pinch:{p:["graded task를 통한","치료사의 guide 하에","단계적 난이도 조절을 통한","다양한 크기로"],a:["3 jaw chuck pinch 훈련","lateral pinch 훈련","pad to pad pinch 훈련","finger to palm translation 훈련","palm to finger translation 훈련","inhand manipulation skill 증진","finger dexterity 증진 훈련","complex rotation 훈련","simple rotation 훈련","pinch power 증진 훈련","fine motor 증진 훈련","opposition 증진 훈련","thumb abduction·extension 훈련"],t:["핀셋","공기돌","바둑알","화투패","peg","therapy putty","동전","빨래집게","퍼즐"]},
-  bilateral:{p:["깍지끼고","양손을 이용하여","affected side w/b 후 lesser affected side 사용하여","bimanual 협응을 통한","치료사의 guide 하에"],a:["bilateral arm movement를 통한 muscle contraction & elongation","trunk의 anterior·posterior weight shifting 유도","abnormal movement pattern 감소를 위한 bilateral activity","proximal extensor 촉진을 위한 양손 활동","shoulder 주변 muscle facilitation 유도","ROM increase를 위한 bilateral movement","reciprocal innervation 훈련","bimanual coordination 증진 훈련","affected side stability 제공 하에 lesser affected side 활동","양손 협응을 통한 trunk control 훈련"],t:["roll","수건","stacking cone","peg board","ROM arch","풍선","공","콩주머니","disk"]},
-  rom:{p:["치료사가 scapular handling 하여","verbal cue를 통한","graded resistance를 통한","단계적 범위 증가를 통한","치료사의 manual support 하에"],a:["U/E ROM 증진 유도","shoulder ROM 증진 유도","forearm supination·pronation ROM 증진","AROM 범위 인식 및 증진 훈련","shoulder와 trunk의 separate movement 유도","ROM 향상 및 근력향상 유도","A-ROM 증진을 위한 reaching 훈련","wrist·finger extension·thumb abduction 경험","수동저항운동을 통한 ROM 증진"],t:["stacking cone","ROM arch","horizontal ring tree","vertical ring tree","sanding board","skate board","grahamizer","수건","pegboard","putty"]},
-  coordination:{p:["graded task를 통한","단계적 난이도 조절을 통한","시간·횟수 제한을 통한","rate·regularity 조절을 통한"],a:["eye-hand coordination 증진 훈련","bilateral coordination 훈련","diadochokinesia 훈련 (supination·pronation 반복)","motor control 훈련","active movement control 훈련","timing 및 coordination 훈련","co-contraction 증진을 통한 coordination 향상","fine motor coordination 훈련","visual-motor coordination 훈련"],t:["grooved pegboard","ring tree","젠가","구슬 끼우기","stacking cone","볼링","ROM arc","공던지기","퍼즐"]},
-  strengthening:{p:["graded resistance를 통한","weight 착용 하에","치료사의 저항을 통한","단계적 부하 증가를 통한","isometric 방식으로"],a:["U/E muscle strengthening 유도","shoulder girdle muscle strengthening 유도","triceps strengthening 유도","wrist strength 증진 훈련","hand strength 증진 훈련","grip strength 향상 훈련","finger flexor·extensor co-contraction 유도","lumbrical grasp 강화 훈련","opposition 증진을 위한 strengthening","trunk muscle strengthening 유도"],t:["dumbbell","Thera band","sanding board","Power web","therapy putty","weight","ROM arc","wristiciser","E-Z board"]},
-  perception:{p:["치료사의 cue를 통한","graded task를 통한","구조화된 환경에서","단계적 난이도 조절을 통한"],a:["visual perception 증진 훈련","figure-ground 변별 훈련","visual closure 훈련","unilateral neglect 치료 훈련","visual tracking 훈련","stereognosis 훈련","proprioception 훈련","sensory discrimination 훈련","depth perception 증진 훈련","body scheme 증진 훈련","spatial orientation 훈련","visual memory 훈련"],t:["pegboard","ROM arc","stacking cone","ice stick","tactile ball","선 따라 긋기","숨은 그림","퍼즐","블록","vibrator"]},
-  cognition:{p:["치료사와 함께","구조화된 과제를 통한","단계적 난이도 조절을 통한","실생활 맥락에서","graded task를 통한"],a:["short term memory 증진 훈련","orientation 훈련 (시간·장소·사람)","attention span 증진 훈련","problem solving 훈련","sequencing 훈련","categorization 훈련","calculation 훈련","spatial relation 훈련","divided attention 훈련","select attention 훈련","procedural memory 훈련","working memory 훈련"],t:["그림카드","퍼즐","달력","윷놀이","오목","peg board","화투","sequencing card","블록"]},
-  adl_total:{p:["보호자·간병사 교육 —","보호자 교육 실시 —","간병사 교육 —","치료사 시범 후 보호자 교육 —"],a:["positioning 및 자세 변환 방법 교육","2시간마다 postural change 교육 (욕창 방지)","feeding 시 chin tuck 자세 유지 교육","NG tube 관리 방법 교육","W/C to bed transfer 방법 교육","passive ROM exercise 방법 교육","grooming 참여 유도 (거울보기·머리빗기)","eye contact를 통한 communication 유도","구강 위생 관리 교육","aspiration 예방 교육","기저귀 교환 방법 교육","흡인(suction) 방법 교육"]},
-  adl_max:{p:["치료사의 maximal assist 하에","hand-over-hand 방식으로","치료사가 guide하여","단계별 education 실시 —"],a:["dressing 시 affected side 먼저 입기 훈련","grooming 참여 증진 훈련 (양치·세수·머리빗기)","feeding 동안 upright position 유지 훈련","W/C 조작법 교육 (브레이크·발판)","sit to stand·stand to sit 훈련","functional communication 훈련 (몸짓·글씨)","toilet hygiene 자세 유지 훈련","전동 W/C 조이스틱 조작 훈련","구강 위생 훈련 (치약 짜기·양치질)","상의 입고 벗기 훈련"]},
-  adl_mod:{p:["치료사의 moderate assist 하에","보조도구를 이용하여","단계적 독립 유도를 통한","verbal cue를 통한","건측을 이용하여"],a:["상의 입고 벗기 훈련","하의 입고 벗기 훈련","지퍼·단추·벨크로 조작 훈련","reacher를 이용한 하지 씻기 훈련","W/C 평지·경사로 이동 훈련","W/C to bed·bed to W/C transfer 훈련","toilet transfer 및 위생 처리 훈련","식사 동작 훈련 (숟가락·젓가락)","light housework 훈련 (설거지·빨래개기·닦기)","meal preparation 훈련","grooming 훈련 (면도·머리빗기·세수)","bathing 훈련 (몸통·상지 닦기)"]},
-  adl_min:{p:["치료사의 minimal cue 하에","감독 하에","독립 수행 유도를 통한","보조도구를 이용하여"],a:["양말·신발 신고 벗기 독립 훈련","젓가락질 정확도 향상 훈련","grooming 독립 수행 훈련","home management 훈련 (설거지·빨래·청소)","meal preparation 독립 훈련","functional mobility 훈련 (계단·경사로·장애물)","community 활동 훈련 (마트·대중교통·ATM)","communication device 사용 훈련","money management 훈련","시간에 맞춰 약 복용하기 훈련"]},
-  rdt:{p:["치료사가 manual Ex.를 통해","ice stick을 이용하여","거즈를 이용하여","verbal cue를 통한","mirror feedback을 통한","thermal tactile stimulation을 통한"],a:["lip closure 증진 훈련","tongue movement 증진 훈련 (protraction·retraction)","저작근 stimulation을 통한 chewing 증진","facial muscle movement 증진 훈련","drooling 감소 훈련","oral motor 기능 증진 훈련","soft palate elevation 유도","pharyngeal swallowing 증진 훈련","chin-tuck 자세를 통한 swallowing facilitation","effortful swallowing 훈련","Mendelsohn maneuver 훈련","supraglottic swallowing 훈련","aspiration 최소화를 위한 자세 훈련","cough 유도 및 기도 보호 훈련","buccinator m. strengthening 훈련","tongue base 강화 훈련","swallowing reflex 유도 훈련"],t:["ice stick","거즈","ice bar","레모나","빨대","vibrator"]},
-};
+// 문구 풀 (Firebase phrase_pool에서 로드)
+const T = {};
 
-let sel=[],lastResults=[],lastFbKeys=[],weekComments={},selDay=getTodayStr();
-function rnd(arr){return arr[Math.floor(Math.random()*arr.length)];}
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+// 상태
+let sel          = [];
+let lastResults  = [];
+let lastFbKeys   = [];
+let monthComments= {};
+let customPhrases= {};
+let selDay       = getTodayStr();
+let selPhrCat    = null;
+let poolLoaded   = false;
 
-// Firebase phrase_pool 실시간 로드
-const phrasePoolRef=ref(db,"phrase_pool");
-onValue(phrasePoolRef,snap=>{
-  const pool=snap.val()||{};
+// 유틸
+function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function esc(s){   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Firebase: phrase_pool 로드
+onValue(ref(db,'phrase_pool'), snap=>{
+  const pool = snap.val() || {};
   Object.keys(pool).forEach(cat=>{
-    const d=pool[cat];
-    T[cat]={
-      p:d.prefix?Object.values(d.prefix).map(v=>v.text):[],
-      a:d.action?Object.values(d.action).map(v=>v.text):[],
-      t:d.tool?Object.values(d.tool).map(v=>v.text):[],
+    const d = pool[cat];
+    T[cat] = {
+      p: d.prefix ? Object.values(d.prefix).map(v=>v.text) : [],
+      a: d.action ? Object.values(d.action).map(v=>v.text) : [],
+      t: d.tool   ? Object.values(d.tool).map(v=>v.text)   : [],
     };
   });
+  poolLoaded = true;
+  document.getElementById('loading-pool').style.display = 'none';
 });
 
-onValue(weekRef,snap=>{weekComments=snap.val()||{};renderHistory();});
+// ── Firebase: 이번 달 기록
+onValue(monthRef, snap=>{
+  monthComments = snap.val() || {};
+  renderHistory();
+});
 
-function buildComment(keys,usedNow){
-  const allUsed=[...Object.values(weekComments).map(v=>v.text),...usedNow];
-  for(let i=0;i<300;i++){
-    const k=rnd(keys);const D=T[k];if(!D)continue;
-    const hasTool=D.t&&D.t.length>0;const rv=Math.random();let c;
-    if(rv<0.33&&hasTool)c=`${rnd(D.t)} — ${rnd(D.a)}`;
-    else if(rv<0.66)c=`${rnd(D.p)} ${rnd(D.a)}`;
-    else if(hasTool)c=`${rnd(D.t)} — ${rnd(D.p)} ${rnd(D.a)}`;
-    else c=`${rnd(D.p)} ${rnd(D.a)}`;
-    if(!allUsed.some(x=>x&&x.replace(/\s+/g,'')=== c.replace(/\s+/g,'')))return c;
-  }
-  return `${rnd(T[rnd(keys)].a)}`;
+// ── Firebase: 커스텀 문구
+onValue(ref(db,'custom_phrases'), snap=>{
+  customPhrases = snap.val() || {};
+  renderCustomList();
+});
+
+// ── 문구 풀 (커스텀 포함)
+function pool(key){
+  const base   = T[key] || {};
+  const custom = Object.values(customPhrases).filter(v=>v.cat===key).map(v=>v.text);
+  return { p: base.p||[], a: [...(base.a||[]), ...custom], t: base.t||[] };
 }
 
-window.generate=async function(){
+// ── 코멘트 생성
+function buildComment(keys, usedNow){
+  const allUsed = [...Object.values(monthComments).map(v=>v.text), ...usedNow];
+  for(let i=0;i<300;i++){
+    const k = rnd(keys);
+    const D = pool(k);
+    if(!D.a.length) continue;
+    const hasTool = D.t.length > 0;
+    const rv = Math.random();
+    let c;
+    if     (rv < 0.33 && hasTool) c = `${rnd(D.t)} — ${rnd(D.a)}`;
+    else if(rv < 0.66)             c = `${rnd(D.p)} ${rnd(D.a)}`;
+    else if(hasTool)               c = `${rnd(D.t)} — ${rnd(D.p)} ${rnd(D.a)}`;
+    else                           c = `${rnd(D.p)} ${rnd(D.a)}`;
+    if(!allUsed.some(x => x && x.replace(/\s+/g,'') === c.replace(/\s+/g,''))) return c;
+  }
+  return rnd(pool(rnd(keys)).a);
+}
+
+// ── 생성
+window.generate = async function(){
   if(!sel.length){
     document.getElementById('result-wrap').innerHTML='<div style="color:#C0607A;font-size:13px;padding:8px;text-align:center;">카테고리를 하나 이상 선택해주세요.</div>';
-    document.getElementById('result-wrap').style.display='block';return;
+    document.getElementById('result-wrap').style.display='block';
+    return;
   }
-  const btn=document.getElementById('btn-gen');
-  btn.disabled=true;btn.textContent='생성 중...';
-  lastResults=[];lastFbKeys=[];const existing=[];
-  const needed=3-existing.length;
-  const cats=sel.map(k=>CATS.find(c=>c.key===k)?.label).join('·');
-  const today=getTodayStr();
-  const newResults=[];
-  for(let i=0;i<needed;i++)newResults.push(buildComment(sel,[...existing,...newResults]));
+  if(!poolLoaded){
+    alert('문구 데이터를 불러오는 중이에요. 잠시 후 다시 시도해주세요.');
+    return;
+  }
+  const btn = document.getElementById('btn-gen');
+  btn.disabled = true; btn.textContent = '생성 중...';
+
+  lastResults = []; lastFbKeys = [];
+  const cats  = sel.map(k=>CATS.find(c=>c.key===k)?.label).join('·');
+  const today = getTodayStr();
+  const newResults = [];
+
+  for(let i=0;i<3;i++) newResults.push(buildComment(sel, newResults));
+
   for(const text of newResults){
-    const snap=await push(weekRef,{text,cats,ts:Date.now(),date:today});
-    lastResults.push(text);lastFbKeys.push(snap.key);
+    const snap = await push(monthRef, {text, cats, ts:Date.now(), date:today});
+    lastResults.push(text);
+    lastFbKeys.push(snap.key);
   }
-  const validPairs=lastResults.map((r,i)=>({r,k:lastFbKeys[i]})).filter(x=>x.r);
-  lastResults=validPairs.map(x=>x.r);lastFbKeys=validPairs.map(x=>x.k);
+
   renderResults();
-  document.getElementById('result-wrap').style.display='block';
-  btn.disabled=false;
-  btn.textContent=lastResults.length>=3?'✦ 코멘트 3개 생성':`✦ 빈 자리 ${3-lastResults.length}개 채우기`;
+  document.getElementById('result-wrap').style.display = 'block';
+  btn.disabled = false;
+  btn.textContent = '✦ 코멘트 3개 생성';
 };
 
 function renderResults(){
-  const active=lastResults.filter(Boolean);
-  document.getElementById('btn-gen').textContent=active.length>=3?'✦ 코멘트 3개 생성':`✦ 빈 자리 ${3-active.length}개 채우기`;
-  document.getElementById('result-list').innerHTML=lastResults.map((r,i)=>`
+  const active = lastResults.filter(Boolean);
+  document.getElementById('btn-gen').textContent =
+    active.length >= 3 ? '✦ 코멘트 3개 생성' : `✦ 빈 자리 ${3-active.length}개 채우기`;
+  document.getElementById('result-list').innerHTML = lastResults.map((r,i)=>`
     <div class="result-item" id="ri${i}">
       <div class="result-num">${i+1}</div>
       <div class="result-text">${esc(r)}</div>
@@ -466,53 +367,55 @@ function renderResults(){
     </div>`).join('');
 }
 
-window.copyOne=function(i,btn){
+window.copyOne = function(i,btn){
   navigator.clipboard.writeText(lastResults[i]||'').then(()=>{
-    btn.textContent='✓';btn.classList.add('copied');
+    btn.textContent='✓'; btn.classList.add('copied');
     setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied');},1500);
   });
 };
-window.copyAll=function(){navigator.clipboard.writeText(lastResults.filter(Boolean).join('\n'));};
+window.copyAll = function(){ navigator.clipboard.writeText(lastResults.filter(Boolean).join('\n')); };
 
-window.deleteResult=async function(i){
-  if(lastFbKeys[i])await remove(ref(db,'months/'+MONTH_KEY+'/comments/'+lastFbKeys[i]));
-  lastResults.splice(i,1);lastFbKeys.splice(i,1);
+window.deleteResult = async function(i){
+  if(lastFbKeys[i]) await remove(ref(db,'months/'+MONTH_KEY+'/comments/'+lastFbKeys[i]));
+  lastResults.splice(i,1); lastFbKeys.splice(i,1);
   renderResults();
 };
 
-window.deleteHistItem=async function(key){await remove(ref(db,'months/'+MONTH_KEY+'/comments/'+key));};
-window.resetWeek=async function(){if(!confirm('이번 달 전체 기록을 초기화할까요?'))return;await remove(weekRef);};
+window.deleteHistItem = async function(key){ await remove(ref(db,'months/'+MONTH_KEY+'/comments/'+key)); };
+window.resetMonth     = async function(){
+  if(!confirm('이번 달 전체 기록을 초기화할까요?')) return;
+  await remove(monthRef);
+};
 
+// ── 히스토리
 function renderHistory(){
-  const items=Object.entries(weekComments).map(([k,v])=>({...v,fbKey:k}));
-  const hw=document.getElementById('history-wrap');
-  const he=document.getElementById('history-empty');
-  if(!items.length){hw.style.display='none';he.style.display='block';return;}
-  hw.style.display='block';he.style.display='none';
+  const items = Object.entries(monthComments).map(([k,v])=>({...v, fbKey:k}));
+  const hw = document.getElementById('history-wrap');
+  const he = document.getElementById('history-empty');
+  if(!items.length){ hw.style.display='none'; he.style.display='block'; return; }
+  hw.style.display='block'; he.style.display='none';
 
-  const byDay={};
-  items.forEach(item=>{const d=item.date||getTodayStr();if(!byDay[d])byDay[d]=[];byDay[d].push(item);});
+  const byDay = {};
+  items.forEach(item=>{ const d=item.date||getTodayStr(); if(!byDay[d])byDay[d]=[]; byDay[d].push(item); });
 
-  // 이번 달 기록 있는 날짜만 탭으로 표시 (최신순)
-  const daysWithData=Object.keys(byDay).sort((a,b)=>b.localeCompare(a));
+  const days = Object.keys(byDay).sort((a,b)=>b.localeCompare(a));
+  if(!byDay[selDay]) selDay = days[0] || getTodayStr();
 
-  // selDay가 기록 없는 날이면 오늘 or 최근 날짜로 보정
-  if(!byDay[selDay]) selDay=daysWithData[0]||getTodayStr();
-
-  document.getElementById('day-tabs').innerHTML=daysWithData.map(dayStr=>{
-    const cnt=(byDay[dayStr]||[]).length;
-    const isOn=dayStr===selDay;
-    const label=dayStr.slice(5).replace('-','/'); // MM/DD
-    const dayName=DAYS[new Date(dayStr).getDay()===0?6:new Date(dayStr).getDay()-1];
+  document.getElementById('day-tabs').innerHTML = days.map(dayStr=>{
+    const cnt  = (byDay[dayStr]||[]).length;
+    const isOn = dayStr === selDay;
+    const label= dayStr.slice(5).replace('-','/');
+    const dow  = DAYS[new Date(dayStr).getDay()===0 ? 6 : new Date(dayStr).getDay()-1];
     return `<button class="day-tab${isOn?' on':''}" onclick="switchDay('${dayStr}')">
-      ${label} <span style="font-size:10px;opacity:0.7;">${dayName}</span><span class="cnt">${cnt}</span></button>`;
+      ${label} <span style="font-size:10px;opacity:0.7;">${dow}</span>
+      <span class="cnt">${cnt}</span></button>`;
   }).join('');
 
-  const dayItems=(byDay[selDay]||[]).sort((a,b)=>b.ts-a.ts);
-  const el=document.getElementById('day-content');
-  if(!dayItems.length){el.innerHTML='<div class="empty-tab">이 날 생성된 기록이 없어요</div>';return;}
-  el.innerHTML=dayItems.map(item=>{
-    const time=new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+  const dayItems = (byDay[selDay]||[]).sort((a,b)=>b.ts-a.ts);
+  const el = document.getElementById('day-content');
+  if(!dayItems.length){ el.innerHTML='<div class="empty-tab">이 날 생성된 기록이 없어요</div>'; return; }
+  el.innerHTML = dayItems.map(item=>{
+    const time = new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
     return `<div class="history-item">
       <span class="history-cat">${esc(item.cats||'')}</span>
       <span class="history-text">${esc(item.text)}</span>
@@ -522,21 +425,20 @@ function renderHistory(){
   }).join('');
 }
 
-window.switchDay=function(d){selDay=d;renderHistory();};
+window.switchDay = function(d){ selDay=d; renderHistory(); };
 
-window.searchHistory=function(){
-  const q=document.getElementById('search-input').value.trim();
-  const el=document.getElementById('search-result');
-  if(!q){el.innerHTML='';return;}
-  const items=Object.values(weekComments).filter(v=>v.text&&v.text.includes(q)).sort((a,b)=>b.ts-a.ts);
-  if(!items.length){
-    el.innerHTML='<div class="search-empty">이번 주 기록에서 찾을 수 없어요</div>';return;
-  }
-  const highlight=t=>esc(t).replace(new RegExp(esc(q),'g'),`<span class="search-hit">${esc(q)}</span>`);
-  el.innerHTML=`<div class="search-result-label">검색 결과 ${items.length}건</div>`+
+// ── 검색
+window.searchHistory = function(){
+  const q  = document.getElementById('search-input').value.trim();
+  const el = document.getElementById('search-result');
+  if(!q){ el.innerHTML=''; return; }
+  const items = Object.values(monthComments).filter(v=>v.text&&v.text.includes(q)).sort((a,b)=>b.ts-a.ts);
+  if(!items.length){ el.innerHTML='<div class="search-empty">이번 달 기록에서 찾을 수 없어요</div>'; return; }
+  const highlight = t => esc(t).replace(new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),`<span class="search-hit">${esc(q)}</span>`);
+  el.innerHTML = `<div class="search-result-label">검색 결과 ${items.length}건</div>` +
     items.map(item=>{
-      const d=item.date?item.date.slice(5).replace('-','/'):'';
-      const time=new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+      const d    = item.date ? item.date.slice(5).replace('-','/') : '';
+      const time = new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
       return `<div class="search-item">
         <div class="s-date">${d} ${time} · ${esc(item.cats||'')}</div>
         ${highlight(item.text)}
@@ -544,118 +446,64 @@ window.searchHistory=function(){
     }).join('');
 };
 
+// ── 카테고리 렌더
 function renderCats(){
-  document.getElementById('cat-grid').innerHTML=CATS.map(c=>`
+  document.getElementById('cat-grid').innerHTML = CATS.map(c=>`
     <button class="cat-btn${sel.includes(c.key)?' on':''}" onclick="toggleCat('${c.key}')">
       ${esc(c.label)}<span class="cat-sub">${esc(c.sub)}</span>
     </button>`).join('');
 }
-window.toggleCat=function(k){sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k];renderCats();};
+window.toggleCat = function(k){ sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k]; renderCats(); };
 renderCats();
 
-// ===== CUSTOM PHRASE =====
-const customRef=ref(db,"custom_phrases");
-let customPhrases={};
-let selPhrCat=null;
-
-onValue(customRef,snap=>{
-  customPhrases=snap.val()||{};
-  renderCustomList();
-});
-
-function mergedPool(key){
-  const base=(T[key]||{});
-  const customs=Object.values(customPhrases).filter(v=>v.cat===key).map(v=>v.text);
-  return {p:base.p||[],a:[...(base.a||[]),...customs],t:base.t||[]};
-}
-
-// override buildComment to use mergedPool
-buildComment=function(keys,usedNow){
-  const allUsed=[...Object.values(weekComments).map(v=>v.text),...usedNow];
-  for(let i=0;i<300;i++){
-    const k=rnd(keys);const D=mergedPool(k);if(!D.a.length)continue;
-    const hasTool=D.t&&D.t.length>0;const rv=Math.random();let c;
-    if(rv<0.33&&hasTool)c=`${rnd(D.t)} — ${rnd(D.a)}`;
-    else if(rv<0.66)c=`${rnd(D.p)} ${rnd(D.a)}`;
-    else if(hasTool)c=`${rnd(D.t)} — ${rnd(D.p)} ${rnd(D.a)}`;
-    else c=`${rnd(D.p)} ${rnd(D.a)}`;
-    if(!allUsed.some(x=>x&&x.replace(/s+/g,"")=== c.replace(/s+/g,"")))return c;
-  }
-  return `${rnd((mergedPool(rnd(keys))).a)}`;
-};
-
-window.openPhrasePanel=function(){
-  selPhrCat=null;
-  document.getElementById("phrase-input").value="";
+// ── 문구 추가 패널
+window.openPhrasePanel = function(){
+  selPhrCat = null;
+  document.getElementById('phrase-input').value = '';
   renderPhraseCats();
-  document.getElementById("phrase-overlay").classList.add("open");
+  document.getElementById('phrase-overlay').classList.add('open');
 };
-window.closePhrasePanel=function(e){
-  if(!e||e.target===document.getElementById("phrase-overlay"))
-    document.getElementById("phrase-overlay").classList.remove("open");
+window.closePhrasePanel = function(e){
+  if(!e || e.target===document.getElementById('phrase-overlay'))
+    document.getElementById('phrase-overlay').classList.remove('open');
 };
-
 function renderPhraseCats(){
-  document.getElementById("phrase-cat-grid").innerHTML=CATS.map(c=>`
-    <button class="phrase-cat-btn${selPhrCat===c.key?" on":""}" onclick="setPhrCat('${c.key}')">
+  document.getElementById('phrase-cat-grid').innerHTML = CATS.map(c=>`
+    <button class="phrase-cat-btn${selPhrCat===c.key?' on':''}" onclick="setPhrCat('${c.key}')">
       ${esc(c.label)}<span style="font-size:10px;opacity:0.65;display:block;margin-top:2px;">${esc(c.sub)}</span>
-    </button>`).join("");
+    </button>`).join('');
 }
-window.setPhrCat=function(k){selPhrCat=k;renderPhraseCats();};
-
-window.savePhrase=async function(){
-  if(!selPhrCat){alert("카테고리를 선택해주세요.");return;}
-  const raw=document.getElementById("phrase-input").value.trim();
-  if(!raw){alert("문구를 입력해주세요.");return;}
-  const lines=raw.split("
-").map(l=>l.trim()).filter(Boolean).map(l=>l.startsWith("*")?l.replace(/^\*s*/,""):l);
+window.setPhrCat = function(k){ selPhrCat=k; renderPhraseCats(); };
+window.savePhrase = async function(){
+  if(!selPhrCat){ alert('카테고리를 선택해주세요.'); return; }
+  const raw = document.getElementById('phrase-input').value.trim();
+  if(!raw){ alert('문구를 입력해주세요.'); return; }
+  const lines = raw.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>l.replace(/^\*\s*/,''));
   for(const text of lines){
-    await push(customRef,{cat:selPhrCat,text,ts:Date.now()});
+    await push(ref(db,'custom_phrases'), {cat:selPhrCat, text, ts:Date.now()});
   }
-  document.getElementById("phrase-input").value="";
+  document.getElementById('phrase-input').value = '';
   alert(`${lines.length}개 문구가 추가됐어요!`);
 };
-
 function renderCustomList(){
-  const items=Object.entries(customPhrases).sort((a,b)=>b[1].ts-a[1].ts);
-  const wrap=document.getElementById("custom-list");
-  const el=document.getElementById("custom-items");
-  if(!items.length){wrap.style.display="none";return;}
-  wrap.style.display="block";
-  el.innerHTML=items.map(([k,v])=>{
-    const catLabel=CATS.find(c=>c.key===v.cat)?.label||v.cat;
+  const items = Object.entries(customPhrases).sort((a,b)=>b[1].ts-a[1].ts);
+  const wrap  = document.getElementById('custom-list');
+  const el    = document.getElementById('custom-items');
+  if(!items.length){ wrap.style.display='none'; return; }
+  wrap.style.display = 'block';
+  el.innerHTML = items.map(([k,v])=>{
+    const catLabel = CATS.find(c=>c.key===v.cat)?.label || v.cat;
     return `<div class="custom-item">
       <span class="custom-item-cat">${esc(catLabel)}</span>
       <span class="custom-item-text">${esc(v.text)}</span>
       <button class="btn-custom-del" onclick="deleteCustom('${k}')" title="삭제">✕</button>
     </div>`;
-  }).join("");
+  }).join('');
 }
-window.deleteCustom=async function(k){
-  if(!confirm("이 문구를 삭제할까요?"))return;
-  await remove(ref(db,"custom_phrases/"+k));
+window.deleteCustom = async function(k){
+  if(!confirm('이 문구를 삭제할까요?')) return;
+  await remove(ref(db,'custom_phrases/'+k));
 };
 </script>
-<!-- FAB -->
-<button class="fab" onclick="openPhrasePanel()" title="예시 문구 추가">＋</button>
-
-<!-- PHRASE PANEL -->
-<div class="phrase-overlay" id="phrase-overlay" onclick="closePhrasePanel(event)">
-  <div class="phrase-panel">
-    <h2>예시 문구 추가</h2>
-    <p>카테고리를 선택하고 문구를 입력하면 생성 풀에 추가돼요.</p>
-    <div class="phrase-cat-grid" id="phrase-cat-grid"></div>
-    <textarea class="phrase-input" id="phrase-input" placeholder="예: stacking cone — 치료사가 scapular handling 하여 ROM 증진"></textarea>
-    <div class="phrase-hint">* 로 시작하지 않아도 자동으로 붙어요. 여러 줄 입력 시 줄마다 각각 추가됩니다.</div>
-    <div class="phrase-btns">
-      <button class="btn-phrase-cancel" onclick="closePhrasePanel(null)">취소</button>
-      <button class="btn-phrase-save" onclick="savePhrase()">추가하기</button>
-    </div>
-    <div class="custom-list" id="custom-list" style="display:none;">
-      <div class="custom-list-title">추가된 문구 목록</div>
-      <div id="custom-items"></div>
-    </div>
-  </div>
-</div>
 </body>
 </html>
