@@ -146,6 +146,25 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .input-row input{flex:1;height:38px;padding:0 12px;border-radius:9px;border:1.5px solid var(--border);font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);}
 .input-row input:focus{outline:none;border-color:var(--mint-mid);}
 .divider-line{border:none;border-top:1.5px solid var(--border);margin:1.25rem 0;}
+.cat-edit-wrap{background:var(--mint-light);border-radius:10px;padding:10px 12px;margin-bottom:6px;}
+.cat-edit-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.cat-edit-row:last-child{margin-bottom:0;}
+.cat-edit-input{flex:1;height:34px;padding:0 10px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;font-family:"Noto Sans KR",sans-serif;color:var(--text);}
+.cat-edit-input:focus{outline:none;border-color:var(--mint-mid);}
+.btn-xs{height:30px;padding:0 10px;border-radius:7px;border:1px solid transparent;font-size:12px;font-family:"Noto Sans KR",sans-serif;cursor:pointer;}
+.btn-xs.save{background:var(--mint);color:#fff;border-color:var(--mint);}
+.btn-xs.save:hover{opacity:0.88;}
+.btn-xs.danger{background:#FFF0F3;color:#C0607A;border-color:#FADADD;}
+.btn-xs.danger:hover{background:#FFE0E5;}
+.btn-xs.cancel{background:var(--bg);color:var(--text-sub);border-color:var(--border);}
+.phrase-pool-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--mint-light);}
+.phrase-pool-item:last-child{border-bottom:none;}
+.phrase-pool-text{font-size:12px;color:var(--text-sub);flex:1;line-height:1.5;}
+.phrase-pool-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:12px;flex-shrink:0;padding:2px 4px;transition:color 0.12s;}
+.phrase-pool-del:hover{color:#C0607A;}
+.cat-expand-btn{font-size:11px;color:var(--mint);background:transparent;border:none;cursor:pointer;padding:2px 0;font-family:"Noto Sans KR",sans-serif;}
+.disabled-badge{font-size:10px;padding:2px 7px;border-radius:5px;background:#FFE0E5;color:#C0607A;}
+.cat-manage-item.disabled{opacity:0.5;}
 </style>
 </head>
 <body>
@@ -310,8 +329,6 @@ const firebaseConfig = {
   appId: "1:306455802486:web:6eec4081c53aa877d26557",
   measurementId: "G-VND6PQS1GT"
 };
-
-
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
@@ -444,6 +461,7 @@ function enterApp(hospital){
   });
 
   renderCats();
+  enterAppExtras(hospital.id);
 }
 
 const saved=sessionStorage.getItem('ot_hospital');
@@ -684,16 +702,123 @@ function renderCustomCatList(){
     </div>`).join('');
 }
 
-function renderDefaultCatList(){
-  document.getElementById('default-cat-list').innerHTML=DEFAULT_CATS.map(c=>`
-    <div class="cat-manage-item">
-      <div style="flex:1;">
-        <div class="cat-manage-label">${esc(c.label)}</div>
-        <div class="cat-manage-sub">${esc(c.sub)}</div>
-      </div>
-      <span class="cat-manage-badge">기본</span>
-    </div>`).join('');
+// 병원별 오버라이드: 카테고리명 수정, 비활성화, 문구 제외
+let catOverrides = {};
+let excludedPhrases = {};
+let expandedCat = null;
+let catOverrideUnsub = null, excludeUnsub = null;
+
+function enterAppExtras(hospId){
+  if(catOverrideUnsub) catOverrideUnsub();
+  catOverrideUnsub = onValue(ref(db,'hospitals/'+hospId+'/cat_overrides'), snap=>{
+    catOverrides = snap.val()||{};
+    renderCats(); renderDefaultCatList();
+  });
+  if(excludeUnsub) excludeUnsub();
+  excludeUnsub = onValue(ref(db,'hospitals/'+hospId+'/excluded_phrases'), snap=>{
+    excludedPhrases = snap.val()||{};
+    renderDefaultCatList();
+  });
 }
+
+// allCats: 비활성화 및 이름 오버라이드 반영
+function allCats(){
+  return [...DEFAULT_CATS, ...customCats]
+    .filter(c => !(catOverrides[c.key] && catOverrides[c.key].disabled))
+    .map(c => catOverrides[c.key]
+      ? {...c, label: catOverrides[c.key].label||c.label, sub: catOverrides[c.key].sub||c.sub}
+      : c);
+}
+
+// pool: 제외된 문구 필터링
+function pool(key){
+  const base = T[key]||{};
+  const excl = Object.values(excludedPhrases[key]||{});
+  const custom = Object.values(customPhrases).filter(v=>v.cat===key).map(v=>v.text);
+  return {
+    p: base.p||[],
+    a: [...(base.a||[]), ...custom].filter(t=>!excl.includes(t)),
+    t: base.t||[]
+  };
+}
+
+function renderDefaultCatList(){
+  const el = document.getElementById('default-cat-list');
+  if(!el) return;
+  el.innerHTML = DEFAULT_CATS.map(c=>{
+    const ov = catOverrides[c.key]||{};
+    const disabled = !!ov.disabled;
+    const label = ov.label||c.label;
+    const sub   = ov.sub||c.sub;
+    const isExp = expandedCat === c.key;
+    const excl  = Object.values(excludedPhrases[c.key]||{});
+    const phrases = (T[c.key]||{}).a||[];
+    const wrapStyle = disabled ? 'opacity:0.5;' : '';
+    return `<div class="cat-edit-wrap" style="${wrapStyle}">
+      <div class="cat-edit-row">
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:500;color:var(--text);">${esc(label)}</div>
+          <div style="font-size:11px;color:var(--text-muted);">${esc(sub)}</div>
+        </div>
+        <button class="btn-xs ${disabled?'save':'danger'}" onclick="toggleDisableCat('${c.key}',${disabled})">${disabled?'활성화':'비활성화'}</button>
+        <button class="btn-xs cancel" onclick="openCatEditForm('${c.key}')">이름 수정</button>
+      </div>
+      <div id="cat-edit-form-${c.key}" style="display:none;" class="cat-edit-row" onclick="event.stopPropagation()">
+        <input class="cat-edit-input" id="cei-label-${c.key}" value="${esc(label)}" placeholder="카테고리명"/>
+        <input class="cat-edit-input" id="cei-sub-${c.key}" value="${esc(sub)}" placeholder="설명"/>
+        <button class="btn-xs save" onclick="saveCatOverride('${c.key}')">저장</button>
+        <button class="btn-xs cancel" onclick="closeCatEditForm('${c.key}')">취소</button>
+      </div>
+      ${phrases.length>0?`<button class="cat-expand-btn" onclick="toggleExpandCat('${c.key}')">${isExp?'▲ 문구 닫기':'▼ 문구 관리 ('+phrases.length+'개, 제외 '+excl.length+'개)'}</button>`:''}
+      ${isExp?`<div style="margin-top:8px;">${phrases.map(ph=>{
+        const isExcl = excl.includes(ph);
+        return '<div class="phrase-pool-item">'
+          + '<span class="phrase-pool-text" style="'+(isExcl?'text-decoration:line-through;color:var(--text-muted);':'')+'">'
+          + esc(ph) + '</span>'
+          + '<button class="phrase-pool-del" data-cat="'+esc(c.key)+'" data-ph="'+esc(ph)+'" onclick="handleToggleExclude(this)">'
+          + (isExcl?'복원':'제외') + '</button>'
+          + '</div>';
+      }).join('')}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+window.openCatEditForm = function(key){
+  document.getElementById('cat-edit-form-'+key).style.display='flex';
+};
+window.closeCatEditForm = function(key){
+  document.getElementById('cat-edit-form-'+key).style.display='none';
+};
+window.saveCatOverride = async function(key){
+  const label = document.getElementById('cei-label-'+key).value.trim();
+  const sub   = document.getElementById('cei-sub-'+key).value.trim();
+  if(!label){ alert('카테고리명을 입력해주세요.'); return; }
+  const existing = catOverrides[key]||{};
+  await set(ref(db,'hospitals/'+currentHospital.id+'/cat_overrides/'+key), {...existing, label, sub});
+  closeCatEditForm(key);
+};
+window.toggleDisableCat = async function(key, currentlyDisabled){
+  const existing = catOverrides[key]||{};
+  await set(ref(db,'hospitals/'+currentHospital.id+'/cat_overrides/'+key), {...existing, disabled:!currentlyDisabled});
+};
+window.toggleExpandCat = function(key){
+  expandedCat = expandedCat===key?null:key;
+  renderDefaultCatList();
+};
+window.handleToggleExclude = async function(btn){
+  const catKey = btn.dataset.cat;
+  const phrase = btn.dataset.ph;
+  const excl = Object.entries(excludedPhrases[catKey]||{});
+  const existing = excl.find(([,v])=>v===phrase);
+  if(existing){
+    await remove(ref(db,'hospitals/'+currentHospital.id+'/excluded_phrases/'+catKey+'/'+existing[0]));
+  } else {
+    await push(ref(db,'hospitals/'+currentHospital.id+'/excluded_phrases/'+catKey), phrase);
+  }
+};
+
+function renderDefaultCatListEmpty(){}
+
 </script>
 </body>
 </html>
