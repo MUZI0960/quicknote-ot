@@ -205,12 +205,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
       <button class="login-tab" id="ltab-register" onclick="setLoginTab('register')">병원 등록</button>
     </div>
     <div id="login-form">
-      <div class="field"><label>병원명</label><input type="text" id="li-name" placeholder="예: 서울재활병원"/></div>
+      <div class="field"><label>병원명</label><input type="text" id="li-name" placeholder="예: 중부요양병"/></div>
       <div class="field"><label>병원 코드</label><input type="password" id="li-code" placeholder="등록 시 설정한 코드" onkeydown="if(event.key==='Enter')doLogin()"/></div>
       <button class="btn-login" onclick="doLogin()">로그인</button>
     </div>
     <div id="reg-form" style="display:none;">
-      <div class="field"><label>병원명</label><input type="text" id="rg-name" placeholder="예: 서울재활병원"/></div>
+      <div class="field"><label>병원명</label><input type="text" id="rg-name" placeholder="예: 중부요양병원"/></div>
       <div class="field"><label>병원 코드 설정</label><input type="password" id="rg-code" placeholder="4자 이상"/></div>
       <div class="field"><label>코드 확인</label><input type="password" id="rg-code2" placeholder="코드 재입력" onkeydown="if(event.key==='Enter')doRegister()"/></div>
       <button class="btn-login" onclick="doRegister()">병원 등록</button>
