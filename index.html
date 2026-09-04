@@ -6,108 +6,132 @@
 <title>QuickNote for OT</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR','Segoe UI',sans-serif;background:#f5f5f0;min-height:100vh;padding:1.5rem 1rem;}
-.container{max-width:700px;margin:0 auto;}
-header{margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;}
-header h1{font-size:20px;font-weight:600;color:#1a1a1a;}
-header p{font-size:13px;color:#888;margin-top:4px;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR','Segoe UI',sans-serif;background:#f5f5f0;min-height:100vh;}
+.top-bar{background:#fff;border-bottom:1px solid #e8e8e4;padding:14px 2rem;display:flex;align-items:center;justify-content:space-between;}
+.top-bar h1{font-size:18px;font-weight:600;color:#1a1a1a;}
+.top-bar p{font-size:13px;color:#888;margin-top:2px;}
 .status{display:flex;align-items:center;gap:6px;font-size:12px;color:#888;}
 .dot{width:7px;height:7px;border-radius:50%;background:#ccc;flex-shrink:0;}
 .dot.online{background:#4caf50;}
+.layout{display:grid;grid-template-columns:1fr 380px;gap:1.5rem;padding:1.5rem 2rem;max-width:1200px;margin:0 auto;}
+.col-left{}
+.col-right{}
 .card{background:#fff;border-radius:14px;border:1px solid #e8e8e4;padding:1.25rem;margin-bottom:1rem;}
+.card:last-child{margin-bottom:0;}
 .card-title{font-size:13px;font-weight:500;color:#888;margin-bottom:12px;}
-.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.cat-btn{padding:10px 12px;border-radius:10px;border:1px solid #e0e0db;background:#fff;color:#555;font-size:13px;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.1s;}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+.cat-btn{padding:9px 10px;border-radius:9px;border:1px solid #e0e0db;background:#fff;color:#555;font-size:12px;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.1s;}
 .cat-btn:hover{background:#f8f8f5;border-color:#ccc;}
 .cat-btn.on{background:#1a1a1a;color:#fff;border-color:#1a1a1a;}
 .cat-btn .cat-sub{font-size:11px;opacity:0.65;display:block;margin-top:2px;}
-.btn-generate{width:100%;height:44px;border-radius:10px;border:none;background:#1a1a1a;color:#fff;font-size:15px;font-weight:500;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-generate{width:100%;height:42px;border-radius:10px;border:none;background:#1a1a1a;color:#fff;font-size:15px;font-weight:500;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;}
 .btn-generate:hover{background:#333;}
 .btn-generate:disabled{opacity:0.4;cursor:not-allowed;}
-.result-item{padding:14px 16px;background:#f8f8f5;border-radius:10px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px;}
+.result-item{padding:12px 14px;background:#f8f8f5;border-radius:10px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;}
+.result-item:last-child{margin-bottom:0;}
 .result-num{width:22px;height:22px;border-radius:50%;background:#1a1a1a;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
 .result-text{font-size:14px;color:#1a1a1a;line-height:1.65;flex:1;}
-.result-copy{background:transparent;border:1px solid #e0e0db;border-radius:7px;padding:4px 10px;font-size:12px;color:#888;cursor:pointer;white-space:nowrap;flex-shrink:0;}
-.result-copy:hover{border-color:#999;color:#333;}
-.result-copy.copied{border-color:#1baf7a;color:#1baf7a;}
-.btn-copy-all{width:100%;height:38px;border-radius:10px;border:1px solid #e0e0db;background:#fff;color:#555;font-size:13px;cursor:pointer;margin-top:4px;}
+.result-actions{display:flex;gap:6px;flex-shrink:0;}
+.btn-sm{background:transparent;border:1px solid #e0e0db;border-radius:7px;padding:4px 10px;font-size:12px;color:#888;cursor:pointer;white-space:nowrap;}
+.btn-sm:hover{border-color:#999;color:#333;}
+.btn-sm.copied{border-color:#1baf7a;color:#1baf7a;}
+.btn-sm.del{border-color:#f0c0c0;color:#e24b4a;}
+.btn-sm.del:hover{background:#fff0f0;border-color:#e24b4a;}
+.btn-copy-all{width:100%;height:36px;border-radius:9px;border:1px solid #e0e0db;background:#fff;color:#555;font-size:13px;cursor:pointer;margin-top:10px;}
 .btn-copy-all:hover{background:#f8f8f5;}
-.history-row{font-size:12px;color:#888;padding:7px 10px;margin-bottom:5px;line-height:1.5;border-left:3px solid #e0e0db;border-radius:0;}
-.badge{display:inline-block;font-size:10px;font-weight:600;padding:1px 6px;border-radius:4px;background:#e8e8e4;color:#666;margin-right:6px;}
-.week-badge{font-size:11px;color:#aaa;margin-bottom:8px;}
-.error{color:#e24b4a;font-size:13px;padding:8px;text-align:center;}
-.btn-reset{font-size:12px;color:#bbb;background:transparent;border:1px solid #e8e8e4;border-radius:8px;padding:5px 12px;cursor:pointer;}
+.day-tabs{display:flex;gap:0;border-bottom:1px solid #f0f0ea;margin-bottom:12px;}
+.day-tab{flex:1;padding:7px 4px;font-size:12px;color:#aaa;background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;text-align:center;white-space:nowrap;}
+.day-tab:hover{color:#555;}
+.day-tab.on{color:#1a1a1a;border-bottom-color:#1a1a1a;font-weight:500;}
+.day-tab .cnt{display:block;font-size:11px;background:#e8e8e4;color:#666;border-radius:10px;padding:0px 5px;margin:2px auto 0;width:fit-content;}
+.day-tab.on .cnt{background:#1a1a1a;color:#fff;}
+.history-item{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #f5f5f0;}
+.history-item:last-child{border-bottom:none;}
+.history-text{font-size:12px;color:#555;line-height:1.5;flex:1;}
+.history-cat{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;background:#e8e8e4;color:#666;flex-shrink:0;margin-top:1px;white-space:nowrap;}
+.history-time{font-size:11px;color:#bbb;flex-shrink:0;margin-top:2px;}
+.btn-hist-del{background:transparent;border:none;color:#ddd;cursor:pointer;font-size:13px;flex-shrink:0;padding:0 2px;line-height:1;}
+.btn-hist-del:hover{color:#e24b4a;}
+.empty-tab{text-align:center;color:#bbb;font-size:13px;padding:2rem 0;}
+.btn-reset{font-size:12px;color:#bbb;background:transparent;border:1px solid #e8e8e4;border-radius:8px;padding:4px 10px;cursor:pointer;}
 .btn-reset:hover{color:#e24b4a;border-color:#e24b4a;}
-.divider{border:none;border-top:1px solid #f0f0ea;margin:1rem 0;}
-.loading{text-align:center;color:#aaa;font-size:13px;padding:1rem;}
+.hist-scroll{max-height:calc(100vh - 280px);overflow-y:auto;}
 .config-notice{background:#FFF8E8;border:1px solid #F5D98B;border-radius:10px;padding:1rem;margin-bottom:1rem;font-size:13px;color:#7A5C00;line-height:1.6;}
-.config-notice strong{display:block;margin-bottom:4px;font-size:14px;}
+.config-notice strong{display:block;margin-bottom:4px;}
 .config-notice code{background:#fff;border-radius:4px;padding:1px 6px;font-family:monospace;font-size:12px;}
+.empty-result{text-align:center;color:#bbb;font-size:13px;padding:1.5rem 0;}
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div>
-      <h1>QuickNote for OT</h1>
-      <p>환자 상태를 선택하면 P-Note 코멘트 3개를 자동 생성합니다</p>
-    </div>
-    <div class="status">
-      <span class="dot" id="conn-dot"></span>
-      <span id="conn-label">연결 중...</span>
-    </div>
-  </header>
 
-  <div class="config-notice" id="config-notice" style="display:none;">
-    <strong>⚙️ Firebase 설정 필요</strong>
-    index.html 상단의 <code>firebaseConfig</code> 값을 Firebase 콘솔에서 복사한 값으로 교체해주세요.
+<div class="top-bar">
+  <div>
+    <h1>QuickNote for OT</h1>
+    <p>환자 상태를 선택하면 P-Note 코멘트 3개를 자동 생성합니다</p>
   </div>
-
-  <div class="card">
-    <div class="card-title">환자 상태 선택 (복수 선택 가능)</div>
-    <div class="cat-grid" id="cat-grid"></div>
+  <div class="status">
+    <span class="dot" id="conn-dot"></span>
+    <span id="conn-label">연결 중...</span>
   </div>
+</div>
 
-  <button class="btn-generate" id="btn-gen" onclick="generate()">✦ 코멘트 3개 생성</button>
+<div class="layout">
+  <div class="col-left">
+    <div class="config-notice" id="config-notice" style="display:none;">
+      <strong>⚙️ Firebase 설정 필요</strong>
+      index.html의 <code>firebaseConfig</code> 값을 Firebase 콘솔에서 복사한 값으로 교체해주세요.
+    </div>
 
-  <div id="result-wrap" style="margin-top:1rem;display:none;">
     <div class="card">
-      <div class="card-title">생성된 코멘트</div>
-      <div id="result-list"></div>
-      <button class="btn-copy-all" onclick="copyAll()">전체 복사</button>
+      <div class="card-title">환자 상태 선택 (복수 선택 가능)</div>
+      <div class="cat-grid" id="cat-grid"></div>
     </div>
-  </div>
 
-  <div id="history-wrap" style="display:none;">
-    <div class="card">
-      <div class="card-title">이번 주 생성 기록</div>
-      <div class="week-badge" id="week-label"></div>
-      <div id="history-list"></div>
-      <div style="display:flex;justify-content:flex-end;margin-top:8px;">
-        <button class="btn-reset" onclick="resetWeek()">이번 주 기록 초기화</button>
+    <button class="btn-generate" id="btn-gen" onclick="generate()">✦ 코멘트 3개 생성</button>
+
+    <div id="result-wrap" style="margin-top:1rem;display:none;">
+      <div class="card">
+        <div class="card-title">생성된 코멘트</div>
+        <div id="result-list"></div>
+        <button class="btn-copy-all" onclick="copyAll()">전체 복사</button>
       </div>
+    </div>
+  </div>
+
+  <div class="col-right">
+    <div class="card" id="history-wrap" style="display:none;">
+      <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>이번 주 생성 기록</span>
+        <button class="btn-reset" onclick="resetWeek()">초기화</button>
+      </div>
+      <div class="day-tabs" id="day-tabs"></div>
+      <div class="hist-scroll">
+        <div id="day-content"></div>
+      </div>
+    </div>
+    <div class="card" id="history-empty" style="display:none;">
+      <div class="card-title">이번 주 생성 기록</div>
+      <div class="empty-result">아직 생성된 기록이 없어요</div>
     </div>
   </div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, push, onValue, remove, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 import { getDatabase as gdb, ref as dbRef, onValue as ov } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // ★ 아래 설정값을 Firebase 콘솔에서 복사한 값으로 교체하세요 ★
 const firebaseConfig = {
-  apiKey: "AIzaSyCxpRnS-4WUh7rPrN8UppBqRlZt0-334OY",
-  authDomain: "drink-order-624f9.firebaseapp.com",
-  databaseURL: "https://drink-order-624f9-default-rtdb.firebaseio.com",
-  projectId: "drink-order-624f9",
-  storageBucket: "drink-order-624f9.firebasestorage.app",
-  messagingSenderId: "306455802486",
-  appId: "1:306455802486:web:6eec4081c53aa877d26557",
-  measurementId: "G-VND6PQS1GT"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
-// 설정값 미입력 감지
 if(firebaseConfig.apiKey === 'YOUR_API_KEY'){
   document.getElementById('config-notice').style.display='block';
   document.getElementById('conn-dot').style.background='#E24B4A';
@@ -116,8 +140,6 @@ if(firebaseConfig.apiKey === 'YOUR_API_KEY'){
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
-// 연결 상태
 const connRef = dbRef(db, '.info/connected');
 ov(connRef, snap => {
   const online = snap.val();
@@ -125,20 +147,28 @@ ov(connRef, snap => {
   document.getElementById('conn-label').textContent = online ? '실시간 연결됨' : '연결 끊김';
 });
 
-// 이번 주 월요일 날짜 키 생성
 function getWeekKey(){
   const d = new Date();
   const day = d.getDay();
   const diff = d.getDate() - day + (day === 0 ? -6 : 1);
   const monday = new Date(d);
   monday.setDate(diff);
-  return monday.toISOString().slice(0, 10);
+  return monday.toISOString().slice(0,10);
+}
+function getTodayStr(){ return new Date().toISOString().slice(0,10); }
+function getDayStr(dayNum){
+  const monday = new Date(WEEK_KEY);
+  const offset = dayNum === 0 ? 6 : dayNum - 1;
+  const d = new Date(monday);
+  d.setDate(monday.getDate() + offset);
+  return d.toISOString().slice(0,10);
 }
 
 const WEEK_KEY = getWeekKey();
 const weekRef = ref(db, 'weeks/' + WEEK_KEY + '/comments');
+const DAYS = ['월','화','수','목','금','토','일'];
+const DAY_NUMS = [1,2,3,4,5,6,0];
 
-// 카테고리 & 템플릿 데이터
 const CATS=[
   {key:'hypertonus',label:'Hypertonus',sub:'근긴장도 높음'},
   {key:'hypotonus',label:'Hypotonus',sub:'근긴장도 낮음'},
@@ -159,187 +189,148 @@ const CATS=[
 ];
 
 const T={
-  hypertonus:{
-    p:["치료사가 scapular handling 하여","치료사의 manual guidance를 통한","verbal cue를 통한","key point control을 통한","치료사의 facilitation 하에","graded assistance를 통한","proximal support 제공 하에"],
-    a:["muscle tone 조절을 위한 slow passive movement","abnormal muscle tone 억제 위한 manual exercise","shoulder girdle stability를 위한 manual Ex.","scapular realignment를 통한 muscle tone decrease","deep pressure를 통한 muscle tone decrease","spasticity inhibition을 위한 sweep tapping","body alignment를 위한 positioning 교육","affected side weight bearing을 통한 extensor muscle 자극","wrist 및 hand movement 증가를 위한 manual Ex.","self assist arm movement 증가를 위한 bilateral task","수건밀기를 통한 weight shifting 및 spasticity inhibition","hand release 유도를 위한 manual Ex.","protraction 유도를 위한 roll 밀기","passive movement를 통한 normal movement pattern 경험","prevent U/E contracture를 위한 passive normal movement","serratus anterior muscle activation을 위한 protraction·retraction movement","pectoralis m.·latissimus dorsi m. lengthening"],
-    t:["stacking cone","roll","수건","ROM arch","sanding board","therapy putty","exercise skate"],
-  },
-  hypotonus:{
-    p:["치료사의 facilitation 하에","verbal cue를 통한","graded assistance 제공 하에","치료사의 tapping을 통한","weight bearing 유도 하에","manual support 제공 후"],
-    a:["muscle tone increase를 위한 fast movement induction","shoulder subluxation 예방을 위한 자세교육","affected side weight bearing을 통한 muscle tone increase","shoulder girdle alignment를 통한 normal movement feeling","subluxation 조절을 위한 scapular realignment","proprioception 경험을 위한 passive movement","trunk uprighting 유도를 위한 table on elbow position","muscle activation을 위한 sensory stimulation (tapping)","rood approach를 통한 muscle tone increase","biceps·triceps activation을 위한 elbow flx-ext 반복","shoulder girdle stability를 위한 manual Ex.","edema control을 위한 gentle massage","scapular protraction·retraction을 통한 shoulder girdle stability","pain control을 위한 joint mobilization","trunk control을 통한 scapular 자세조절"],
-    t:["ice stick","vibrator","콩주머니","고리","skate board","수건"],
-  },
-  balance:{
-    p:["치료사가 assist 하여","minimal assist 하에","다양한 방향에서","dynamic한 환경에서","postural set 후","graded challenge를 통한"],
-    a:["sitting balance 유지를 위한 pelvic control","trunk uprighting 유지 하에 dynamic balance 훈련","다양한 방향 자극을 통한 sitting balance 증진","automatic reaction 이용한 trunk balance training","togu 위에서의 balance 훈련","GymBall 위에서 다양한 방향으로 균형잡기","standing balance를 위한 ankle strategy training","sanding 밀기를 통한 stability 및 balance 향상","trunk rotation을 통한 balance training","pelvic exercise를 통한 trunk balance 증진","weight shifting을 통한 dynamic balance 향상","rib cage movement 증진을 통한 trunk upright 유도","BOS 조절을 통한 trunk balance 증진","neck control을 위한 manual Ex.","전·후·측방 weight shifting을 통한 balance 훈련"],
-    t:["togu","GymBall","roll","sanding board","stacking cone","풍선","ROM arch","콩주머니"],
-  },
-  grasp:{
-    p:["치료사의 grading 하에","active 참여를 통한","graded resistance를 통한","다양한 크기로","단계적 난이도 조절을 통한"],
-    a:["cylindrical grasp & release 훈련","spherical grip & release 훈련","grasping power 증진 훈련","grip & release 패턴 증진 훈련","lateral grip 훈련","tenodesis를 이용한 grip·release 훈련","active grip & release 유도","grasp 유지 하에 reaching 유도","power grip 훈련","다양한 grip size를 통한 grasp·release 훈련","공 던지기를 통한 grasp & release 증진","long flexor m. strengthening 유도"],
-    t:["stacking cone","오재미","therapy putty","Power web","테니스 공","음료수 캔","고리","콩주머니"],
-  },
-  pinch:{
-    p:["graded task를 통한","치료사의 guide 하에","단계적 난이도 조절을 통한","다양한 크기로"],
-    a:["3 jaw chuck pinch 훈련","lateral pinch 훈련","pad to pad pinch 훈련","finger to palm translation 훈련","palm to finger translation 훈련","inhand manipulation skill 증진","finger dexterity 증진 훈련","complex rotation 훈련","simple rotation 훈련","pinch power 증진 훈련","fine motor 증진 훈련","opposition 증진 훈련","thumb abduction·extension 훈련"],
-    t:["핀셋","공기돌","바둑알","화투패","peg","therapy putty","동전","빨래집게","퍼즐"],
-  },
-  bilateral:{
-    p:["깍지끼고","양손을 이용하여","affected side w/b 후 lesser affected side 사용하여","bimanual 협응을 통한","치료사의 guide 하에"],
-    a:["bilateral arm movement를 통한 muscle contraction & elongation","trunk의 anterior·posterior weight shifting 유도","abnormal movement pattern 감소를 위한 bilateral activity","proximal extensor 촉진을 위한 양손 활동","shoulder 주변 muscle facilitation 유도","ROM increase를 위한 bilateral movement","reciprocal innervation 훈련","bimanual coordination 증진 훈련","affected side stability 제공 하에 lesser affected side 활동","양손 협응을 통한 trunk control 훈련"],
-    t:["roll","수건","stacking cone","peg board","ROM arch","풍선","공","콩주머니","disk"],
-  },
-  rom:{
-    p:["치료사가 scapular handling 하여","verbal cue를 통한","graded resistance를 통한","단계적 범위 증가를 통한","치료사의 manual support 하에"],
-    a:["U/E ROM 증진 유도","shoulder ROM 증진 유도","forearm supination·pronation ROM 증진","AROM 범위 인식 및 증진 훈련","shoulder와 trunk의 separate movement 유도","ROM 향상 및 근력향상 유도","A-ROM 증진을 위한 reaching 훈련","wrist·finger extension·thumb abduction 경험","수동저항운동을 통한 ROM 증진"],
-    t:["stacking cone","ROM arch","horizontal ring tree","vertical ring tree","sanding board","skate board","grahamizer","수건","pegboard","putty"],
-  },
-  coordination:{
-    p:["graded task를 통한","단계적 난이도 조절을 통한","시간·횟수 제한을 통한","rate·regularity 조절을 통한"],
-    a:["eye-hand coordination 증진 훈련","bilateral coordination 훈련","diadochokinesia 훈련 (supination·pronation 반복)","motor control 훈련","active movement control 훈련","timing 및 coordination 훈련","co-contraction 증진을 통한 coordination 향상","fine motor coordination 훈련","visual-motor coordination 훈련"],
-    t:["grooved pegboard","ring tree","젠가","구슬 끼우기","stacking cone","볼링","ROM arc","공던지기","퍼즐"],
-  },
-  strengthening:{
-    p:["graded resistance를 통한","weight 착용 하에","치료사의 저항을 통한","단계적 부하 증가를 통한","isometric 방식으로"],
-    a:["U/E muscle strengthening 유도","shoulder girdle muscle strengthening 유도","triceps strengthening 유도","wrist strength 증진 훈련","hand strength 증진 훈련","grip strength 향상 훈련","finger flexor·extensor co-contraction 유도","lumbrical grasp 강화 훈련","opposition 증진을 위한 strengthening","trunk muscle strengthening 유도"],
-    t:["dumbbell","Thera band","sanding board","Power web","therapy putty","weight","ROM arc","wristiciser","E-Z board"],
-  },
-  perception:{
-    p:["치료사의 cue를 통한","graded task를 통한","구조화된 환경에서","단계적 난이도 조절을 통한"],
-    a:["visual perception 증진 훈련","figure-ground 변별 훈련","visual closure 훈련","unilateral neglect 치료 훈련","visual tracking 훈련","stereognosis 훈련","proprioception 훈련","sensory discrimination 훈련","depth perception 증진 훈련","body scheme 증진 훈련","spatial orientation 훈련","visual memory 훈련"],
-    t:["pegboard","ROM arc","stacking cone","ice stick","tactile ball","선 따라 긋기","숨은 그림","퍼즐","블록","vibrator"],
-  },
-  cognition:{
-    p:["치료사와 함께","구조화된 과제를 통한","단계적 난이도 조절을 통한","실생활 맥락에서","graded task를 통한"],
-    a:["short term memory 증진 훈련","orientation 훈련 (시간·장소·사람)","attention span 증진 훈련","problem solving 훈련","sequencing 훈련","categorization 훈련","calculation 훈련","spatial relation 훈련","divided attention 훈련","select attention 훈련","procedural memory 훈련","working memory 훈련"],
-    t:["그림카드","퍼즐","달력","윷놀이","오목","peg board","화투","sequencing card","블록"],
-  },
-  adl_total:{
-    p:["보호자·간병사 교육 —","보호자 교육 실시 —","간병사 교육 —","치료사 시범 후 보호자 교육 —"],
-    a:["positioning 및 자세 변환 방법 교육","2시간마다 postural change 교육 (욕창 방지)","feeding 시 chin tuck 자세 유지 교육","NG tube 관리 방법 교육","W/C to bed transfer 방법 교육","passive ROM exercise 방법 교육","grooming 참여 유도 (거울보기·머리빗기)","eye contact를 통한 communication 유도","구강 위생 관리 교육","aspiration 예방 교육","기저귀 교환 방법 교육","흡인(suction) 방법 교육"],
-  },
-  adl_max:{
-    p:["치료사의 maximal assist 하에","hand-over-hand 방식으로","치료사가 guide하여","단계별 education 실시 —"],
-    a:["dressing 시 affected side 먼저 입기 훈련","grooming 참여 증진 훈련 (양치·세수·머리빗기)","feeding 동안 upright position 유지 훈련","W/C 조작법 교육 (브레이크·발판)","sit to stand·stand to sit 훈련","functional communication 훈련 (몸짓·글씨)","toilet hygiene 자세 유지 훈련","전동 W/C 조이스틱 조작 훈련","구강 위생 훈련 (치약 짜기·양치질)","상의 입고 벗기 훈련"],
-  },
-  adl_mod:{
-    p:["치료사의 moderate assist 하에","보조도구를 이용하여","단계적 독립 유도를 통한","verbal cue를 통한","건측을 이용하여"],
-    a:["상의 입고 벗기 훈련","하의 입고 벗기 훈련","지퍼·단추·벨크로 조작 훈련","reacher를 이용한 하지 씻기 훈련","W/C 평지·경사로 이동 훈련","W/C to bed·bed to W/C transfer 훈련","toilet transfer 및 위생 처리 훈련","식사 동작 훈련 (숟가락·젓가락)","light housework 훈련 (설거지·빨래개기·닦기)","meal preparation 훈련","grooming 훈련 (면도·머리빗기·세수)","bathing 훈련 (몸통·상지 닦기)"],
-  },
-  adl_min:{
-    p:["치료사의 minimal cue 하에","감독 하에","독립 수행 유도를 통한","보조도구를 이용하여"],
-    a:["양말·신발 신고 벗기 독립 훈련","젓가락질 정확도 향상 훈련","grooming 독립 수행 훈련","home management 훈련 (설거지·빨래·청소)","meal preparation 독립 훈련","functional mobility 훈련 (계단·경사로·장애물)","community 활동 훈련 (마트·대중교통·ATM)","communication device 사용 훈련","money management 훈련","시간에 맞춰 약 복용하기 훈련"],
-  },
-  rdt:{
-    p:["치료사가 manual Ex.를 통해","ice stick을 이용하여","거즈를 이용하여","verbal cue를 통한","mirror feedback을 통한","thermal tactile stimulation을 통한"],
-    a:["lip closure 증진 훈련","tongue movement 증진 훈련 (protraction·retraction)","저작근 stimulation을 통한 chewing 증진","facial muscle movement 증진 훈련","drooling 감소 훈련","oral motor 기능 증진 훈련","soft palate elevation 유도","pharyngeal swallowing 증진 훈련","chin-tuck 자세를 통한 swallowing facilitation","effortful swallowing 훈련","Mendelsohn maneuver 훈련","supraglottic swallowing 훈련","aspiration 최소화를 위한 자세 훈련","cough 유도 및 기도 보호 훈련","buccinator m. strengthening 훈련","tongue base 강화 훈련","swallowing reflex 유도 훈련"],
-    t:["ice stick","거즈","ice bar","레모나","빨대","vibrator"],
-  },
+  hypertonus:{p:["치료사가 scapular handling 하여","치료사의 manual guidance를 통한","verbal cue를 통한","key point control을 통한","치료사의 facilitation 하에","graded assistance를 통한","proximal support 제공 하에"],a:["muscle tone 조절을 위한 slow passive movement","abnormal muscle tone 억제 위한 manual exercise","shoulder girdle stability를 위한 manual Ex.","scapular realignment를 통한 muscle tone decrease","deep pressure를 통한 muscle tone decrease","spasticity inhibition을 위한 sweep tapping","body alignment를 위한 positioning 교육","affected side weight bearing을 통한 extensor muscle 자극","wrist 및 hand movement 증가를 위한 manual Ex.","self assist arm movement 증가를 위한 bilateral task","수건밀기를 통한 weight shifting 및 spasticity inhibition","hand release 유도를 위한 manual Ex.","protraction 유도를 위한 roll 밀기","passive movement를 통한 normal movement pattern 경험","prevent U/E contracture를 위한 passive normal movement","serratus anterior muscle activation을 위한 protraction·retraction movement","pectoralis m.·latissimus dorsi m. lengthening"],t:["stacking cone","roll","수건","ROM arch","sanding board","therapy putty","exercise skate"]},
+  hypotonus:{p:["치료사의 facilitation 하에","verbal cue를 통한","graded assistance 제공 하에","치료사의 tapping을 통한","weight bearing 유도 하에","manual support 제공 후"],a:["muscle tone increase를 위한 fast movement induction","shoulder subluxation 예방을 위한 자세교육","affected side weight bearing을 통한 muscle tone increase","shoulder girdle alignment를 통한 normal movement feeling","subluxation 조절을 위한 scapular realignment","proprioception 경험을 위한 passive movement","trunk uprighting 유도를 위한 table on elbow position","muscle activation을 위한 sensory stimulation (tapping)","rood approach를 통한 muscle tone increase","biceps·triceps activation을 위한 elbow flx-ext 반복","shoulder girdle stability를 위한 manual Ex.","edema control을 위한 gentle massage","scapular protraction·retraction을 통한 shoulder girdle stability","pain control을 위한 joint mobilization","trunk control을 통한 scapular 자세조절"],t:["ice stick","vibrator","콩주머니","고리","skate board","수건"]},
+  balance:{p:["치료사가 assist 하여","minimal assist 하에","다양한 방향에서","dynamic한 환경에서","postural set 후","graded challenge를 통한"],a:["sitting balance 유지를 위한 pelvic control","trunk uprighting 유지 하에 dynamic balance 훈련","다양한 방향 자극을 통한 sitting balance 증진","automatic reaction 이용한 trunk balance training","togu 위에서의 balance 훈련","GymBall 위에서 다양한 방향으로 균형잡기","standing balance를 위한 ankle strategy training","sanding 밀기를 통한 stability 및 balance 향상","trunk rotation을 통한 balance training","pelvic exercise를 통한 trunk balance 증진","weight shifting을 통한 dynamic balance 향상","rib cage movement 증진을 통한 trunk upright 유도","BOS 조절을 통한 trunk balance 증진","neck control을 위한 manual Ex.","전·후·측방 weight shifting을 통한 balance 훈련"],t:["togu","GymBall","roll","sanding board","stacking cone","풍선","ROM arch","콩주머니"]},
+  grasp:{p:["치료사의 grading 하에","active 참여를 통한","graded resistance를 통한","다양한 크기로","단계적 난이도 조절을 통한"],a:["cylindrical grasp & release 훈련","spherical grip & release 훈련","grasping power 증진 훈련","grip & release 패턴 증진 훈련","lateral grip 훈련","tenodesis를 이용한 grip·release 훈련","active grip & release 유도","grasp 유지 하에 reaching 유도","power grip 훈련","다양한 grip size를 통한 grasp·release 훈련","공 던지기를 통한 grasp & release 증진","long flexor m. strengthening 유도"],t:["stacking cone","오재미","therapy putty","Power web","테니스 공","음료수 캔","고리","콩주머니"]},
+  pinch:{p:["graded task를 통한","치료사의 guide 하에","단계적 난이도 조절을 통한","다양한 크기로"],a:["3 jaw chuck pinch 훈련","lateral pinch 훈련","pad to pad pinch 훈련","finger to palm translation 훈련","palm to finger translation 훈련","inhand manipulation skill 증진","finger dexterity 증진 훈련","complex rotation 훈련","simple rotation 훈련","pinch power 증진 훈련","fine motor 증진 훈련","opposition 증진 훈련","thumb abduction·extension 훈련"],t:["핀셋","공기돌","바둑알","화투패","peg","therapy putty","동전","빨래집게","퍼즐"]},
+  bilateral:{p:["깍지끼고","양손을 이용하여","affected side w/b 후 lesser affected side 사용하여","bimanual 협응을 통한","치료사의 guide 하에"],a:["bilateral arm movement를 통한 muscle contraction & elongation","trunk의 anterior·posterior weight shifting 유도","abnormal movement pattern 감소를 위한 bilateral activity","proximal extensor 촉진을 위한 양손 활동","shoulder 주변 muscle facilitation 유도","ROM increase를 위한 bilateral movement","reciprocal innervation 훈련","bimanual coordination 증진 훈련","affected side stability 제공 하에 lesser affected side 활동","양손 협응을 통한 trunk control 훈련"],t:["roll","수건","stacking cone","peg board","ROM arch","풍선","공","콩주머니","disk"]},
+  rom:{p:["치료사가 scapular handling 하여","verbal cue를 통한","graded resistance를 통한","단계적 범위 증가를 통한","치료사의 manual support 하에"],a:["U/E ROM 증진 유도","shoulder ROM 증진 유도","forearm supination·pronation ROM 증진","AROM 범위 인식 및 증진 훈련","shoulder와 trunk의 separate movement 유도","ROM 향상 및 근력향상 유도","A-ROM 증진을 위한 reaching 훈련","wrist·finger extension·thumb abduction 경험","수동저항운동을 통한 ROM 증진"],t:["stacking cone","ROM arch","horizontal ring tree","vertical ring tree","sanding board","skate board","grahamizer","수건","pegboard","putty"]},
+  coordination:{p:["graded task를 통한","단계적 난이도 조절을 통한","시간·횟수 제한을 통한","rate·regularity 조절을 통한"],a:["eye-hand coordination 증진 훈련","bilateral coordination 훈련","diadochokinesia 훈련 (supination·pronation 반복)","motor control 훈련","active movement control 훈련","timing 및 coordination 훈련","co-contraction 증진을 통한 coordination 향상","fine motor coordination 훈련","visual-motor coordination 훈련"],t:["grooved pegboard","ring tree","젠가","구슬 끼우기","stacking cone","볼링","ROM arc","공던지기","퍼즐"]},
+  strengthening:{p:["graded resistance를 통한","weight 착용 하에","치료사의 저항을 통한","단계적 부하 증가를 통한","isometric 방식으로"],a:["U/E muscle strengthening 유도","shoulder girdle muscle strengthening 유도","triceps strengthening 유도","wrist strength 증진 훈련","hand strength 증진 훈련","grip strength 향상 훈련","finger flexor·extensor co-contraction 유도","lumbrical grasp 강화 훈련","opposition 증진을 위한 strengthening","trunk muscle strengthening 유도"],t:["dumbbell","Thera band","sanding board","Power web","therapy putty","weight","ROM arc","wristiciser","E-Z board"]},
+  perception:{p:["치료사의 cue를 통한","graded task를 통한","구조화된 환경에서","단계적 난이도 조절을 통한"],a:["visual perception 증진 훈련","figure-ground 변별 훈련","visual closure 훈련","unilateral neglect 치료 훈련","visual tracking 훈련","stereognosis 훈련","proprioception 훈련","sensory discrimination 훈련","depth perception 증진 훈련","body scheme 증진 훈련","spatial orientation 훈련","visual memory 훈련"],t:["pegboard","ROM arc","stacking cone","ice stick","tactile ball","선 따라 긋기","숨은 그림","퍼즐","블록","vibrator"]},
+  cognition:{p:["치료사와 함께","구조화된 과제를 통한","단계적 난이도 조절을 통한","실생활 맥락에서","graded task를 통한"],a:["short term memory 증진 훈련","orientation 훈련 (시간·장소·사람)","attention span 증진 훈련","problem solving 훈련","sequencing 훈련","categorization 훈련","calculation 훈련","spatial relation 훈련","divided attention 훈련","select attention 훈련","procedural memory 훈련","working memory 훈련"],t:["그림카드","퍼즐","달력","윷놀이","오목","peg board","화투","sequencing card","블록"]},
+  adl_total:{p:["보호자·간병사 교육 —","보호자 교육 실시 —","간병사 교육 —","치료사 시범 후 보호자 교육 —"],a:["positioning 및 자세 변환 방법 교육","2시간마다 postural change 교육 (욕창 방지)","feeding 시 chin tuck 자세 유지 교육","NG tube 관리 방법 교육","W/C to bed transfer 방법 교육","passive ROM exercise 방법 교육","grooming 참여 유도 (거울보기·머리빗기)","eye contact를 통한 communication 유도","구강 위생 관리 교육","aspiration 예방 교육","기저귀 교환 방법 교육","흡인(suction) 방법 교육"]},
+  adl_max:{p:["치료사의 maximal assist 하에","hand-over-hand 방식으로","치료사가 guide하여","단계별 education 실시 —"],a:["dressing 시 affected side 먼저 입기 훈련","grooming 참여 증진 훈련 (양치·세수·머리빗기)","feeding 동안 upright position 유지 훈련","W/C 조작법 교육 (브레이크·발판)","sit to stand·stand to sit 훈련","functional communication 훈련 (몸짓·글씨)","toilet hygiene 자세 유지 훈련","전동 W/C 조이스틱 조작 훈련","구강 위생 훈련 (치약 짜기·양치질)","상의 입고 벗기 훈련"]},
+  adl_mod:{p:["치료사의 moderate assist 하에","보조도구를 이용하여","단계적 독립 유도를 통한","verbal cue를 통한","건측을 이용하여"],a:["상의 입고 벗기 훈련","하의 입고 벗기 훈련","지퍼·단추·벨크로 조작 훈련","reacher를 이용한 하지 씻기 훈련","W/C 평지·경사로 이동 훈련","W/C to bed·bed to W/C transfer 훈련","toilet transfer 및 위생 처리 훈련","식사 동작 훈련 (숟가락·젓가락)","light housework 훈련 (설거지·빨래개기·닦기)","meal preparation 훈련","grooming 훈련 (면도·머리빗기·세수)","bathing 훈련 (몸통·상지 닦기)"]},
+  adl_min:{p:["치료사의 minimal cue 하에","감독 하에","독립 수행 유도를 통한","보조도구를 이용하여"],a:["양말·신발 신고 벗기 독립 훈련","젓가락질 정확도 향상 훈련","grooming 독립 수행 훈련","home management 훈련 (설거지·빨래·청소)","meal preparation 독립 훈련","functional mobility 훈련 (계단·경사로·장애물)","community 활동 훈련 (마트·대중교통·ATM)","communication device 사용 훈련","money management 훈련","시간에 맞춰 약 복용하기 훈련"]},
+  rdt:{p:["치료사가 manual Ex.를 통해","ice stick을 이용하여","거즈를 이용하여","verbal cue를 통한","mirror feedback을 통한","thermal tactile stimulation을 통한"],a:["lip closure 증진 훈련","tongue movement 증진 훈련 (protraction·retraction)","저작근 stimulation을 통한 chewing 증진","facial muscle movement 증진 훈련","drooling 감소 훈련","oral motor 기능 증진 훈련","soft palate elevation 유도","pharyngeal swallowing 증진 훈련","chin-tuck 자세를 통한 swallowing facilitation","effortful swallowing 훈련","Mendelsohn maneuver 훈련","supraglottic swallowing 훈련","aspiration 최소화를 위한 자세 훈련","cough 유도 및 기도 보호 훈련","buccinator m. strengthening 훈련","tongue base 강화 훈련","swallowing reflex 유도 훈련"],t:["ice stick","거즈","ice bar","레모나","빨대","vibrator"]},
 };
 
-let sel = [];
-let lastResults = [];
-let weekComments = {}; // Firebase에서 실시간으로 받아오는 이번 주 기록
+let sel=[], lastResults=[], lastFbKeys=[], weekComments={}, selDay=getTodayStr();
 
 function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-// Firebase 실시간 구독 — 이번 주 기록 감시
 onValue(weekRef, snap => {
   weekComments = snap.val() || {};
-  renderHistory(weekComments);
+  renderHistory();
 });
 
 function buildComment(keys, usedNow){
-  const allUsed = [...Object.values(weekComments).map(v=>v.text), ...usedNow];
+  const allUsed=[...Object.values(weekComments).map(v=>v.text),...usedNow];
   for(let i=0;i<300;i++){
-    const k = rnd(keys);
-    const D = T[k];
-    if(!D) continue;
-    const hasTool = D.t && D.t.length > 0;
-    const rv = Math.random();
-    let comment;
-    if(rv < 0.33 && hasTool){
-      comment = `* ${rnd(D.t)} — ${rnd(D.a)}`;
-    } else if(rv < 0.66){
-      comment = `* ${rnd(D.p)} ${rnd(D.a)}`;
-    } else if(hasTool){
-      comment = `* ${rnd(D.t)} — ${rnd(D.p)} ${rnd(D.a)}`;
-    } else {
-      comment = `* ${rnd(D.p)} ${rnd(D.a)}`;
-    }
-    const norm = comment.replace(/\s+/g,'');
-    if(!allUsed.some(x => x && x.replace(/\s+/g,'') === norm)) return comment;
+    const k=rnd(keys); const D=T[k]; if(!D) continue;
+    const hasTool=D.t&&D.t.length>0; const rv=Math.random(); let c;
+    if(rv<0.33&&hasTool) c=`* ${rnd(D.t)} — ${rnd(D.a)}`;
+    else if(rv<0.66) c=`* ${rnd(D.p)} ${rnd(D.a)}`;
+    else if(hasTool) c=`* ${rnd(D.t)} — ${rnd(D.p)} ${rnd(D.a)}`;
+    else c=`* ${rnd(D.p)} ${rnd(D.a)}`;
+    const norm=c.replace(/\s+/g,'');
+    if(!allUsed.some(x=>x&&x.replace(/\s+/g,'')===norm)) return c;
   }
-  const k = rnd(keys);
-  return `* ${rnd(T[k].a)}`;
+  return `* ${rnd(T[rnd(keys)].a)}`;
 }
 
 window.generate = async function(){
   if(!sel.length){
-    document.getElementById('result-wrap').innerHTML='<div class="error">카테고리를 하나 이상 선택해주세요.</div>';
-    document.getElementById('result-wrap').style.display='block';
-    return;
+    document.getElementById('result-wrap').innerHTML='<div style="color:#e24b4a;font-size:13px;padding:8px;text-align:center;">카테고리를 하나 이상 선택해주세요.</div>';
+    document.getElementById('result-wrap').style.display='block'; return;
   }
-  const btn = document.getElementById('btn-gen');
-  btn.disabled = true;
-  btn.textContent = '생성 중...';
-
-  const results = [];
-  for(let i=0;i<3;i++){
-    results.push(buildComment(sel, results));
-  }
-  lastResults = results;
-
-  // Firebase에 저장
-  const cats = sel.map(k=>CATS.find(c=>c.key===k)?.label).join('·');
+  const btn=document.getElementById('btn-gen');
+  btn.disabled=true; btn.textContent='생성 중...';
+  const results=[];
+  for(let i=0;i<3;i++) results.push(buildComment(sel,results));
+  lastResults=results; lastFbKeys=[];
+  const cats=sel.map(k=>CATS.find(c=>c.key===k)?.label).join('·');
+  const today=getTodayStr();
   for(const text of results){
-    await push(weekRef, { text, cats, ts: Date.now() });
+    const snap=await push(weekRef,{text,cats,ts:Date.now(),date:today});
+    lastFbKeys.push(snap.key);
   }
+  renderResults();
+  document.getElementById('result-wrap').style.display='block';
+  btn.disabled=false; btn.textContent='✦ 코멘트 3개 생성';
+};
 
-  document.getElementById('result-list').innerHTML = results.map((r,i)=>`
-    <div class="result-item">
+function renderResults(){
+  document.getElementById('result-list').innerHTML=lastResults.map((r,i)=>r?`
+    <div class="result-item" id="ri${i}">
       <div class="result-num">${i+1}</div>
       <div class="result-text">${esc(r)}</div>
-      <button class="result-copy" id="cp${i}" onclick="copyOne(${i},this)">복사</button>
-    </div>`).join('');
-  document.getElementById('result-wrap').style.display = 'block';
+      <div class="result-actions">
+        <button class="btn-sm" id="cp${i}" onclick="copyOne(${i},this)">복사</button>
+        <button class="btn-sm del" onclick="deleteResult(${i})">삭제</button>
+      </div>
+    </div>`:'').join('');
+}
 
-  btn.disabled = false;
-  btn.textContent = '✦ 코멘트 3개 생성';
-};
-
-window.copyOne = function(i, btn){
+window.copyOne=function(i,btn){
   navigator.clipboard.writeText(lastResults[i]||'').then(()=>{
     btn.textContent='✓ 복사됨'; btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent='복사'; btn.classList.remove('copied');}, 1500);
+    setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied');},1500);
   });
 };
-window.copyAll = function(){ navigator.clipboard.writeText(lastResults.join('\n')); };
+window.copyAll=function(){ navigator.clipboard.writeText(lastResults.filter(Boolean).join('\n')); };
 
-window.resetWeek = async function(){
-  if(!confirm('이번 주 기록을 전체 초기화할까요?')) return;
+window.deleteResult=async function(i){
+  if(lastFbKeys[i]){ await remove(ref(db,'weeks/'+WEEK_KEY+'/comments/'+lastFbKeys[i])); lastFbKeys[i]=null; }
+  lastResults[i]=null;
+  const row=document.getElementById('ri'+i);
+  if(row) row.remove();
+};
+
+window.deleteHistItem=async function(key){
+  await remove(ref(db,'weeks/'+WEEK_KEY+'/comments/'+key));
+};
+
+window.resetWeek=async function(){
+  if(!confirm('이번 주 전체 기록을 초기화할까요?')) return;
   await remove(weekRef);
 };
 
-function renderHistory(data){
-  const items = Object.values(data||{}).sort((a,b)=>b.ts-a.ts);
-  if(!items.length){ document.getElementById('history-wrap').style.display='none'; return; }
-  document.getElementById('history-wrap').style.display = 'block';
-  document.getElementById('week-label').textContent = WEEK_KEY + ' 주 기록 (' + items.length + '개)';
-  document.getElementById('history-list').innerHTML = items.slice(0,20).map(h=>`
-    <div class="history-row">
-      <span class="badge">${esc(h.cats||'')}</span>${esc(h.text)}
-    </div>`).join('');
+function renderHistory(){
+  const items=Object.entries(weekComments).map(([k,v])=>({...v,fbKey:k}));
+  const histWrap=document.getElementById('history-wrap');
+  const histEmpty=document.getElementById('history-empty');
+  if(!items.length){ histWrap.style.display='none'; histEmpty.style.display='block'; return; }
+  histWrap.style.display='block'; histEmpty.style.display='none';
+
+  const byDay={};
+  items.forEach(item=>{ const d=item.date||getTodayStr(); if(!byDay[d]) byDay[d]=[]; byDay[d].push(item); });
+
+  document.getElementById('day-tabs').innerHTML=DAY_NUMS.map((dayNum,idx)=>{
+    const dayStr=getDayStr(dayNum);
+    const cnt=(byDay[dayStr]||[]).length;
+    const isOn=dayStr===selDay;
+    return `<button class="day-tab${isOn?' on':''}" onclick="switchDay('${dayStr}')">
+      ${DAYS[idx]}<span class="cnt">${cnt}</span>
+    </button>`;
+  }).join('');
+
+  const dayItems=(byDay[selDay]||[]).sort((a,b)=>b.ts-a.ts);
+  const contentEl=document.getElementById('day-content');
+  if(!dayItems.length){ contentEl.innerHTML='<div class="empty-tab">이 날 생성된 기록이 없어요</div>'; return; }
+  contentEl.innerHTML=dayItems.map(item=>{
+    const time=new Date(item.ts).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="history-item">
+      <span class="history-cat">${esc(item.cats||'')}</span>
+      <span class="history-text">${esc(item.text)}</span>
+      <span class="history-time">${time}</span>
+      <button class="btn-hist-del" onclick="deleteHistItem('${item.fbKey}')" title="삭제">✕</button>
+    </div>`;
+  }).join('');
 }
 
+window.switchDay=function(d){ selDay=d; renderHistory(); };
+
 function renderCats(){
-  document.getElementById('cat-grid').innerHTML = CATS.map(c=>`
+  document.getElementById('cat-grid').innerHTML=CATS.map(c=>`
     <button class="cat-btn${sel.includes(c.key)?' on':''}" onclick="toggleCat('${c.key}')">
       ${esc(c.label)}<span class="cat-sub">${esc(c.sub)}</span>
     </button>`).join('');
 }
-window.toggleCat = function(k){ sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k]; renderCats(); };
+window.toggleCat=function(k){ sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k]; renderCats(); };
 
 renderCats();
 </script>
