@@ -375,8 +375,6 @@ function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function hashCode(str){ let h=0; for(let i=0;i<str.length;i++) h=Math.imul(31,h)+str.charCodeAt(i)|0; return Math.abs(h).toString(36); }
 
-// 전체 카테고리 (기본 + 병원 커스텀)
-function allCats(){ return [...DEFAULT_CATS, ...customCats]; }
 
 // ── 로그인 탭
 window.setLoginTab=function(tab){
@@ -478,11 +476,7 @@ onValue(ref(db,'phrase_pool'),snap=>{
   document.getElementById('loading-pool').style.display='none';
 });
 
-function pool(key){
-  const base=T[key]||{};
-  const custom=Object.values(customPhrases).filter(v=>v.cat===key).map(v=>v.text);
-  return {p:base.p||[], a:[...(base.a||[]),...custom], t:base.t||[]};
-}
+
 
 function buildComment(keys,usedNow){
   const allUsed=[...Object.values(monthComments).map(v=>v.text),...usedNow];
@@ -817,7 +811,6 @@ window.handleToggleExclude = async function(btn){
   }
 };
 
-function renderDefaultCatListEmpty(){}
 
 </script>
 </body>
