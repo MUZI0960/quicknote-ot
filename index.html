@@ -209,6 +209,33 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);min-height:100vh
 .search-item .s-date{font-size:10px;color:var(--lavender-dark);font-weight:500;margin-bottom:3px;}
 .search-hit{background:#FFE8A3;border-radius:3px;padding:0 2px;}
 .search-empty{font-size:13px;color:var(--text-muted);text-align:center;padding:1rem 0;}
+/* PHRASE PANEL */
+.fab{position:fixed;bottom:28px;right:28px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 16px rgba(124,82,200,0.35);display:flex;align-items:center;justify-content:center;z-index:100;transition:transform 0.15s;}
+.fab:hover{transform:scale(1.08);}
+.phrase-overlay{display:none;position:fixed;inset:0;background:rgba(30,21,48,0.35);z-index:200;align-items:center;justify-content:center;}
+.phrase-overlay.open{display:flex;}
+.phrase-panel{background:#fff;border-radius:20px;padding:1.5rem;width:min(480px,92vw);max-height:85vh;overflow-y:auto;box-shadow:0 8px 40px rgba(124,82,200,0.18);}
+.phrase-panel h2{font-family:"Noto Serif KR",serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.phrase-panel p{font-size:13px;color:var(--text-muted);margin-bottom:1.25rem;}
+.phrase-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1rem;}
+.phrase-cat-btn{padding:8px 10px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:12px;font-family:"Noto Sans KR",sans-serif;cursor:pointer;text-align:left;line-height:1.4;transition:all 0.12s;}
+.phrase-cat-btn:hover{border-color:var(--mint-mid);background:var(--mint-light);}
+.phrase-cat-btn.on{background:var(--lavender);border-color:var(--lavender-mid);color:var(--lavender-dark);font-weight:500;}
+.phrase-input{width:100%;min-height:80px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);font-size:13px;font-family:"Noto Sans KR",sans-serif;color:var(--text);resize:vertical;margin-bottom:10px;}
+.phrase-input:focus{outline:none;border-color:var(--mint-mid);}
+.phrase-hint{font-size:12px;color:var(--text-muted);margin-bottom:14px;line-height:1.5;}
+.phrase-btns{display:flex;gap:8px;}
+.btn-phrase-save{flex:1;height:40px;border-radius:10px;border:none;background:linear-gradient(135deg,#7C52C8,#9B72E0);color:#fff;font-size:14px;font-weight:500;font-family:"Noto Sans KR",sans-serif;cursor:pointer;}
+.btn-phrase-save:hover{opacity:0.88;}
+.btn-phrase-cancel{height:40px;padding:0 18px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--text-sub);font-size:14px;font-family:"Noto Sans KR",sans-serif;cursor:pointer;}
+.custom-list{margin-top:1.25rem;border-top:1.5px solid var(--border);padding-top:1rem;}
+.custom-list-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.custom-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--mint-light);}
+.custom-item:last-child{border-bottom:none;}
+.custom-item-text{font-size:12px;color:var(--text-sub);flex:1;line-height:1.5;}
+.custom-item-cat{font-size:10px;font-weight:500;padding:2px 6px;border-radius:5px;background:var(--lavender);color:var(--lavender-dark);flex-shrink:0;}
+.btn-custom-del{background:transparent;border:none;color:var(--border);cursor:pointer;font-size:13px;flex-shrink:0;}
+.btn-custom-del:hover{color:#C0607A;}
 </style>
 </head>
 <body>
@@ -347,7 +374,7 @@ const CATS=[
   {key:'rdt',label:'RDT',sub:'구강·삼킴'},
 ];
 
-const T={
+const T={};  // Firebase에서 로드
   hypertonus:{p:["치료사가 scapular handling 하여","치료사의 manual guidance를 통한","verbal cue를 통한","key point control을 통한","치료사의 facilitation 하에","graded assistance를 통한","proximal support 제공 하에"],a:["muscle tone 조절을 위한 slow passive movement","abnormal muscle tone 억제 위한 manual exercise","shoulder girdle stability를 위한 manual Ex.","scapular realignment를 통한 muscle tone decrease","deep pressure를 통한 muscle tone decrease","spasticity inhibition을 위한 sweep tapping","body alignment를 위한 positioning 교육","affected side weight bearing을 통한 extensor muscle 자극","wrist 및 hand movement 증가를 위한 manual Ex.","self assist arm movement 증가를 위한 bilateral task","수건밀기를 통한 weight shifting 및 spasticity inhibition","hand release 유도를 위한 manual Ex.","protraction 유도를 위한 roll 밀기","passive movement를 통한 normal movement pattern 경험","prevent U/E contracture를 위한 passive normal movement","serratus anterior muscle activation을 위한 protraction·retraction movement","pectoralis m.·latissimus dorsi m. lengthening"],t:["stacking cone","roll","수건","ROM arch","sanding board","therapy putty","exercise skate"]},
   hypotonus:{p:["치료사의 facilitation 하에","verbal cue를 통한","graded assistance 제공 하에","치료사의 tapping을 통한","weight bearing 유도 하에","manual support 제공 후"],a:["muscle tone increase를 위한 fast movement induction","shoulder subluxation 예방을 위한 자세교육","affected side weight bearing을 통한 muscle tone increase","shoulder girdle alignment를 통한 normal movement feeling","subluxation 조절을 위한 scapular realignment","proprioception 경험을 위한 passive movement","trunk uprighting 유도를 위한 table on elbow position","muscle activation을 위한 sensory stimulation (tapping)","rood approach를 통한 muscle tone increase","biceps·triceps activation을 위한 elbow flx-ext 반복","shoulder girdle stability를 위한 manual Ex.","edema control을 위한 gentle massage","scapular protraction·retraction을 통한 shoulder girdle stability","pain control을 위한 joint mobilization","trunk control을 통한 scapular 자세조절"],t:["ice stick","vibrator","콩주머니","고리","skate board","수건"]},
   balance:{p:["치료사가 assist 하여","minimal assist 하에","다양한 방향에서","dynamic한 환경에서","postural set 후","graded challenge를 통한"],a:["sitting balance 유지를 위한 pelvic control","trunk uprighting 유지 하에 dynamic balance 훈련","다양한 방향 자극을 통한 sitting balance 증진","automatic reaction 이용한 trunk balance training","togu 위에서의 balance 훈련","GymBall 위에서 다양한 방향으로 균형잡기","standing balance를 위한 ankle strategy training","sanding 밀기를 통한 stability 및 balance 향상","trunk rotation을 통한 balance training","pelvic exercise를 통한 trunk balance 증진","weight shifting을 통한 dynamic balance 향상","rib cage movement 증진을 통한 trunk upright 유도","BOS 조절을 통한 trunk balance 증진","neck control을 위한 manual Ex.","전·후·측방 weight shifting을 통한 balance 훈련"],t:["togu","GymBall","roll","sanding board","stacking cone","풍선","ROM arch","콩주머니"]},
@@ -370,6 +397,20 @@ let sel=[],lastResults=[],lastFbKeys=[],weekComments={},selDay=getTodayStr();
 function rnd(arr){return arr[Math.floor(Math.random()*arr.length)];}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
+// Firebase phrase_pool 실시간 로드
+const phrasePoolRef=ref(db,"phrase_pool");
+onValue(phrasePoolRef,snap=>{
+  const pool=snap.val()||{};
+  Object.keys(pool).forEach(cat=>{
+    const d=pool[cat];
+    T[cat]={
+      p:d.prefix?Object.values(d.prefix).map(v=>v.text):[],
+      a:d.action?Object.values(d.action).map(v=>v.text):[],
+      t:d.tool?Object.values(d.tool).map(v=>v.text):[],
+    };
+  });
+});
+
 onValue(weekRef,snap=>{weekComments=snap.val()||{};renderHistory();});
 
 function buildComment(keys,usedNow){
@@ -377,13 +418,13 @@ function buildComment(keys,usedNow){
   for(let i=0;i<300;i++){
     const k=rnd(keys);const D=T[k];if(!D)continue;
     const hasTool=D.t&&D.t.length>0;const rv=Math.random();let c;
-    if(rv<0.33&&hasTool)c=`* ${rnd(D.t)} — ${rnd(D.a)}`;
-    else if(rv<0.66)c=`* ${rnd(D.p)} ${rnd(D.a)}`;
-    else if(hasTool)c=`* ${rnd(D.t)} — ${rnd(D.p)} ${rnd(D.a)}`;
-    else c=`* ${rnd(D.p)} ${rnd(D.a)}`;
+    if(rv<0.33&&hasTool)c=`${rnd(D.t)} — ${rnd(D.a)}`;
+    else if(rv<0.66)c=`${rnd(D.p)} ${rnd(D.a)}`;
+    else if(hasTool)c=`${rnd(D.t)} — ${rnd(D.p)} ${rnd(D.a)}`;
+    else c=`${rnd(D.p)} ${rnd(D.a)}`;
     if(!allUsed.some(x=>x&&x.replace(/\s+/g,'')=== c.replace(/\s+/g,'')))return c;
   }
-  return `* ${rnd(T[rnd(keys)].a)}`;
+  return `${rnd(T[rnd(keys)].a)}`;
 }
 
 window.generate=async function(){
@@ -511,6 +552,110 @@ function renderCats(){
 }
 window.toggleCat=function(k){sel=sel.includes(k)?sel.filter(x=>x!==k):[...sel,k];renderCats();};
 renderCats();
+
+// ===== CUSTOM PHRASE =====
+const customRef=ref(db,"custom_phrases");
+let customPhrases={};
+let selPhrCat=null;
+
+onValue(customRef,snap=>{
+  customPhrases=snap.val()||{};
+  renderCustomList();
+});
+
+function mergedPool(key){
+  const base=(T[key]||{});
+  const customs=Object.values(customPhrases).filter(v=>v.cat===key).map(v=>v.text);
+  return {p:base.p||[],a:[...(base.a||[]),...customs],t:base.t||[]};
+}
+
+// override buildComment to use mergedPool
+buildComment=function(keys,usedNow){
+  const allUsed=[...Object.values(weekComments).map(v=>v.text),...usedNow];
+  for(let i=0;i<300;i++){
+    const k=rnd(keys);const D=mergedPool(k);if(!D.a.length)continue;
+    const hasTool=D.t&&D.t.length>0;const rv=Math.random();let c;
+    if(rv<0.33&&hasTool)c=`${rnd(D.t)} — ${rnd(D.a)}`;
+    else if(rv<0.66)c=`${rnd(D.p)} ${rnd(D.a)}`;
+    else if(hasTool)c=`${rnd(D.t)} — ${rnd(D.p)} ${rnd(D.a)}`;
+    else c=`${rnd(D.p)} ${rnd(D.a)}`;
+    if(!allUsed.some(x=>x&&x.replace(/s+/g,"")=== c.replace(/s+/g,"")))return c;
+  }
+  return `${rnd((mergedPool(rnd(keys))).a)}`;
+};
+
+window.openPhrasePanel=function(){
+  selPhrCat=null;
+  document.getElementById("phrase-input").value="";
+  renderPhraseCats();
+  document.getElementById("phrase-overlay").classList.add("open");
+};
+window.closePhrasePanel=function(e){
+  if(!e||e.target===document.getElementById("phrase-overlay"))
+    document.getElementById("phrase-overlay").classList.remove("open");
+};
+
+function renderPhraseCats(){
+  document.getElementById("phrase-cat-grid").innerHTML=CATS.map(c=>`
+    <button class="phrase-cat-btn${selPhrCat===c.key?" on":""}" onclick="setPhrCat('${c.key}')">
+      ${esc(c.label)}<span style="font-size:10px;opacity:0.65;display:block;margin-top:2px;">${esc(c.sub)}</span>
+    </button>`).join("");
+}
+window.setPhrCat=function(k){selPhrCat=k;renderPhraseCats();};
+
+window.savePhrase=async function(){
+  if(!selPhrCat){alert("카테고리를 선택해주세요.");return;}
+  const raw=document.getElementById("phrase-input").value.trim();
+  if(!raw){alert("문구를 입력해주세요.");return;}
+  const lines=raw.split("
+").map(l=>l.trim()).filter(Boolean).map(l=>l.startsWith("*")?l.replace(/^\*s*/,""):l);
+  for(const text of lines){
+    await push(customRef,{cat:selPhrCat,text,ts:Date.now()});
+  }
+  document.getElementById("phrase-input").value="";
+  alert(`${lines.length}개 문구가 추가됐어요!`);
+};
+
+function renderCustomList(){
+  const items=Object.entries(customPhrases).sort((a,b)=>b[1].ts-a[1].ts);
+  const wrap=document.getElementById("custom-list");
+  const el=document.getElementById("custom-items");
+  if(!items.length){wrap.style.display="none";return;}
+  wrap.style.display="block";
+  el.innerHTML=items.map(([k,v])=>{
+    const catLabel=CATS.find(c=>c.key===v.cat)?.label||v.cat;
+    return `<div class="custom-item">
+      <span class="custom-item-cat">${esc(catLabel)}</span>
+      <span class="custom-item-text">${esc(v.text)}</span>
+      <button class="btn-custom-del" onclick="deleteCustom('${k}')" title="삭제">✕</button>
+    </div>`;
+  }).join("");
+}
+window.deleteCustom=async function(k){
+  if(!confirm("이 문구를 삭제할까요?"))return;
+  await remove(ref(db,"custom_phrases/"+k));
+};
 </script>
+<!-- FAB -->
+<button class="fab" onclick="openPhrasePanel()" title="예시 문구 추가">＋</button>
+
+<!-- PHRASE PANEL -->
+<div class="phrase-overlay" id="phrase-overlay" onclick="closePhrasePanel(event)">
+  <div class="phrase-panel">
+    <h2>예시 문구 추가</h2>
+    <p>카테고리를 선택하고 문구를 입력하면 생성 풀에 추가돼요.</p>
+    <div class="phrase-cat-grid" id="phrase-cat-grid"></div>
+    <textarea class="phrase-input" id="phrase-input" placeholder="예: stacking cone — 치료사가 scapular handling 하여 ROM 증진"></textarea>
+    <div class="phrase-hint">* 로 시작하지 않아도 자동으로 붙어요. 여러 줄 입력 시 줄마다 각각 추가됩니다.</div>
+    <div class="phrase-btns">
+      <button class="btn-phrase-cancel" onclick="closePhrasePanel(null)">취소</button>
+      <button class="btn-phrase-save" onclick="savePhrase()">추가하기</button>
+    </div>
+    <div class="custom-list" id="custom-list" style="display:none;">
+      <div class="custom-list-title">추가된 문구 목록</div>
+      <div id="custom-items"></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
